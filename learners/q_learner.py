@@ -4,6 +4,7 @@ from models.qmix import QMixer
 import tensorflow as tf
 from tensorflow.keras.optimizers import RMSprop
 
+# TODO Copiato e incollato, bisogna passare da torch a keras
 
 class QLearner:
     def __init__(self, mac, scheme, logger):

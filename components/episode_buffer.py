@@ -3,6 +3,8 @@ import numpy as np
 from types import SimpleNamespace as SN
 
 
+# TODO Non funziona niente
+
 class EpisodeBatch:
     def __init__(self,
                  scheme,

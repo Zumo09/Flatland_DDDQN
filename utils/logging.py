@@ -2,6 +2,7 @@ from collections import defaultdict
 from tensorboard_logger import configure, log_value
 import numpy as np
 
+# TODO Copiato e incollato, non so come funziona
 
 class Logger:
     def __init__(self, console_logger):
