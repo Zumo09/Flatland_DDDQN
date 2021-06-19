@@ -21,8 +21,8 @@ class RnnAgent:
 
         self.model.compile(optimizer=optimizer)
 
-    def train_step(self, x, y):
-        pass
+    def __call__(self, inputs):
+        return self.model(inputs)
 
-    def select_action(self):
+    def apply_gradient(self, loss):
         pass
