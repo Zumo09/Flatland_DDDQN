@@ -1,4 +1,4 @@
-from models.agent import RnnAgent
+from models.agent__nogood import RnnAgent
 from components.action_selectors import EpsilonGreedyActionSelector
 import tensorflow as tf
 

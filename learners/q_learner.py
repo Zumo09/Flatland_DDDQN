@@ -1,6 +1,6 @@
 import copy
 from components.episode_buffer import EpisodeBatch
-from models.qmix import QMixer
+from models.qmix__goodbutno import QMixer
 import tensorflow as tf
 from tensorflow.keras.optimizers import RMSprop
 
