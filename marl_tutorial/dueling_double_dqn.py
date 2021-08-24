@@ -7,7 +7,7 @@ import numpy as np
 
 import keras.optimizers as optim
 
-from torch_training.model import QNetwork
+from marl_tutorial.model import QNetwork
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 512  # minibatch size

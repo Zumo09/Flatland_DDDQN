@@ -12,8 +12,8 @@ sys.path.append(str(base_dir))
 
 import matplotlib.pyplot as plt
 import numpy as np
-import torch
-from torch_training.dueling_double_dqn import Agent
+import tensorflow.keras as keras
+from marl_tutorial.dueling_double_dqn import Agent
 
 from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
@@ -24,7 +24,9 @@ from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 from flatland.envs.agent_utils import RailAgentStatus
 
+
 def main(argv):
+    n_trials = 0
     try:
         opts, args = getopt.getopt(argv, "n:", ["n_trials="])
     except getopt.GetoptError:
@@ -42,13 +44,11 @@ def main(argv):
     y_dim = 35
     n_agents = 10
 
-
     # Use a the malfunction generator to break agents from time to time
-    stochastic_data = MalfunctionParameters(malfunction_rate=1./10000,  # Rate of malfunction occurence
+    stochastic_data = MalfunctionParameters(malfunction_rate=1. / 10000,  # Rate of malfunction occurence
                                             min_duration=15,  # Minimal duration of malfunction
                                             max_duration=50  # Max duration of malfunction
                                             )
-
 
     # Custom observation builder
     TreeObservation = TreeObsForRailEnv(max_depth=2, predictor=ShortestPathPredictorForRailEnv(30))
@@ -73,7 +73,7 @@ def main(argv):
                   obs_builder_object=TreeObservation)
 
     # Reset env
-    env.reset(True,True)
+    env.reset(True, True)
     # After training we want to render the results so we also load a renderer
     env_renderer = RenderTool(env, gl="PILSVG", )
     # Given the depth of the tree observation and the number of features per node we get the following state_size
@@ -149,7 +149,8 @@ def main(argv):
             next_obs, all_rewards, done, info = env.step(action_dict)
             # Update replay buffer and train agent
             for a in range(env.get_num_agents()):
-                # Only update the values when we are done or when an action was taken and thus relevant information is present
+                # Only update the values when we are done or when an action was taken and thus relevant information
+                # is present
                 if update_values[a] or done[a]:
                     agent.step(agent_obs_buffer[a], agent_action_buffer[a], all_rewards[a],
                                agent_obs[a], done[a])
@@ -181,7 +182,8 @@ def main(argv):
         dones_list.append((np.mean(done_window)))
 
         print(
-            '\rTraining {} Agents on ({},{}).\t Episode {}\t Average Score: {:.3f}\tDones: {:.2f}%\tEpsilon: {:.2f} \t Action Probabilities: \t {}'.format(
+            '\rTraining {} Agents on ({},{}).\t Episode {}\t Average Score: {:.3f}\tDones: {:.2f}%\tEpsilon: {:.2f} '
+            '\t Action Probabilities: \t {}'.format(
                 env.get_num_agents(), x_dim, y_dim,
                 trials,
                 np.mean(scores_window),
@@ -190,14 +192,15 @@ def main(argv):
 
         if trials % 100 == 0:
             print(
-                '\rTraining {} Agents on ({},{}).\t Episode {}\t Average Score: {:.3f}\tDones: {:.2f}%\tEpsilon: {:.2f} \t Action Probabilities: \t {}'.format(
+                '\rTraining {} Agents on ({},{}).\t Episode {}\t Average Score: {:.3f}\tDones: {:.2f}%'
+                '\tEpsilon: {:.2f} \t Action Probabilities: \t {}'.format(
                     env.get_num_agents(), x_dim, y_dim,
                     trials,
                     np.mean(scores_window),
                     100 * np.mean(done_window),
                     eps, action_prob / np.sum(action_prob)))
-            torch.save(agent.qnetwork_local.state_dict(),
-                       './Nets/navigator_checkpoint' + str(trials) + '.pth')
+
+            agent.qnetwork_local.save('./Nets/navigator_checkpoint' + str(trials) + '.pth')
             action_prob = [1] * action_size
 
     # Plot overall training progress at the end
