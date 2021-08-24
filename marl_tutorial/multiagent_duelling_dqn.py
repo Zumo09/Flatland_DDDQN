@@ -12,7 +12,6 @@ sys.path.append(str(base_dir))
 
 import matplotlib.pyplot as plt
 import numpy as np
-import tensorflow.keras as keras
 from marl_tutorial.dueling_double_dqn import Agent
 
 from flatland.envs.rail_env import RailEnv
@@ -149,8 +148,8 @@ def main(argv):
             next_obs, all_rewards, done, info = env.step(action_dict)
             # Update replay buffer and train agent
             for a in range(env.get_num_agents()):
-                # Only update the values when we are done or when an action was taken and thus relevant information
-                # is present
+                # Only update the values when we are done or when an action was taken and thus relevant information 
+                # is present 
                 if update_values[a] or done[a]:
                     agent.step(agent_obs_buffer[a], agent_action_buffer[a], all_rewards[a],
                                agent_obs[a], done[a])
@@ -183,7 +182,7 @@ def main(argv):
 
         print(
             '\rTraining {} Agents on ({},{}).\t Episode {}\t Average Score: {:.3f}\tDones: {:.2f}%\tEpsilon: {:.2f} '
-            '\t Action Probabilities: \t {}'.format(
+            '\t Action Probabilities: \t {}'.format( 
                 env.get_num_agents(), x_dim, y_dim,
                 trials,
                 np.mean(scores_window),
@@ -199,7 +198,7 @@ def main(argv):
                     np.mean(scores_window),
                     100 * np.mean(done_window),
                     eps, action_prob / np.sum(action_prob)))
-
+            
             agent.qnetwork_local.save('./Nets/navigator_checkpoint' + str(trials) + '.pth')
             action_prob = [1] * action_size
 
