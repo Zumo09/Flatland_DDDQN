@@ -3,30 +3,28 @@ import numpy as np
 
 
 def main():
-    env = FlatlandEnv(n_agents=4, render=True)
+    env = FlatlandEnv(n_agents=4, episode_limit=50, render=False)
     env_info = env.get_env_info()
 
     n_actions = env_info["n_actions"]
     n_agents = env_info["n_agents"]
 
-    n_episodes = 10
+    n_episodes = 20
 
     for e in range(n_episodes):
-        obs, state = env.reset()
+        _, _ = env.reset()
         terminated = False
         episode_reward = 0
-        t = 0
 
-        while not terminated and t < 10:
-            t += 1
+        while not terminated:
             actions = []
             for agent_id in range(n_agents):
                 action = np.random.choice(n_actions)
                 actions.append(action)
 
-            obs, state, reward, terminated = env.step(actions)
+            reward, terminated, info = env.step(actions)
             episode_reward += reward
-            print(t)
+            # print(env.episode_t, reward)
 
         if not terminated:
             episode_reward += 100
