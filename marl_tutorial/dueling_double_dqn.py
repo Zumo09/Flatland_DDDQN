@@ -5,7 +5,9 @@ from collections import namedtuple, deque, Iterable
 
 import numpy as np
 
-import keras.optimizers as optim
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+
+import tensorflow as tf
 
 from marl_tutorial.model import QNetwork
 
@@ -15,9 +17,6 @@ GAMMA = 0.99  # discount factor 0.99
 TAU = 1e-3  # for soft update of target parameters
 LR = 0.5e-4  # learning rate 0.5e-4 works
 UPDATE_EVERY = 10  # how often to update the network
-
-# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-# print(device)
 
 
 class Agent:
@@ -38,22 +37,23 @@ class Agent:
         self.qnetwork_local = QNetwork(state_size, action_size)
         self.qnetwork_target = copy.deepcopy(self.qnetwork_local)
 
-        self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
+        self.qnetwork_local.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
+                                    loss=tf.keras.losses.MeanSquaredError())
 
         # Replay memory
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE)
         # Initialize time step (for updating every UPDATE_EVERY steps)
         self.t_step = 0
 
-    # def save(self, filename):
-    #     torch.save(self.qnetwork_local.state_dict(), filename + ".local")
-    #     torch.save(self.qnetwork_target.state_dict(), filename + ".target")
-    #
-    # def load(self, filename):
-    #     if os.path.exists(filename + ".local"):
-    #         self.qnetwork_local.load_state_dict(torch.load(filename + ".local"))
-    #     if os.path.exists(filename + ".target"):
-    #         self.qnetwork_target.load_state_dict(torch.load(filename + ".target"))
+    def save(self, filename):
+        self.qnetwork_local.save(filename + ".local")
+        self.qnetwork_target.save(filename + ".target")
+
+    def load(self, filename):
+        if os.path.exists(filename + ".local"):
+            self.qnetwork_local = tf.keras.models.load_model(filename + ".local")
+        if os.path.exists(filename + ".target"):
+            self.qnetwork_target = tf.keras.models.load_model(filename + ".target")
 
     def step(self, state, action, reward, next_state, done, train=True):
         # Save experience in replay memory
@@ -76,14 +76,10 @@ class Agent:
             state (array_like): current state
             eps (float): epsilon, for epsilon-greedy action selection
         """
-        # state = torch.from_numpy(state).float().unsqueeze(0).to(device)
-        self.qnetwork_local.eval()
-        action_values = self.qnetwork_local(state)
-        self.qnetwork_local.train()
-
         # Epsilon-greedy action selection
         if random.random() > eps:
-            return np.argmax(action_values.cpu().data.numpy())
+            action_values = self.qnetwork_local.predict(state)
+            return np.argmax(action_values)
         else:
             return random.choice(np.arange(self.action_size))
 
@@ -98,33 +94,25 @@ class Agent:
         """
         states, actions, rewards, next_states, dones = experiences
 
-        # Get expected Q values from local model
-        Q_expected = self.qnetwork_local(states).gather(1, actions)
+        # TODO: implementare il double deepQN
+        # if self.double_dqn:
+        #     # Double DQN
+        #     q_best_action = self.qnetwork_local.predict(next_states).max(axis=1)[1]
+        #     Q_targets_next = self.qnetwork_target(next_states).gather(1, q_best_action.unsqueeze(-1))
+        # else:
+        #     # DQN
+        #     Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(-1)
 
-        if self.double_dqn:
-            # Double DQN
-            q_best_action = self.qnetwork_local(next_states).max(1)[1]
-            Q_targets_next = self.qnetwork_target(next_states).gather(1, q_best_action.unsqueeze(-1))
-        else:
-            # DQN
-            Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(-1)
-
-            # Compute Q targets for current states
+        Q_targets_next = self.qnetwork_target.predict(next_states)
 
         Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
 
-        # Compute loss
-        # TODO: convertire loss in keras
-        # loss = F.mse_loss(Q_expected, Q_targets)
-        # Minimize the loss
-        self.optimizer.zero_grad()
-        # loss.backward()
-        self.optimizer.step()
+        self.qnetwork_local.fit(states, Q_targets, verbose=0)
 
         # ------------------- update target network ------------------- #
-        self.soft_update(self.qnetwork_local, self.qnetwork_target, TAU)
+        self.soft_update(TAU)
 
-    def soft_update(self, local_model, target_model, tau):
+    def soft_update(self, tau):
         """Soft update model parameters.
         θ_target = τ*θ_local + (1 - τ)*θ_target
 
@@ -134,8 +122,14 @@ class Agent:
             target_model (PyTorch model): weights will be copied to
             tau (float): interpolation parameter
         """
-        for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
-            target_param.data.copy_(tau * local_param.data + (1.0 - tau) * target_param.data)
+        local_weights = self.qnetwork_local.get_weights()
+        target_weights = self.qnetwork_target.get_weights()
+
+        # TODO: implementare il soft update con l'equazione qua sotto
+        # new_weight = tau * np.array(local_weights) + (1.0 - tau) * np.array(target_weights)
+        new_weight = local_weights
+
+        self.qnetwork_target.set_weights(new_weight)
 
 
 class ReplayBuffer:
@@ -176,7 +170,8 @@ class ReplayBuffer:
         """Return the current size of internal memory."""
         return len(self.memory)
 
-    def __v_stack_impr(self, states):
+    @staticmethod
+    def __v_stack_impr(states):
         sub_dim = len(states[0][0]) if isinstance(states[0], Iterable) else 1
         np_states = np.reshape(np.array(states), (len(states), sub_dim))
         return np_states

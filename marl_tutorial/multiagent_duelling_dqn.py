@@ -25,7 +25,6 @@ from flatland.envs.agent_utils import RailAgentStatus
 
 
 def main(argv):
-    n_trials = 0
     try:
         opts, args = getopt.getopt(argv, "n:", ["n_trials="])
     except getopt.GetoptError:
@@ -68,7 +67,8 @@ def main(argv):
                                                        max_rails_in_city=3),
                   schedule_generator=sparse_schedule_generator(speed_ration_map),
                   number_of_agents=n_agents,
-                  malfunction_generator_and_process_data=malfunction_from_params(stochastic_data),
+                  # TODO: aggiungere malfunzionamenti
+                  # malfunction_generator=malfunction_from_params(stochastic_data),
                   obs_builder_object=TreeObservation)
 
     # Reset env
@@ -119,6 +119,7 @@ def main(argv):
 
         # Reset environment
         obs, info = env.reset(True, True)
+        print(obs)
         env_renderer.reset()
         # Build agent specific observations
         for a in range(env.get_num_agents()):
@@ -137,6 +138,7 @@ def main(argv):
                 if info['action_required'][a]:
                     # If an action is require, we want to store the obs a that step as well as the action
                     update_values[a] = True
+
                     action = agent.act(agent_obs[a], eps=eps)
                     action_prob[action] += 1
                 else:

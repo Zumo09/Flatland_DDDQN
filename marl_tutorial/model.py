@@ -1,17 +1,18 @@
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Dense
+from tensorflow import reduce_mean
 
 
 class QNetwork(Model):
-    def __init__(self, action_size, hidsize1=128, hidsize2=128):
+    def __init__(self, action_size, hidden_1=128, hidden_2=128):
         super(QNetwork, self).__init__()
 
-        self.fc1_val = Dense(hidsize1, activation='relu')
-        self.fc2_val = Dense(hidsize2, activation='relu')
+        self.fc1_val = Dense(hidden_1, activation='relu')
+        self.fc2_val = Dense(hidden_2, activation='relu')
         self.fc3_val = Dense(1)
 
-        self.fc1_adv = Dense(hidsize1, activation='relu')
-        self.fc2_adv = Dense(hidsize2, activation='relu')
+        self.fc1_adv = Dense(hidden_1, activation='relu')
+        self.fc2_adv = Dense(hidden_2, activation='relu')
         self.fc3_adv = Dense(action_size)
 
     def call(self, inputs, training=None, mask=None):
@@ -23,7 +24,7 @@ class QNetwork(Model):
         adv = self.fc1_adv(inputs)
         adv = self.fc2_adv(adv)
         adv = self.fc3_adv(adv)
-        return val + adv - adv.mean()
+        return val + adv - reduce_mean(adv)
 
     def get_config(self):
         return {
