@@ -10,14 +10,14 @@ class EpisodeBatch:
                  scheme,
                  groups,
                  batch_size,
-                 max_seq_lengtf,
+                 max_seq_length,
                  data=None,
                  preprocess=None,
                  device="cpu"):
         self.scheme = scheme.copy()
         self.groups = groups
         self.batch_size = batch_size
-        self.max_seq_length = max_seq_lengtf
+        self.max_seq_length = max_seq_length
         self.preprocess = {} if preprocess is None else preprocess
         self.device = device
 
@@ -27,7 +27,7 @@ class EpisodeBatch:
             self.data = SN()
             self.data.transition_data = {}
             self.data.episode_data = {}
-            self._setup_data(self.scheme, self.groups, batch_size, max_seq_lengtf, self.preprocess)
+            self._setup_data(self.scheme, self.groups, batch_size, max_seq_length, self.preprocess)
 
     def _setup_data(self, scheme, groups, batch_size, max_seq_length, preprocess):
         if preprocess is not None:

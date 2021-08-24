@@ -6,16 +6,14 @@ from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import complex_rail_generator
 from flatland.envs.schedule_generators import complex_schedule_generator
 from flatland.utils.rendertools import RenderTool
-
-
-def transform_tree_obs(next_obs):
-    return next_obs
+from utils.observation_utils import normalize_observation
 
 
 class FlatlandEnv:
     def __init__(self, n_agents, episode_limit, render=False, seed=1):
-        self.transformer = transform_tree_obs
-        observation = TreeObsForRailEnv(max_depth=2, predictor=ShortestPathPredictorForRailEnv())
+        self.transformer = normalize_observation
+        self.max_depth = 2
+        observation = TreeObsForRailEnv(max_depth=self.max_depth, predictor=ShortestPathPredictorForRailEnv())
 
         self.env = RailEnv(width=20, height=20,
                            rail_generator=complex_rail_generator(nr_start_goal=10,
@@ -48,7 +46,7 @@ class FlatlandEnv:
     def reset(self):
         obs, info = self.env.reset()
 
-        obs = self.transformer(obs)
+        obs = self.transformer(obs, self.max_depth)
         state = self.get_state()
 
         self.episode_t = 0
@@ -66,7 +64,7 @@ class FlatlandEnv:
         if self.renderer is not None:
             self.renderer.render_env(show=True, show_observations=True, show_predictions=False)
 
-        self.observations = self.transformer(next_obs)
+        self.observations = self.transformer(next_obs, self.max_depth)
         self.state = self._get_state_from_env()
         reward = sum([r for r in all_rewards.values()])
         terminated = done['__all__']
