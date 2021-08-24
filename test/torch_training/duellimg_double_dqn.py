@@ -4,9 +4,8 @@ import random
 from collections import namedtuple, deque, Iterable
 
 import numpy as np
-import torch
-import torch.nn.functional as F
-import torch.optim as optim
+
+import keras.optimizers as optim
 
 from torch_training.model import QNetwork
 
@@ -17,8 +16,8 @@ TAU = 1e-3  # for soft update of target parameters
 LR = 0.5e-4  # learning rate 0.5e-4 works
 UPDATE_EVERY = 10  # how often to update the network
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print(device)
+# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+# print(device)
 
 
 class Agent:
@@ -36,7 +35,7 @@ class Agent:
         self.action_size = action_size
         self.double_dqn = double_dqn
         # Q-Network
-        self.qnetwork_local = QNetwork(state_size, action_size).to(device)
+        self.qnetwork_local = QNetwork(state_size, action_size)
         self.qnetwork_target = copy.deepcopy(self.qnetwork_local)
 
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
@@ -46,15 +45,15 @@ class Agent:
         # Initialize time step (for updating every UPDATE_EVERY steps)
         self.t_step = 0
 
-    def save(self, filename):
-        torch.save(self.qnetwork_local.state_dict(), filename + ".local")
-        torch.save(self.qnetwork_target.state_dict(), filename + ".target")
-
-    def load(self, filename):
-        if os.path.exists(filename + ".local"):
-            self.qnetwork_local.load_state_dict(torch.load(filename + ".local"))
-        if os.path.exists(filename + ".target"):
-            self.qnetwork_target.load_state_dict(torch.load(filename + ".target"))
+    # def save(self, filename):
+    #     torch.save(self.qnetwork_local.state_dict(), filename + ".local")
+    #     torch.save(self.qnetwork_target.state_dict(), filename + ".target")
+    #
+    # def load(self, filename):
+    #     if os.path.exists(filename + ".local"):
+    #         self.qnetwork_local.load_state_dict(torch.load(filename + ".local"))
+    #     if os.path.exists(filename + ".target"):
+    #         self.qnetwork_target.load_state_dict(torch.load(filename + ".target"))
 
     def step(self, state, action, reward, next_state, done, train=True):
         # Save experience in replay memory
@@ -77,10 +76,9 @@ class Agent:
             state (array_like): current state
             eps (float): epsilon, for epsilon-greedy action selection
         """
-        state = torch.from_numpy(state).float().unsqueeze(0).to(device)
+        # state = torch.from_numpy(state).float().unsqueeze(0).to(device)
         self.qnetwork_local.eval()
-        with torch.no_grad():
-            action_values = self.qnetwork_local(state)
+        action_values = self.qnetwork_local(state)
         self.qnetwork_local.train()
 
         # Epsilon-greedy action selection
@@ -116,10 +114,11 @@ class Agent:
         Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
 
         # Compute loss
-        loss = F.mse_loss(Q_expected, Q_targets)
+        # TODO: convertire loss in keras
+        # loss = F.mse_loss(Q_expected, Q_targets)
         # Minimize the loss
         self.optimizer.zero_grad()
-        loss.backward()
+        # loss.backward()
         self.optimizer.step()
 
         # ------------------- update target network ------------------- #
@@ -165,16 +164,11 @@ class ReplayBuffer:
         """Randomly sample a batch of experiences from memory."""
         experiences = random.sample(self.memory, k=self.batch_size)
 
-        states = torch.from_numpy(self.__v_stack_impr([e.state for e in experiences if e is not None])) \
-            .float().to(device)
-        actions = torch.from_numpy(self.__v_stack_impr([e.action for e in experiences if e is not None])) \
-            .long().to(device)
-        rewards = torch.from_numpy(self.__v_stack_impr([e.reward for e in experiences if e is not None])) \
-            .float().to(device)
-        next_states = torch.from_numpy(self.__v_stack_impr([e.next_state for e in experiences if e is not None])) \
-            .float().to(device)
-        dones = torch.from_numpy(self.__v_stack_impr([e.done for e in experiences if e is not None]).astype(np.uint8)) \
-            .float().to(device)
+        states = self.__v_stack_impr([e.state for e in experiences if e is not None])
+        actions = self.__v_stack_impr([e.action for e in experiences if e is not None])
+        rewards = self.__v_stack_impr([e.reward for e in experiences if e is not None])
+        next_states = self.__v_stack_impr([e.next_state for e in experiences if e is not None])
+        dones = self.__v_stack_impr([e.done for e in experiences if e is not None]).astype(np.uint8)
 
         return states, actions, rewards, next_states, dones
 
