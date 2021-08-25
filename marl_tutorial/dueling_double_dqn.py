@@ -78,6 +78,7 @@ class Agent:
         """
         # Epsilon-greedy action selection
         if random.random() > eps:
+            state = tf.expand_dims(state, 0)
             action_values = self.qnetwork_local.predict(state)
             return np.argmax(action_values)
         else:

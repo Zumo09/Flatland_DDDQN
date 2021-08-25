@@ -40,7 +40,7 @@ def main(argv):
     # Parameters for the Environment
     x_dim = 35
     y_dim = 35
-    n_agents = 10
+    n_agents = 3
 
     # Use a the malfunction generator to break agents from time to time
     stochastic_data = MalfunctionParameters(malfunction_rate=1. / 10000,  # Rate of malfunction occurence
@@ -88,7 +88,8 @@ def main(argv):
 
     # We set the number of episodes we would like to train on
     if 'n_trials' not in locals():
-        n_trials = 15000
+        n_trials = 1000
+        # n_trials = 15000
 
     # And the max number of steps we want to take per episode
     max_steps = int(4 * 2 * (20 + env.height + env.width))
@@ -115,11 +116,10 @@ def main(argv):
     # Now we load a Double dueling DQN agent
     agent = Agent(state_size, action_size)
 
+    print(f'Training for {n_trials} Episodes')
     for trials in range(1, n_trials + 1):
-
         # Reset environment
         obs, info = env.reset(True, True)
-        print(obs)
         env_renderer.reset()
         # Build agent specific observations
         for a in range(env.get_num_agents()):
