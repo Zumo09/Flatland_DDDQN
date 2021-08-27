@@ -1,6 +1,6 @@
-from env.env_generator import FlatlandEnv
+from qmix_from_paper.env.env_generator import FlatlandEnv
 from functools import partial
-from components.episode_buffer import EpisodeBatch
+from qmix_from_paper.components.episode_buffer import EpisodeBatch
 import numpy as np
 
 

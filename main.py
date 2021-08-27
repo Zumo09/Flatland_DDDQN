@@ -1,4 +1,4 @@
-from env.env_generator import FlatlandEnv
+from qmix_from_paper.env.env_generator import FlatlandEnv
 import numpy as np
 
 

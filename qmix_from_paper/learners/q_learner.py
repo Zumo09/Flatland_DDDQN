@@ -1,7 +1,6 @@
 import copy
-from components.episode_buffer import EpisodeBatch
-from models.qmix__goodbutno import QMixer
-import tensorflow as tf
+from qmix_from_paper.components import EpisodeBatch
+from qmix_from_paper.models.qmix__goodbutno import QMixer
 from tensorflow.keras.optimizers import RMSprop
 
 # TODO Copiato e incollato, bisogna passare da torch a keras

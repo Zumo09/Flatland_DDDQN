@@ -1,6 +1,5 @@
-from models.agent__nogood import RnnAgent
-from components.action_selectors import EpsilonGreedyActionSelector
-import tensorflow as tf
+from qmix_from_paper.models.agent__nogood import RnnAgent
+from qmix_from_paper.components import EpsilonGreedyActionSelector
 
 
 # This multi-agent controller shares parameters between agents
