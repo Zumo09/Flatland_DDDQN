@@ -5,7 +5,7 @@ from collections import deque
 # make sure the root path is in system path
 from pathlib import Path
 
-from flatland.envs.malfunction_generators import malfunction_from_params, MalfunctionParameters
+from flatland.envs.malfunction_generators import MalfunctionParameters
 
 base_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(base_dir))
@@ -40,7 +40,7 @@ def main(argv):
     # Parameters for the Environment
     x_dim = 35
     y_dim = 35
-    n_agents = 3
+    n_agents = 2
 
     # Use a the malfunction generator to break agents from time to time
     stochastic_data = MalfunctionParameters(malfunction_rate=1. / 10000,  # Rate of malfunction occurence

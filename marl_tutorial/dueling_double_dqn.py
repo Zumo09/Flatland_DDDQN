@@ -34,7 +34,7 @@ class Agent:
         self.action_size = action_size
         self.double_dqn = double_dqn
         # Q-Network
-        self.qnetwork_local = QNetwork(state_size, action_size)
+        self.qnetwork_local = QNetwork(action_size)
         self.qnetwork_target = copy.deepcopy(self.qnetwork_local)
 
         self.qnetwork_local.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
@@ -95,16 +95,14 @@ class Agent:
         """
         states, actions, rewards, next_states, dones = experiences
 
-        # TODO: implementare il double deepQN
-        # if self.double_dqn:
-        #     # Double DQN
-        #     q_best_action = self.qnetwork_local.predict(next_states).max(axis=1)[1]
-        #     Q_targets_next = self.qnetwork_target(next_states).gather(1, q_best_action.unsqueeze(-1))
-        # else:
-        #     # DQN
-        #     Q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(-1)
-
-        Q_targets_next = self.qnetwork_target.predict(next_states)
+        if self.double_dqn:
+            # Double DQN
+            q_best_action = np.expand_dims(np.argmax(self.qnetwork_local.predict(next_states), axis=1), -1)
+            Q_targets_next = np.take_along_axis(self.qnetwork_target.predict(next_states),
+                                                indices=q_best_action, axis=1)
+        else:
+            # DQN
+            Q_targets_next = self.qnetwork_target.predict(next_states)
 
         Q_targets = rewards + (gamma * Q_targets_next * (1 - dones))
 
@@ -119,18 +117,20 @@ class Agent:
 
         Params
         ======
-            local_model (PyTorch model): weights will be copied from
-            target_model (PyTorch model): weights will be copied to
+            local_model (Keras model): weights will be copied from
+            target_model (Keras model): weights will be copied to
             tau (float): interpolation parameter
         """
         local_weights = self.qnetwork_local.get_weights()
         target_weights = self.qnetwork_target.get_weights()
 
-        # TODO: implementare il soft update con l'equazione qua sotto
-        # new_weight = tau * np.array(local_weights) + (1.0 - tau) * np.array(target_weights)
-        new_weight = local_weights
+        new_weights = []
 
-        self.qnetwork_target.set_weights(new_weight)
+        for loc, tar in zip(local_weights, target_weights):
+            nw = tau * loc + (1.0 - tau) * tar
+            new_weights.append(nw)
+
+        self.qnetwork_target.set_weights(new_weights)
 
 
 class ReplayBuffer:
