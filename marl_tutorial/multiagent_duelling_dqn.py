@@ -121,7 +121,7 @@ def main(argv):
     # Now we load a Double dueling DQN agent
     agent = Agent(state_size, action_size)
 
-    agent.load('./Nets/navigator_checkpoint1000.pth')
+    # agent.load('./Nets/navigator_checkpoint1000.pth')
 
     print(f'Training for {n_trials} Episodes')
     for trials in range(1, n_trials + 1):

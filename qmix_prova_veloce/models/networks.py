@@ -17,21 +17,21 @@ class RnnAgent(Model):
         x = self.fc1(inputs)
         x = self.rnn(x)
         return self.fc2(x)
+    #
+    # def get_config(self):
+    #     return {
+    #         'name': 'rnn_agent',
+    #         'layers': [
+    #             self.fc1.get_config(),
+    #             self.rnn.get_config(),
+    #             self.fc2.get_config()
+    #         ]
+    #     }
 
-    def get_config(self):
-        return {
-            'name': 'rnn_agent',
-            'layers': [
-                self.fc1.get_config(),
-                self.rnn.get_config(),
-                self.fc2.get_config()
-            ]
-        }
 
-
-class DDQNAgent(Model):
+class DuelingAgent(Model):
     def __init__(self, action_size, hidden_1=128, hidden_2=128):
-        super(DDQNAgent, self).__init__()
+        super(DuelingAgent, self).__init__()
 
         self.fc1_val = Dense(hidden_1, activation=tf.nn.relu)
         self.fc2_val = Dense(hidden_2, activation=tf.nn.relu)
@@ -51,19 +51,19 @@ class DDQNAgent(Model):
         adv = self.fc2_adv(adv)
         adv = self.fc3_adv(adv)
         return val + adv - tf.reduce_mean(adv)
-
-    def get_config(self):
-        return {
-            'name': 'QNetwork',
-            'layers': [
-                self.fc1_val.get_config(),
-                self.fc2_val.get_config(),
-                self.fc3_val.get_config(),
-                self.fc1_adv.get_config(),
-                self.fc2_adv.get_config(),
-                self.fc3_adv.get_config()
-            ]
-        }
+    #
+    # def get_config(self):
+    #     return {
+    #         'name': 'QNetwork',
+    #         'layers': [
+    #             self.fc1_val.get_config(),
+    #             self.fc2_val.get_config(),
+    #             self.fc3_val.get_config(),
+    #             self.fc1_adv.get_config(),
+    #             self.fc2_adv.get_config(),
+    #             self.fc3_adv.get_config()
+    #         ]
+    #     }
 
 
 class Mixer(Model):
@@ -88,14 +88,6 @@ class Mixer(Model):
         self.fc1 = Dense(self.embed_dim, activation=tf.nn.relu, input_shape=(n_agents,), trainable=False)
         self.fc1 = Dense(1, trainable=False)
 
-        # Loss and optimizer.
-        loss_fn = tf.keras.losses.MeanSquaredError()
-
-        if optimizer is None:
-            optimizer = tf.keras.optimizers.RMSprop(learning_rate=5e-4)
-
-        self.compile(optimizer=optimizer, loss=loss_fn)
-
     def call(self, inputs, training=None, mask=None):
         agent_qs, states = inputs
 
@@ -116,6 +108,6 @@ class Mixer(Model):
         # Inference on the outer model.
         q_tot = self.fc1(agent_qs)
         return self.fc2(q_tot)
-
-    def get_config(self):
-        pass
+    #
+    # def get_config(self):
+    #     return super(Mixer, self).get_config()
