@@ -1,4 +1,5 @@
 import getopt
+import os
 import random
 import sys
 from collections import deque
@@ -6,6 +7,10 @@ from collections import deque
 from pathlib import Path
 
 from flatland.envs.malfunction_generators import MalfunctionParameters
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+
+import tensorflow as tf
 
 base_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(base_dir))
@@ -116,6 +121,8 @@ def main(argv):
     # Now we load a Double dueling DQN agent
     agent = Agent(state_size, action_size)
 
+    agent.load('./Nets/navigator_checkpoint1000.pth')
+
     print(f'Training for {n_trials} Episodes')
     for trials in range(1, n_trials + 1):
         # Reset environment
@@ -201,7 +208,7 @@ def main(argv):
                     100 * np.mean(done_window),
                     eps, action_prob / np.sum(action_prob)))
             
-            agent.qnetwork_local.save('./Nets/navigator_checkpoint' + str(trials) + '.pth')
+            agent.qnetwork_local.save('./Nets/navigator_checkpoint' + str(trials) + '_sec.pth')
             action_prob = [1] * action_size
 
     # Plot overall training progress at the end

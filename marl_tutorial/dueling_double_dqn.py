@@ -52,8 +52,12 @@ class Agent:
     def load(self, filename):
         if os.path.exists(filename + ".local"):
             self.qnetwork_local = tf.keras.models.load_model(filename + ".local")
+        else:
+            self.qnetwork_local = tf.keras.models.load_model(filename)
         if os.path.exists(filename + ".target"):
             self.qnetwork_target = tf.keras.models.load_model(filename + ".target")
+        else:
+            self.soft_update(1.0)
 
     def step(self, state, action, reward, next_state, done, train=True):
         # Save experience in replay memory
