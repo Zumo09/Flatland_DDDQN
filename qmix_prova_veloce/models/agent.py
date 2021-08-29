@@ -44,7 +44,7 @@ class AgentsController:
         self.agent = DuelingAgent(n_actions=action_size)
         self.agent_target = copy.deepcopy(self.agent)
 
-    def act(self, obs, info, eps=0.0):
+    def act(self, obs, info, eps=0.0, training=False):
         """
         Get the actions for all the agents, given the observations
         :param obs:
@@ -56,15 +56,18 @@ class AgentsController:
         # Build agent specific observations
         self.build_inputs(obs)
 
+        self.action_values = np.zeros((self.n_agents, self.action_size))
+
         for a in range(self.n_agents):
             if info['action_required'][a]:
                 # If an action is require, we want to store the obs a that step as well as the action
                 self.update_values[a] = True
 
-                if self.rng.random() > eps or True:
-                    state = tf.expand_dims(self.agent_obs[a], 0)
-                    action_values = self.agent.predict(state)
-                    action = np.argmax(action_values)
+                state = tf.expand_dims(self.agent_obs[a], 0)
+                action_values[a] = self.agent.predict(state)
+
+                if not training or self.rng.random() > eps:
+                    action = np.argmax(action_values[a])
                 else:
                     action = self.rng.integers(0, self.action_size)
 
@@ -73,6 +76,9 @@ class AgentsController:
                 self.update_values[a] = False
                 action = 0
             self.action_dict.update({a: action})
+
+        if training:
+            # TODO: bisogna fare qualcosa qua per il mixer??
 
         return self.action_dict
 
