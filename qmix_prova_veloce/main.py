@@ -121,7 +121,7 @@ def main(argv):
         # Run episode
         while True:
             # Action
-            action_dict = agent.act(obs, info=info, eps=eps)
+            action_dict = agent.act(obs, info=info, eps=eps, train=True)
 
             # Environment step
             obs, all_rewards, done, info = env.step(action_dict)
