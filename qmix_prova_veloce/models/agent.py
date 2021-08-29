@@ -84,7 +84,7 @@ class AgentsController:
                 if self.obs_last_action:
                     agent_la = np.zeros(self.action_size)
                     agent_la[self.agent_action_buffer[a]] = 1
-                    self.agent_obs[a] = np.append(agent_obs, agent_la)
+                    agent_obs = np.append(agent_obs, agent_la)
 
                 # Add an extra info to the input to differentiate the agents
                 agent_id = np.zeros(self.n_agents)
