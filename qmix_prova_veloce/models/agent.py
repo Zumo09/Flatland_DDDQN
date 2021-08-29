@@ -158,7 +158,7 @@ class AgentsController:
 
     def action_prob(reset=False):
         if reset:
-            self.action_prob = [1] * self.action_size
+            self.action_prob = np.zeros(action_size)
         else:
             return self.action_prob / np.sum(self.action_prob)
 
