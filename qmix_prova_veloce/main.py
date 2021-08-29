@@ -105,7 +105,6 @@ def main(argv):
     done_window = deque(maxlen=100)
     scores = []
     dones_list = []
-    action_prob = [0] * action_size
 
     # Now we load agent
     agent = AgentsController(n_agents)
@@ -125,7 +124,7 @@ def main(argv):
             action_dict = agent.act(obs, info=info, eps=eps)
 
             # Environment step
-            next_obs, all_rewards, done, info = env.step(action_dict)
+            obs, all_rewards, done, info = env.step(action_dict)
 
             # Agent Step
             score += agent.step(all_rewards, done)
@@ -154,7 +153,7 @@ def main(argv):
                 trials,
                 np.mean(scores_window),
                 100 * np.mean(done_window),
-                eps, action_prob / np.sum(action_prob)), end=" ")
+                eps, agent.action_prob()), end=" ")
 
         if trials % 100 == 0:
             print(
@@ -164,10 +163,10 @@ def main(argv):
                     trials,
                     np.mean(scores_window),
                     100 * np.mean(done_window),
-                    eps, action_prob / np.sum(action_prob)))
+                    eps, agent.action_prob()))
 
-            agent.qnetwork_local.save('./Nets/navigator_checkpoint' + str(trials) + '.pth')
-            action_prob = [1] * action_size
+            agent.save('./Nets/navigator_checkpoint' + str(trials) + '.pth')
+            agent.action_prob(reset=True)
 
     # Plot overall training progress at the end
     plt.plot(scores)
