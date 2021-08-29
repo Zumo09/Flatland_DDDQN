@@ -156,6 +156,12 @@ class AgentsController:
     def load(self, filename):
         self.agent = tf.keras.models.load_model(filename)
 
+    def action_prob(reset=False):
+        if reset:
+            self.action_prob = [1] * self.action_size
+        else:
+            return self.action_prob / np.sum(self.action_prob)
+
     def soft_update(self, tau=1.0):
         """Soft update model parameters.
         θ_target = τ*θ_local + (1 - τ)*θ_target
