@@ -128,9 +128,7 @@ def main(argv):
             next_obs, all_rewards, done, info = env.step(action_dict)
 
             # Agent Step
-            agent.step(next_obs, all_rewards, done)
-
-            score += np.sum(all_rewards) / env.get_num_agents()
+            score += agent.step(all_rewards, done)
 
             # Copy observation
             if done['__all__']:
