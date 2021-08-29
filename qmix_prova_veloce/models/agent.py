@@ -93,7 +93,7 @@ class AgentsController:
 
                 self.agent_obs_buffer[a] = self.agent_obs[a].copy()
 
-    def step(self, next_obs, all_rewards, done, train=True):
+    def step(self, all_rewards, done, train=True):
         # Update replay buffer and train agent
         for a in range(self.n_agents):
             # Only update the values when we are done or when an action was taken and thus relevant information
@@ -106,9 +106,7 @@ class AgentsController:
 
                 self.agent_obs_buffer[a] = self.agent_obs[a].copy()
                 self.agent_action_buffer[a] = self.action_dict[a]
-            if next_obs[a]:
-                self.agent_obs[a] = normalize_observation(next_obs[a], self.tree_depth, observation_radius=10)
-
+            
     def agent_step(self, state, action, reward, next_state, done, train):
         # Save experience in replay memory
         self.memory.add(state, action, reward, next_state, done)
