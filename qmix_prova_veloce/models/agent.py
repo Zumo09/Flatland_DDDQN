@@ -16,8 +16,9 @@ UPDATE_EVERY = 10  # how often to update the network
 
 
 class AgentsController:
-    def __init__(self, n_agents, tree_depth=2, action_size=5, rnn_hidden_dim=64, double_dqn=True):
+    def __init__(self, n_agents, tree_depth=2, action_size=5, rnn_hidden_dim=64, double_dqn=True, obs_last_action=True):
         self.double_dqn = double_dqn
+        self.obs_last_action = obs_last_action
         self.n_agents = n_agents
         self.tree_depth = tree_depth
         self.action_size = action_size
@@ -53,13 +54,7 @@ class AgentsController:
         """
 
         # Build agent specific observations
-        for a in range(self.n_agents):
-            if obs[a]:
-                self.agent_obs[a] = normalize_observation(obs[a], self.tree_depth, observation_radius=10)
-                self.agent_obs_buffer[a] = self.agent_obs[a].copy()
-
-        # TODO: Add an extra info to the input to differentiate the agents, in order to use only one RnnAgent
-        #  for all the agents (see the paper of q_mix)
+        self.build_inputs(obs)
 
         for a in range(self.n_agents):
             if info['action_required'][a]:
@@ -80,6 +75,23 @@ class AgentsController:
             self.action_dict.update({a: action})
 
         return self.action_dict
+
+    def build_inputs(obs):
+        for a in range(self.n_agents):
+            if obs[a]:
+                agent_obs = normalize_observation(obs[a], self.tree_depth, observation_radius=10)
+
+                if self.obs_last_action:
+                    agent_la = np.zeros(self.action_size)
+                    agent_la[self.agent_action_buffer[a]] = 1
+                    self.agent_obs[a] = np.append(agent_obs, agent_la)
+
+                # Add an extra info to the input to differentiate the agents
+                agent_id = np.zeros(self.n_agents)
+                agent_id[a] = 1
+                self.agent_obs[a] = np.append(agent_obs, agent_id)
+
+                self.agent_obs_buffer[a] = self.agent_obs[a].copy()
 
     def step(self, next_obs, all_rewards, done, train=True):
         # Update replay buffer and train agent
