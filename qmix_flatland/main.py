@@ -43,7 +43,7 @@ def main(argv):
     # Parameters for the Environment
     x_dim = 35
     y_dim = 35
-    n_agents = 2
+    n_agents = 3
     tree_depth = 2
 
     # Use a the malfunction generator to break agents from time to time

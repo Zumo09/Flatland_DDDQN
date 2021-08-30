@@ -3,8 +3,8 @@ import copy
 import numpy as np
 import tensorflow as tf
 
-from qmix_flatland.model import QMixer
-from qmix_flatland.replay_buffer import ReplayBuffer
+from qmix_flatland_orribile.model import QMixer
+from qmix_flatland_orribile.replay_buffer import ReplayBuffer
 from utils import normalize_observation
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
@@ -137,43 +137,18 @@ class AgentsController:
                 """
         states, obs, actions, rewards, next_obs, dones = experiences
 
-        # # Max over target Q-Values
-        # if self.double_q:
-        #     # Get actions that maximise live Q (for double q-learning)
-        #     mac_out_detach = mac_out.clone().detach()
-        #     mac_out_detach[avail_actions == 0] = -9999999
-        #     cur_max_actions = mac_out_detach[:, 1:].max(dim=3, keepdim=True)[1]
-        #     target_max_qvals = th.gather(target_mac_out, 3, cur_max_actions).squeeze(3)
-        # else:
-        #     target_max_qvals = target_mac_out.max(dim=3)[0]
-        #
-        # # Mix
-        # if self.mixer is not None:
-        #     chosen_action_qvals = self.mixer(chosen_action_qvals, batch["state"][:, :-1])
-        #     target_max_qvals = self.target_mixer(target_max_qvals, batch["state"][:, 1:])
-        #
-        # # Calculate 1-step Q-Learning targets
-        # targets = rewards + self.args.gamma * (1 - terminated) * target_max_qvals
+        for i in range(BATCH_SIZE):
+            self.agent.update_state(states[i])
+            self.agent_target.update_state(states[i])
 
-        # if self.double_dqn:
-        #     # Double DQN
-        #     q_best_action = np.expand_dims(np.argmax(self.agent((states, next_obs), training=True), axis=1), -1)
-        #     Q_targets_next = np.take_along_axis(self.agent_target((states, next_obs), training=True),
-        #                                         indices=q_best_action, axis=1)
-        # else:
-        #     # DQN
-        #     Q_targets_next = self.agent_target((states, next_obs), training=True)
+            Q_target_next = self.agent_target(next_obs[i], training=True)
 
-        Q_targets_next = np.zeros(BATCH_SIZE)
-        for i, inputs in enumerate(zip(states, next_obs)):
-            Q_targets_next[i] = self.agent_target(inputs, training=True)
+            # Calculate 1-step Q-Learning targets
+            Q_target = rewards[i] + gamma * (1 - dones[i]) * Q_target_next
 
-        # Calculate 1-step Q-Learning targets
-        Q_targets = rewards + gamma * (1 - dones) * Q_targets_next
+            print(Q_target_next, Q_target)
 
-        # TODO: orribile
-        for i, inputs in enumerate(zip(states, next_obs)):
-            self.agent.fit(inputs, Q_targets[i], verbose=0)
+            self.agent.fit(np.expand_dims(obs[i], 0), np.expand_dims(Q_target, 0), verbose=0)
 
     def action_probability(self, reset=False):
         if reset:

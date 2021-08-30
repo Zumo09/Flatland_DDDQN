@@ -1,19 +1,7 @@
-from collections import namedtuple, deque, Iterable
+import random
+from collections import namedtuple, deque
 
 import numpy as np
-import random
-
-
-def dict_to_list(done):
-    ret = []
-    a = 0
-    while True:
-        if a in done.keys():
-            ret.append(done[a])
-            a += 1
-        else:
-            break
-    return ret
 
 
 class ReplayBuffer:
@@ -45,7 +33,6 @@ class ReplayBuffer:
         rewards = np.array([e.rewards for e in experiences if e is not None])
         next_obs = np.array([e.next_obs for e in experiences if e is not None])
         dones = np.array([e.done for e in experiences if e is not None]).astype(np.uint8)
-        # dones = np.array([dict_to_list(e.dones) for e in experiences if e is not None]).astype(np.uint8)
 
         return states, obs, actions, rewards, next_obs, dones
 

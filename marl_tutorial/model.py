@@ -4,7 +4,7 @@ from tensorflow import reduce_mean
 
 
 class QNetwork(Model):
-    def __init__(self, action_size, hidden_1=128, hidden_2=128):
+    def __init__(self, action_size, hidden_1=256, hidden_2=128):
         super(QNetwork, self).__init__()
 
         self.fc1_val = Dense(hidden_1, activation='relu')
