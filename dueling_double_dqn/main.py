@@ -27,8 +27,8 @@ def main(argv):
     # path = './Nets/navigator_checkpoint' + str(1000)
 
     controller = FlatlandController(grid_shape=grid_shape,
-                                 n_agents=n_agents,
-                                 load_from=path)
+                                    n_agents=n_agents,
+                                    load_from=path)
 
     # And the max number of steps we want to take per episode
     max_steps = int(4 * 2 * (20 + grid_shape[0] + grid_shape[1]))
@@ -50,9 +50,9 @@ def main(argv):
         scores.append(np.mean(scores_window))
         dones_list.append((np.mean(done_window)))
 
-        print(f'\rEpisode {trials}\t Average Score: {np.mean(scores_window):.3f}'
-              f'\tDones: {100 * np.mean(done_window):.2f}%\tEpsilon: {controller.agent.eps:.2f} '
-              f'\t Action Probabilities: \t {controller.action_probabilities()} ', end=" ")
+        print(f'\rEpisode {trials}\tAverage Score: {np.mean(scores_window):.3f}'
+              f'\tDones: {100 * np.mean(done_window):.2f}%\tEpsilon: {controller.agent.eps:.2f}'
+              f'\tAction Probabilities:\t{controller.action_probabilities()} ', end=" ")
 
         if trials % TEST_EVERY == 0:
             controller.save('./Nets/navigator_checkpoint' + str(trials))
@@ -60,8 +60,9 @@ def main(argv):
             controller.action_probabilities(reset=True)
             score, tasks_finished = controller.run_episode(train=False, render=True)
 
-            print(f'\nTest {trials//TEST_EVERY}\t Score: {score:.3f} \t Dones: {tasks_finished / max(1, n_agents):.2f} '
-                  f'\t Action Probabilities: \t {controller.action_probabilities()}')
+            print(f'\nTest {trials // TEST_EVERY}\t        Score: {score:.3f}'
+                  f'\tDones: {100 * tasks_finished / max(1, n_agents):.2f}%\t             '
+                  f'\tAction Probabilities: \t {controller.action_probabilities()}')
             controller.action_probabilities(reset=True)
 
         # Plot overall training progress at the end

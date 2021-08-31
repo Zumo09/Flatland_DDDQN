@@ -17,7 +17,7 @@ BATCH_SIZE = 512  # minibatch size
 GAMMA = 0.99  # discount factor 0.99
 TAU = 1e-3  # for soft update of target parameters
 LR = 0.5e-4  # learning rate 0.5e-4 works
-UPDATE_EVERY = 10  # how often to update the network
+UPDATE_EVERY = 1000  # how often to update the network
 
 EPS_END = 0.005
 EPS_DECAY = 0.998
@@ -50,8 +50,8 @@ class Agent:
         self.eps = 1.
 
     def save(self, filename):
-        self.qnetwork_local.save(filename + "_local.h5")
-        self.qnetwork_target.save(filename + "._target.h5")
+        self.qnetwork_local.save(filename + "_local.h5", save_format='tf')
+        self.qnetwork_target.save(filename + "._target.h5", save_format='tf')
 
     def load(self, filename):
         if os.path.exists(filename + "_local.h5"):
@@ -76,7 +76,7 @@ class Agent:
             self.t_step = 0
 
         # If enough samples are available in memory, get random subset and learn
-        if self.t_step == 0 and len(self.memory) > BATCH_SIZE:
+        if len(self.memory) > BATCH_SIZE:
             states, actions, rewards, next_states, dones = self.memory.sample()
 
             if self.double_dqn:
@@ -92,9 +92,10 @@ class Agent:
 
             self.qnetwork_local.fit(states, Q_targets, verbose=0)
 
-            if self.t_step == 0:
-                # ------------------- update target network ------------------- #
-                self.qnetwork_target.set_weights(self.qnetwork_local.get_weights())
+        if self.t_step == 0:
+            # ------------------- update target network ------------------- #
+            self.qnetwork_target.set_weights(self.qnetwork_local.get_weights())
+            print('updated-------------------------------------------')
 
     def act(self, state, train=False):
         # Epsilon-greedy action selection
