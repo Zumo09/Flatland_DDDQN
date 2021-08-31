@@ -5,7 +5,7 @@ from collections import deque
 
 import matplotlib.pyplot as plt
 
-from dueling_double_dqn.trainer import FlatlandTrainer
+from dueling_double_dqn.controller import FlatlandController
 
 TEST_EVERY = 100
 
@@ -23,8 +23,12 @@ def main(argv):
         if opt in ('-n', '--n_trials'):
             n_trials = int(arg)
 
-    trainer = FlatlandTrainer(grid_shape=grid_shape,
-                              n_agents=n_agents)
+    path = None
+    # path = './Nets/navigator_checkpoint' + str(1000)
+
+    controller = FlatlandController(grid_shape=grid_shape,
+                                 n_agents=n_agents,
+                                 load_from=path)
 
     # And the max number of steps we want to take per episode
     max_steps = int(4 * 2 * (20 + grid_shape[0] + grid_shape[1]))
@@ -37,7 +41,7 @@ def main(argv):
 
     print(f'Training for {n_trials} Episodes')
     for trials in range(1, n_trials + 1):
-        score, tasks_finished = trainer.run_episode(train=True, render=False)
+        score, tasks_finished = controller.run_episode(train=True, render=False)
 
         # Collection information about training
 
@@ -47,17 +51,18 @@ def main(argv):
         dones_list.append((np.mean(done_window)))
 
         print(f'\rEpisode {trials}\t Average Score: {np.mean(scores_window):.3f}'
-              f'\tDones: {100 * np.mean(done_window):.2f}%\tEpsilon: {trainer.eps:.2f} '
-              f'\t Action Probabilities: \t {trainer.action_probabilities()} ', end=" ")
+              f'\tDones: {100 * np.mean(done_window):.2f}%\tEpsilon: {controller.agent.eps:.2f} '
+              f'\t Action Probabilities: \t {controller.action_probabilities()} ', end=" ")
 
         if trials % TEST_EVERY == 0:
-            print()
-            trainer.save('./Nets/navigator_checkpoint' + str(trials) + '_sec.pth')
-            score, tasks_finished = trainer.run_episode(train=False, render=True)
-            trainer.action_probabilities(reset=True)
-            print(f'Test\t Score: {score:.3f} \t Dones: {tasks_finished / max(1, n_agents):.2f} '
-                  f'\t Action Probabilities: \t {trainer.action_probabilities()}')
-            trainer.action_probabilities(reset=True)
+            controller.save('./Nets/navigator_checkpoint' + str(trials))
+
+            controller.action_probabilities(reset=True)
+            score, tasks_finished = controller.run_episode(train=False, render=True)
+
+            print(f'\nTest {trials//TEST_EVERY}\t Score: {score:.3f} \t Dones: {tasks_finished / max(1, n_agents):.2f} '
+                  f'\t Action Probabilities: \t {controller.action_probabilities()}')
+            controller.action_probabilities(reset=True)
 
         # Plot overall training progress at the end
     plt.plot(scores)

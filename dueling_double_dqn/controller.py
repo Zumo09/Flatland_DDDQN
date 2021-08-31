@@ -1,7 +1,6 @@
 import numpy as np
 from flatland.envs.agent_utils import RailAgentStatus
 # from flatland.envs.malfunction_generators import MalfunctionParameters, malfunction_from_params
-from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
@@ -10,13 +9,9 @@ from flatland.utils.rendertools import RenderTool
 from dueling_double_dqn.agent import Agent
 from dueling_double_dqn.observations import CustomObservation
 
-TREE_DEPTH = 2
-EPS_END = 0.005
-EPS_DECAY = 0.998
 
-
-class FlatlandTrainer:
-    def __init__(self, grid_shape, n_agents, seed=1):
+class FlatlandController:
+    def __init__(self, grid_shape, n_agents, seed=1, load_from=None):
 
         self.rng = np.random.default_rng(seed=seed)
 
@@ -34,7 +29,7 @@ class FlatlandTrainer:
         #                                        )
 
         # Custom observation builder
-        observations = CustomObservation(max_depth=TREE_DEPTH, predictor=ShortestPathPredictorForRailEnv(30))
+        observations = CustomObservation()
 
         # Different agent types (trains) with different speeds.
         speed_ration_map = {1.: 0.25,  # Fast passenger train
@@ -69,31 +64,21 @@ class FlatlandTrainer:
 
         # Now we load a Double dueling DQN agent
         self.agent = Agent(self.action_size)
-        # agent.load('./Nets/navigator_checkpoint1000.pth')
 
-        # Define training parameters
-        self.eps = 1.
+        if load_from:
+            self.agent.load(load_from)
 
     def run_episode(self, train=True, render=False):
         action_dict = dict()
         # Reset environment
-        obs, info = self.env.reset(True, True)
+        self.agent_obs, info = self.env.reset(True, True)
+        self.agent_obs_buffer = self.agent_obs.copy()
+
         if render:
             self.env_renderer.reset()
-        # Build agent specific observations
-        for a in range(self.n_agents):
-            if obs[a]:
-                self.agent_obs[a] = obs[a].normalize()
-                self.agent_obs_buffer[a] = self.agent_obs[a].copy()
 
         # Reset score
         score = 0
-
-        if train:
-            eps = self.eps
-            self.eps = max(EPS_END, EPS_DECAY * self.eps)  # decrease epsilon for the next episode
-        else:
-            eps = 0.
 
         # Run episode
         while True:
@@ -103,7 +88,7 @@ class FlatlandTrainer:
                     # If an action is require, we want to store the obs a that step as well as the action
                     self.update_values[a] = True
 
-                    action = self.agent.act(self.agent_obs[a], eps=eps)
+                    action = self.agent.act(self.agent_obs[a], train=train)
                     self.action_prob[action] += 1
                 else:
                     self.update_values[a] = False
@@ -111,21 +96,22 @@ class FlatlandTrainer:
                 action_dict.update({a: action})
 
             # Environment step
-            next_obs, all_rewards, done, info = self.env.step(action_dict)
+            self.agent_obs, all_rewards, done, info = self.env.step(action_dict)
             # Update replay buffer and train agent
             for a in range(self.n_agents):
                 # Only update the values when we are done or when an action was taken and thus relevant information
                 # is present
                 if train and (self.update_values[a] or done[a]):
-                    self.agent.step(self.agent_obs_buffer[a], self.agent_action_buffer[a], all_rewards[a],
-                                    self.agent_obs[a], done[a])
+                    self.agent.add_experience(self.agent_obs_buffer[a], self.agent_action_buffer[a],
+                                              all_rewards[a], self.agent_obs[a], done[a])
 
                     self.agent_obs_buffer[a] = self.agent_obs[a].copy()
                     self.agent_action_buffer[a] = action_dict[a]
-                if next_obs[a]:
-                    self.agent_obs[a] = next_obs[a].normalize()
 
                 score += all_rewards[a] / self.n_agents
+
+            if train:
+                self.agent.step()
 
             if render:
                 self.env_renderer.render_env()
@@ -133,6 +119,8 @@ class FlatlandTrainer:
             # Copy observation
             if done['__all__']:
                 break
+
+        self.agent.step(end_episode=True)
 
         tasks_finished = 0
         for current_agent in self.env.agents:
