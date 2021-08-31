@@ -56,7 +56,6 @@ class FlatlandController:
         self.env_renderer = RenderTool(self.env, gl="PILSVG", )
 
         # And some variables to keep track of the progress
-        self.action_prob = [0] * self.action_size
         self.agent_obs = [None] * self.n_agents
         self.agent_obs_buffer = [None] * self.n_agents
         self.agent_action_buffer = [2] * self.n_agents
@@ -89,7 +88,6 @@ class FlatlandController:
                     self.update_values[a] = True
 
                     action = self.agent.act(self.agent_obs[a], train=train)
-                    self.action_prob[action] += 1
                 else:
                     self.update_values[a] = False
                     action = 0
@@ -134,9 +132,3 @@ class FlatlandController:
 
     def save(self, path):
         self.agent.save(path)
-
-    def action_probabilities(self, reset=False):
-        if reset:
-            self.action_prob = [1] * self.action_size
-        else:
-            return self.action_prob / np.sum(self.action_prob)

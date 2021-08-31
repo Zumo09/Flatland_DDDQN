@@ -15,7 +15,7 @@ from marl_tutorial.model import QNetwork
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 512  # minibatch size
 GAMMA = 0.99  # discount factor 0.99
-TAU = 1e-3  # for soft update of target parameters
+
 LR = 0.5e-4  # learning rate 0.5e-4 works
 UPDATE_EVERY = 1000  # how often to update the network
 TRAIN_EVERY = 10
@@ -50,19 +50,14 @@ class Agent:
         self.t_step = 0
         self.eps = 1.
 
-    def save(self, filename):
-        self.qnetwork_local.save_weights(filename + "_local.h5")
-        self.qnetwork_target.save_weights(filename + "._target.h5")
-
-    def load(self, filename):
-        if os.path.exists(filename + "_local.h5"):
-            self.qnetwork_local.load_weights(filename + "_local.h5")
+    def act(self, state, train=False):
+        # Epsilon-greedy action selection
+        if train and random.random() > self.eps:
+            state = tf.expand_dims(state, 0)
+            action_values = self.qnetwork_local.predict(state)
+            return np.argmax(action_values)
         else:
-            print(f'The path "{filename}_local.h5" does not exits, creating a new local network')
-        if os.path.exists(filename + "_target.h5"):
-            self.qnetwork_target.load_weights(filename + "_target.h5")
-        else:
-            print(f'The path "{filename}_target.h5" does not exits, creating a new target network')
+            return random.choice(np.arange(self.action_size))
 
     def add_experience(self, state, action, reward, next_state, done):
         # Save experience in replay memory
@@ -80,14 +75,10 @@ class Agent:
         if self.t_step % TRAIN_EVERY == 0 and len(self.memory) > BATCH_SIZE:
             states, actions, rewards, next_states, dones = self.memory.sample()
 
-            if self.double_dqn:
-                # Double DQN
-                q_best_action = np.expand_dims(np.argmax(self.qnetwork_local.predict(next_states), axis=1), -1)
-                Q_targets_next = np.take_along_axis(self.qnetwork_target.predict(next_states),
-                                                    indices=q_best_action, axis=1)
-            else:
-                # DQN
-                Q_targets_next = self.qnetwork_target.predict(next_states)
+            # Double DQN
+            q_best_action = np.expand_dims(np.argmax(self.qnetwork_local.predict(next_states), axis=1), -1)
+            Q_targets_next = np.take_along_axis(self.qnetwork_target.predict(next_states),
+                                                indices=q_best_action, axis=1)
 
             Q_targets = rewards + (GAMMA * Q_targets_next * (1 - dones))
 
@@ -97,11 +88,18 @@ class Agent:
             # ------------------- update target network ------------------- #
             self.qnetwork_target.set_weights(self.qnetwork_local.get_weights())
 
-    def act(self, state, train=False):
-        # Epsilon-greedy action selection
-        if train and random.random() > self.eps:
-            state = tf.expand_dims(state, 0)
-            action_values = self.qnetwork_local.predict(state)
-            return np.argmax(action_values)
+    def save(self, filename):
+        # TODO: error, it does not work
+        self.qnetwork_local.save_weights(filename + "_local.h5")
+        self.qnetwork_target.save_weights(filename + "._target.h5")
+
+    def load(self, filename):
+        # TODO: error, it does not work
+        if os.path.exists(filename + "_local.h5"):
+            self.qnetwork_local.load_weights(filename + "_local.h5")
         else:
-            return random.choice(np.arange(self.action_size))
+            print(f'The path "{filename}_local.h5" does not exits, creating a new local network')
+        if os.path.exists(filename + "_target.h5"):
+            self.qnetwork_target.load_weights(filename + "_target.h5")
+        else:
+            print(f'The path "{filename}_target.h5" does not exits, creating a new target network')

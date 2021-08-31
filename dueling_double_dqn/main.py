@@ -51,21 +51,17 @@ def main(argv):
         dones_list.append((np.mean(done_window)))
 
         print(f'\rEpisode {trials}\tAverage Score: {np.mean(scores_window):.3f}'
-              f'\tDones: {100 * np.mean(done_window):.2f}%\tEpsilon: {controller.agent.eps:.2f}'
-              f'\tAction Probabilities:\t{controller.action_probabilities()} ', end=" ")
+              f'\tDones: {100 * np.mean(done_window):.2f}%\tEpsilon: {controller.agent.eps:.2f}', end=" ")
 
         if trials % TEST_EVERY == 0:
-            # controller.save('./Nets/navigator_checkpoint' + str(trials))
+            controller.save('./Nets/navigator_checkpoint' + str(trials))
 
-            controller.action_probabilities(reset=True)
             score, tasks_finished = controller.run_episode(train=False, render=False)
 
-            print(f'\nTest {trials // TEST_EVERY}\t        Score: {score:.3f}'
-                  f'\tDones: {100 * tasks_finished / max(1, n_agents):.2f}%\t             '
-                  f'\tAction Probabilities: \t {controller.action_probabilities()}')
-            controller.action_probabilities(reset=True)
+            print(f'\t|\tTest {trials // TEST_EVERY}\tScore: {score / max_steps:.3f}'
+                  f'\tDones: {100 * tasks_finished / max(1, n_agents):.2f}%\t')
 
-        # Plot overall training progress at the end
+    # Plot overall training progress at the end
     plt.plot(scores)
     plt.show()
 

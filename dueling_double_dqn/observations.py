@@ -14,7 +14,7 @@ class CustomObservation(TreeObsForRailEnv):
         super().__init__(max_depth=TREE_DEPTH, predictor=ShortestPathPredictorForRailEnv(30))
 
     def get(self, handle: int = 0):
-        obs = super(CustomObservation, self).get()
+        obs = super(CustomObservation, self).get(handle=handle)
         if obs:
             obs = normalize_observation(obs, TREE_DEPTH, observation_radius=10)
             if ADD_AGENT_ID:
