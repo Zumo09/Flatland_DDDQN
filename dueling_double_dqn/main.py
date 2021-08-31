@@ -55,10 +55,10 @@ def main(argv):
               f'\tAction Probabilities:\t{controller.action_probabilities()} ', end=" ")
 
         if trials % TEST_EVERY == 0:
-            controller.save('./Nets/navigator_checkpoint' + str(trials))
+            # controller.save('./Nets/navigator_checkpoint' + str(trials))
 
             controller.action_probabilities(reset=True)
-            score, tasks_finished = controller.run_episode(train=False, render=True)
+            score, tasks_finished = controller.run_episode(train=False, render=False)
 
             print(f'\nTest {trials // TEST_EVERY}\t        Score: {score:.3f}'
                   f'\tDones: {100 * tasks_finished / max(1, n_agents):.2f}%\t             '
