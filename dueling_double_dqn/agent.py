@@ -51,16 +51,16 @@ class Agent:
         self.eps = 1.
 
     def save(self, filename):
-        self.qnetwork_local.save(filename + "_local.h5", save_format='tf')
-        self.qnetwork_target.save(filename + "._target.h5", save_format='tf')
+        self.qnetwork_local.save_weights(filename + "_local.h5")
+        self.qnetwork_target.save_weights(filename + "._target.h5")
 
     def load(self, filename):
         if os.path.exists(filename + "_local.h5"):
-            self.qnetwork_local = tf.keras.models.load_model(filename + "_local.h5")
+            self.qnetwork_local.load_weights(filename + "_local.h5")
         else:
             print(f'The path "{filename}_local.h5" does not exits, creating a new local network')
         if os.path.exists(filename + "_target.h5"):
-            self.qnetwork_target = tf.keras.models.load_model(filename + "_target.h5")
+            self.qnetwork_target.load_weights(filename + "_target.h5")
         else:
             print(f'The path "{filename}_target.h5" does not exits, creating a new target network')
 
