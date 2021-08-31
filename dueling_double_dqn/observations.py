@@ -14,10 +14,11 @@ class CustomObservation(TreeObsForRailEnv):
         super().__init__(max_depth=TREE_DEPTH, predictor=ShortestPathPredictorForRailEnv(30))
 
     def get(self, handle: int = 0):
-        obs = normalize_observation(super(CustomObservation, self).get(), TREE_DEPTH, observation_radius=10)
-        if ADD_AGENT_ID:
-            agent_id = np.zeros(self.env.get_num_agents())
-            agent_id[handle] = 1.0
-            return np.append(obs, agent_id)
-        else:
-            return obs
+        obs = super(CustomObservation, self).get()
+        if obs:
+            obs = normalize_observation(obs, TREE_DEPTH, observation_radius=10)
+            if ADD_AGENT_ID:
+                agent_id = np.zeros(self.env.get_num_agents())
+                agent_id[handle] = 1.0
+                obs = np.append(obs, agent_id)
+        return obs
