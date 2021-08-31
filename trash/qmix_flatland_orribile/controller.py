@@ -3,8 +3,8 @@ import copy
 import numpy as np
 import tensorflow as tf
 
-from qmix_flatland_orribile.model import QMixer
-from qmix_flatland_orribile.replay_buffer import ReplayBuffer
+from trash.qmix_flatland_orribile import QMixer
+from trash.qmix_flatland_orribile import ReplayBuffer
 from utils import normalize_observation
 
 BUFFER_SIZE = int(1e5)  # replay buffer size

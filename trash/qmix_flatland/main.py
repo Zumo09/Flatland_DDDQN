@@ -6,11 +6,10 @@ import matplotlib.pyplot as plt
 from collections import deque
 from pathlib import Path
 
-from qmix_flatland_orribile.controller import AgentsController
+from trash.qmix_flatland import AgentsController
 
 from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
-from flatland.envs.malfunction_generators import MalfunctionParameters
 from flatland.envs.schedule_generators import sparse_schedule_generator
 from flatland.utils.rendertools import RenderTool
 from flatland.envs.observations import TreeObsForRailEnv

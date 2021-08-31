@@ -2,6 +2,7 @@
   <dictionary name="zumo0">
     <words>
       <w>dtype</w>
+      <w>envs</w>
       <w>hypernetworks</w>
       <w>keras</w>
       <w>multinomial</w>

@@ -1,4 +1,5 @@
 import tensorflow as tf
+import tensorflow.keras.backend as K
 
 from tensorflow.keras import Model
 from tensorflow.keras.layers import Dense, RNN, GRUCell, Maximum
@@ -24,7 +25,6 @@ class QMixer(Model):
         self.V2 = Dense(1)
 
         # Mixer Network.
-        self.action_selection = Maximum()
         self.fc1_mix = Dense(self.embed_dim, activation=tf.nn.relu, trainable=False)
         self.fc2_mix = Dense(1, trainable=False)
 
@@ -50,8 +50,8 @@ class QMixer(Model):
             self.fc2_mix.bias = tf.reshape(v, (1,))
 
             # agents_best_qs = tf.expand_dims(tf.math.reduce_max(agents_qs, axis=1), 0)
-            inputs = [tf.reshape(agents_qs[:, i], (1, agents_qs.shape[0])) for i in range(agents_qs.shape[1])]
-            agents_best_qs = self.action_selection(inputs)
+
+            agents_best_qs = agents_qs[:, K.maximum(agents_qs, axis=1)] # bah
             # Inference on the outer model.
             y = self.fc1_mix(agents_best_qs)
             q_tot = self.fc2_mix(y)
