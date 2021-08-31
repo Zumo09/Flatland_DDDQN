@@ -18,6 +18,7 @@ GAMMA = 0.99  # discount factor 0.99
 TAU = 1e-3  # for soft update of target parameters
 LR = 0.5e-4  # learning rate 0.5e-4 works
 UPDATE_EVERY = 1000  # how often to update the network
+TRAIN_EVERY = 10
 
 EPS_END = 0.005
 EPS_DECAY = 0.998
@@ -76,7 +77,7 @@ class Agent:
             self.t_step = 0
 
         # If enough samples are available in memory, get random subset and learn
-        if len(self.memory) > BATCH_SIZE:
+        if self.t_step % TRAIN_EVERY == 0 and len(self.memory) > BATCH_SIZE:
             states, actions, rewards, next_states, dones = self.memory.sample()
 
             if self.double_dqn:
@@ -95,7 +96,6 @@ class Agent:
         if self.t_step == 0:
             # ------------------- update target network ------------------- #
             self.qnetwork_target.set_weights(self.qnetwork_local.get_weights())
-            print('updated-------------------------------------------')
 
     def act(self, state, train=False):
         # Epsilon-greedy action selection
