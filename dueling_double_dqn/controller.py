@@ -96,7 +96,7 @@ class FlatlandController:
                 action_dict.update({a: action})
 
             # Environment step
-            self.agent_obs, all_rewards, done, info = self.env.step(action_dict)
+            next_obs, all_rewards, done, info = self.env.step(action_dict)
             # Update replay buffer and train agent
             for a in range(self.n_agents):
                 # Only update the values when we are done or when an action was taken and thus relevant information
@@ -107,6 +107,9 @@ class FlatlandController:
 
                     self.agent_obs_buffer[a] = self.agent_obs[a].copy()
                     self.agent_action_buffer[a] = action_dict[a]
+
+                if next_obs[a] is not None:
+                    self.agent_obs[a] = next_obs[a]
 
                 score += all_rewards[a] / self.n_agents
 

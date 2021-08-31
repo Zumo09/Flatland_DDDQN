@@ -4,3 +4,5 @@
 *.index
 *.pyc
 *.pyc
+*.iml
+*.xml
