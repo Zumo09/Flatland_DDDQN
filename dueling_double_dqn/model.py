@@ -1,6 +1,29 @@
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense
-import tensorflow.keras.backend as K
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.losses import MeanSquaredError
+import tensorflow.keras.backend as k
+
+def dueling_dqn(observation_shape, action_size, learning_rate, hidden=1024, hidden_1=256, hidden_2=128):
+    observations = Input(shape=(observation_shape,))
+    x = Dense(hidden, activation="relu")(observations)
+
+    val = Dense(hidden_1, activation='relu')(x)
+    val = Dense(hidden_2, activation='relu')(val)
+    val = Dense(1)(val)
+
+    # advantage calculation
+    adv = Dense(hidden_1, activation='relu')(x)
+    adv = Dense(hidden_2, activation='relu')(adv)
+    adv = Dense(action_size)(adv)
+
+    q_values = val + adv - k.mean(adv, axis=1, keepdims=True)))
+
+    model = Model(inputs=observations, outputs=q_values)
+
+    model.compile(optimizer=Adam(learning_rate=learning_rate), loss=MeanSquaredError())
+
+    return model
 
 
 class QNetwork(Model):
@@ -27,7 +50,7 @@ class QNetwork(Model):
         adv = self.fc1_adv(x)
         adv = self.fc2_adv(adv)
         adv = self.fc3_adv(adv)
-        return val + adv - K.mean(adv)
+        return val + adv - k.mean(adv)
 
     def get_config(self):
         return {

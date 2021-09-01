@@ -22,6 +22,9 @@ class FlatlandController:
         # The action space of flatland is 5 discrete actions
         self.action_size = 5
 
+        # And the max number of steps we want to take per episode
+        self.max_steps = int(4 * 2 * (20 + x_dim + y_dim))
+
         # Use a the malfunction generator to break agents from time to time
         # stochastic_data = MalfunctionParameters(malfunction_rate=1. / 10000,  # Rate of malfunction occurrence
         #                                        min_duration=15,  # Minimal duration of malfunction
@@ -53,13 +56,7 @@ class FlatlandController:
         # Reset env
         self.env.reset(True, True)
         # After training we want to render the results so we also load a renderer
-        self.env_renderer = RenderTool(self.env, gl="PILSVG", )
-
-        # And some variables to keep track of the progress
-        self.agent_obs = [None] * self.n_agents
-        self.agent_obs_buffer = [None] * self.n_agents
-        self.agent_action_buffer = [2] * self.n_agents
-        self.update_values = [False] * self.n_agents
+        self.env_renderer = RenderTool(self.env)
 
         # Now we load a Double dueling DQN agent
         self.agent = Agent(self.action_size)
@@ -68,28 +65,33 @@ class FlatlandController:
             self.agent.load(load_from)
 
     def run_episode(self, train=True, render=False):
+        # Some variables to keep track of the progress
         action_dict = dict()
+        agent_action_buffer = [2] * self.n_agents
+        update_values = [False] * self.n_agents
+
         # Reset environment
-        self.agent_obs, info = self.env.reset(True, True)
-        self.agent_obs_buffer = self.agent_obs.copy()
+        agent_obs, info = self.env.reset(True, True)
+        agent_obs_buffer = agent_obs.copy()
 
         if render:
             self.env_renderer.reset()
 
         # Reset score
         score = 0
+        step = 0
 
         # Run episode
-        while True:
+        while step < self.max_steps:
             # Action
             for a in range(self.n_agents):
                 if info['action_required'][a]:
                     # If an action is require, we want to store the obs a that step as well as the action
-                    self.update_values[a] = True
+                    update_values[a] = True
 
-                    action = self.agent.act(self.agent_obs[a], train=train)
+                    action = self.agent.act(agent_obs[a], train=train)
                 else:
-                    self.update_values[a] = False
+                    update_values[a] = False
                     action = 0
                 action_dict.update({a: action})
 
@@ -99,15 +101,15 @@ class FlatlandController:
             for a in range(self.n_agents):
                 # Only update the values when we are done or when an action was taken and thus relevant information
                 # is present
-                if train and (self.update_values[a] or done[a]):
-                    self.agent.add_experience(self.agent_obs_buffer[a], self.agent_action_buffer[a],
-                                              all_rewards[a], self.agent_obs[a], done[a])
+                if train and (update_values[a] or done[a]):
+                    self.agent.add_experience(agent_obs_buffer[a], agent_action_buffer[a],
+                                              all_rewards[a], agent_obs[a], done[a])
 
-                    self.agent_obs_buffer[a] = self.agent_obs[a].copy()
-                    self.agent_action_buffer[a] = action_dict[a]
+                    agent_obs_buffer[a] = agent_obs[a].copy()
+                    agent_action_buffer[a] = action_dict[a]
 
                 if next_obs[a] is not None:
-                    self.agent_obs[a] = next_obs[a]
+                    agent_obs[a] = next_obs[a]
 
                 score += all_rewards[a] / self.n_agents
 
@@ -117,6 +119,7 @@ class FlatlandController:
             if render:
                 self.env_renderer.render_env()
 
+            step += 1
             # Copy observation
             if done['__all__']:
                 break

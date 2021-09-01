@@ -10,7 +10,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
 import tensorflow as tf
 
-from trash.marl_tutorial.model import QNetwork
+from dueling_double_dqn.model import dueling_dqn
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 512  # minibatch size
@@ -27,7 +27,7 @@ EPS_DECAY = 0.998
 class Agent:
     """Interacts with and learns from the environment."""
 
-    def __init__(self, action_size, double_dqn=True):
+    def __init__(self, observation_shape, action_size, double_dqn=True):
         """Initialize an Agent object.
 
         Params
@@ -38,26 +38,23 @@ class Agent:
         self.action_size = action_size
         self.double_dqn = double_dqn
         # Q-Network
-        self.qnetwork_local = QNetwork(action_size)
+        self.qnetwork_local = dueling_dqn(observation_shape, action_size, LR)
         self.qnetwork_target = copy.deepcopy(self.qnetwork_local)
 
-        self.qnetwork_local.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
-                                    loss=tf.keras.losses.MeanSquaredError())
-
         # Replay memory
-        self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE)
+        self.memory = ReplayBuffer(BUFFER_SIZE, BATCH_SIZE)
         # Initialize time step (for updating every UPDATE_EVERY steps)
         self.t_step = 0
         self.eps = 1.
 
     def act(self, state, train=False):
         # Epsilon-greedy action selection
-        if train and random.random() > self.eps:
-            state = tf.expand_dims(state, 0)
-            action_values = self.qnetwork_local.predict(state)
-            return np.argmax(action_values)
-        else:
+        if train and random.random() < self.eps:
             return random.choice(np.arange(self.action_size))
+        else:
+            state = tf.expand_dims(state, 0)
+            action_values = self.qnetwork_local(state)
+            return np.argmax(action_values)
 
     def add_experience(self, state, action, reward, next_state, done):
         # Save experience in replay memory
@@ -76,8 +73,8 @@ class Agent:
             states, actions, rewards, next_states, dones = self.memory.sample()
 
             # Double DQN
-            q_best_action = np.expand_dims(np.argmax(self.qnetwork_local.predict(next_states), axis=1), -1)
-            Q_targets_next = np.take_along_axis(self.qnetwork_target.predict(next_states),
+            q_best_action = np.expand_dims(np.argmax(self.qnetwork_local(next_states), axis=1), -1)
+            Q_targets_next = np.take_along_axis(self.qnetwork_target(next_states),
                                                 indices=q_best_action, axis=1)
 
             Q_targets = rewards + (GAMMA * Q_targets_next * (1 - dones))

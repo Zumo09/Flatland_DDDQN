@@ -30,36 +30,30 @@ def main(argv):
                                     n_agents=n_agents,
                                     load_from=path)
 
-    # And the max number of steps we want to take per episode
-    max_steps = int(4 * 2 * (20 + grid_shape[0] + grid_shape[1]))
-
     # And some variables to keep track of the progress
     scores_window = deque(maxlen=100)
     done_window = deque(maxlen=100)
     scores = []
-    dones_list = []
 
     print(f'Training for {n_trials} Episodes')
     for trials in range(1, n_trials + 1):
         score, tasks_finished = controller.run_episode(train=True, render=False)
 
         # Collection information about training
-
-        done_window.append(tasks_finished / max(1, n_agents))
-        scores_window.append(score / max_steps)  # save most recent score
+        done_window.append(tasks_finished / n_agents)
+        scores_window.append(score)  # save most recent score
         scores.append(np.mean(scores_window))
-        dones_list.append((np.mean(done_window)))
 
-        print(f'\rEpisode {trials}\tAverage Score: {np.mean(scores_window):.3f}'
-              f'\tDones: {100 * np.mean(done_window):.2f}%\tEpsilon: {controller.agent.eps:.2f}', end=" ")
+        print(f'\rEpisode {trials:5d}\tAverage Score: {np.mean(scores_window):5.3f}'
+              f'\tDones: {100 * np.mean(done_window):3.2f}%\tEpsilon: {controller.agent.eps:.2f}', end=" ")
 
         if trials % TEST_EVERY == 0:
             controller.save('./Nets/navigator_checkpoint' + str(trials))
 
             score, tasks_finished = controller.run_episode(train=False, render=False)
 
-            print(f'\t|\tTest {trials // TEST_EVERY}\tScore: {score / max_steps:.3f}'
-                  f'\tDones: {100 * tasks_finished / max(1, n_agents):.2f}%\t')
+            print(f'\t|\tTest {trials // TEST_EVERY:3d}\tScore: {score:5.3f}'
+                  f'\tDones: {100 * tasks_finished / n_agents:3.2f}%\t')
 
     # Plot overall training progress at the end
     plt.plot(scores)
