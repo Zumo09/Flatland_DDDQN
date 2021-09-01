@@ -21,6 +21,8 @@ class ReplayBuffer:
 
     def add(self, state, action, reward, next_state, done):
         """Add a new experience to memory."""
+        if state is None or next_state is None:
+            return
         e = self.experience(np.expand_dims(state, 0), action, reward, np.expand_dims(next_state, 0), done)
         self.memory.append(e)
 

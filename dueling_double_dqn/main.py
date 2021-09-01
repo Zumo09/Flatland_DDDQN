@@ -40,15 +40,15 @@ def main(argv):
         score, tasks_finished = controller.run_episode(train=True, render=False)
 
         # Collection information about training
-        done_window.append(tasks_finished / n_agents)
+        done_window.append(100 * tasks_finished / n_agents)
         scores_window.append(score)  # save most recent score
         scores.append(np.mean(scores_window))
 
         print(f'\rEpisode {trials:5d}\tAverage Score: {np.mean(scores_window):5.3f}'
-              f'\tDones: {100 * np.mean(done_window):3.2f}%\tEpsilon: {controller.agent.eps:.2f}', end=" ")
+              f'\tDones: {np.mean(done_window):3.2f}%\tEpsilon: {controller.agent.eps:.2f}', end=" ")
 
         if trials % TEST_EVERY == 0:
-            controller.save('./Nets/navigator_checkpoint' + str(trials))
+            controller.save('./Nets/checkpoint' + str(trials))
 
             score, tasks_finished = controller.run_episode(train=False, render=False)
 

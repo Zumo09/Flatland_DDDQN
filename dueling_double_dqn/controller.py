@@ -54,25 +54,25 @@ class FlatlandController:
                            obs_builder_object=observations)
 
         # Reset env
-        self.env.reset(True, True)
+        obs, _ = self.env.reset(True, True)
         # After training we want to render the results so we also load a renderer
         self.env_renderer = RenderTool(self.env)
 
         # Now we load a Double dueling DQN agent
-        self.agent = Agent(self.action_size)
-
-        if load_from:
-            self.agent.load(load_from)
+        if load_from is not None:
+            self.agent = Agent(action_size=self.action_size,
+                               path=load_from)
+        else:
+            self.agent = Agent(action_size=self.action_size,
+                               observation_shape=obs[0].shape)
 
     def run_episode(self, train=True, render=False):
         # Some variables to keep track of the progress
         action_dict = dict()
-        agent_action_buffer = [2] * self.n_agents
         update_values = [False] * self.n_agents
 
         # Reset environment
         agent_obs, info = self.env.reset(True, True)
-        agent_obs_buffer = agent_obs.copy()
 
         if render:
             self.env_renderer.reset()
@@ -88,7 +88,6 @@ class FlatlandController:
                 if info['action_required'][a]:
                     # If an action is require, we want to store the obs a that step as well as the action
                     update_values[a] = True
-
                     action = self.agent.act(agent_obs[a], train=train)
                 else:
                     update_values[a] = False
@@ -99,19 +98,15 @@ class FlatlandController:
             next_obs, all_rewards, done, info = self.env.step(action_dict)
             # Update replay buffer and train agent
             for a in range(self.n_agents):
-                # Only update the values when we are done or when an action was taken and thus relevant information
+                # Save experience when we are done or when an action was taken and thus relevant information
                 # is present
-                if train and (update_values[a] or done[a]):
-                    self.agent.add_experience(agent_obs_buffer[a], agent_action_buffer[a],
-                                              all_rewards[a], agent_obs[a], done[a])
-
-                    agent_obs_buffer[a] = agent_obs[a].copy()
-                    agent_action_buffer[a] = action_dict[a]
-
-                if next_obs[a] is not None:
-                    agent_obs[a] = next_obs[a]
+                if train and (update_values[a] or done[a]) and agent_obs[a] is not None:
+                    self.agent.add_experience(agent_obs[a], action_dict[a],
+                                              all_rewards[a], next_obs[a], done[a])
 
                 score += all_rewards[a] / self.n_agents
+
+                agent_obs[a] = next_obs[a]
 
             if train:
                 self.agent.step()
@@ -123,8 +118,6 @@ class FlatlandController:
             # Copy observation
             if done['__all__']:
                 break
-
-        self.agent.step(end_episode=True)
 
         tasks_finished = 0
         for current_agent in self.env.agents:
