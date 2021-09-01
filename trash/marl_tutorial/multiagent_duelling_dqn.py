@@ -10,20 +10,18 @@ from flatland.envs.malfunction_generators import MalfunctionParameters
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 
-import tensorflow as tf
-
 base_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(base_dir))
 
 import matplotlib.pyplot as plt
 import numpy as np
-from marl_tutorial.dueling_double_dqn import Agent
+from trash.marl_tutorial.dueling_double_dqn import Agent
 
 from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 from flatland.utils.rendertools import RenderTool
-from utils.observation_utils import normalize_observation
+from dueling_double_dqn.observation_utils import normalize_observation
 from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 from flatland.envs.agent_utils import RailAgentStatus

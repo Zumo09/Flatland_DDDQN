@@ -1,12 +1,12 @@
 import numpy as np
 
-from flatland.envs.observations import TreeObsForRailEnv, LocalObsForRailEnv
+from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import complex_rail_generator
 from flatland.envs.schedule_generators import complex_schedule_generator
 from flatland.utils.rendertools import RenderTool
-from utils.observation_utils import normalize_observation
+from dueling_double_dqn.observation_utils import normalize_observation
 
 depth = 3
 

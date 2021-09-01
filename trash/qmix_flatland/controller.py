@@ -5,7 +5,7 @@ import tensorflow as tf
 
 from trash.qmix_flatland import QMixer
 from trash.qmix_flatland.replay_buffer import ReplayBuffer
-from utils import normalize_observation
+from trash.utils import normalize_observation
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 4  # minibatch size

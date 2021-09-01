@@ -3,7 +3,7 @@ import numpy as np
 from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 
-from utils.observation_utils import normalize_observation
+from dueling_double_dqn.observation_utils import normalize_observation
 
 TREE_DEPTH = 2
 ADD_AGENT_ID = True
