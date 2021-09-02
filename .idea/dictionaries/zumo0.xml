@@ -7,8 +7,11 @@
       <w>hypernetworks</w>
       <w>keras</w>
       <w>multinomial</w>
+      <w>neur</w>
       <w>preprocess</w>
+      <w>tensorboard</w>
       <w>vshape</w>
+      <w>wandb</w>
     </words>
   </dictionary>
 </component>
