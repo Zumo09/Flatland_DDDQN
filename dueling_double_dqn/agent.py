@@ -14,7 +14,7 @@ UPDATE_EVERY = 1000  # how often to update the network
 TRAIN_EVERY = 10
 
 EPS_END = 0.005
-EPS_DECAY = 0.997
+EPS_DECAY = 0.998
 
 
 class Agent:
@@ -85,8 +85,10 @@ class Agent:
                                     epochs=1, verbose=0)
 
         # Decrease Eps
-        if self.t_step == 0:
+        if self.t_step % 500 == 0:
             self.eps = max(EPS_END, EPS_DECAY * self.eps)
+
+        if self.t_step == 0:
             # Update target
             self._update_target()
 

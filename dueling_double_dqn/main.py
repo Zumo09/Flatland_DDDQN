@@ -3,6 +3,9 @@ import sys
 import numpy as np
 from collections import deque
 
+import time
+import datetime
+
 import matplotlib.pyplot as plt
 
 from dueling_double_dqn.controller import FlatlandController
@@ -35,6 +38,8 @@ def main(argv):
     done_window = deque(maxlen=100)
     scores = []
 
+    start_time = time.time()
+
     print(f'Training for {n_trials} Episodes')
     for trials in range(1, n_trials + 1):
         score, tasks_finished = controller.run_episode(train=True, render=False)
@@ -55,6 +60,8 @@ def main(argv):
             print(f'\t|\tTest {trials // TEST_EVERY:3d}\tScore: {score:5.3f}'
                   f'\tDones: {100 * tasks_finished / n_agents:3.2f}%\t')
 
+    elapsed = time.time() - start_time
+    print(f'End\tElapsed time: {datetime.timedelta(seconds=elapsed)} sec\t({elapsed/n_trials} sec/Episode)')
     # Plot overall training progress at the end
     plt.plot(scores)
     plt.show()
