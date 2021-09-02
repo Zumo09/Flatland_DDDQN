@@ -5,7 +5,7 @@ import tensorflow as tf
 
 from trash.qmix_prova_veloce import ReplayBuffer
 from trash.qmix_prova_veloce import DuelingAgent
-from dueling_double_dqn.observation_utils import normalize_observation
+from dueling_double_dqn.env.tree_obs_utils import normalize_observation
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 512  # minibatch size

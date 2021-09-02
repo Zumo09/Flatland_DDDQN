@@ -2,8 +2,8 @@ import random
 
 import numpy as np
 
-from dueling_double_dqn.model import dueling_dqn, load_dueling_dqn
-from dueling_double_dqn.replay_buffer import ReplayBuffer
+from .model import dueling_dqn, load_dueling_dqn
+from .replay_buffer import ReplayBuffer
 
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 512  # minibatch size

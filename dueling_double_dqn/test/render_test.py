@@ -8,7 +8,7 @@ import datetime
 
 import matplotlib.pyplot as plt
 
-from dueling_double_dqn.env import FlatlandController
+from dueling_double_dqn.env.controller import FlatlandController
 
 TEST_EVERY = 100
 

@@ -7,7 +7,7 @@ from flatland.envs.schedule_generators import sparse_schedule_generator
 from flatland.utils.rendertools import RenderTool
 
 from dueling_double_dqn.agent import Agent
-from dueling_double_dqn.observations import CustomObservation
+from .observations import CustomObservation
 
 
 class FlatlandController:
