@@ -11,7 +11,7 @@ from .observations import CustomObservation
 
 
 class FlatlandController:
-    def __init__(self, grid_shape, n_agents, seed=1, load_from=None):
+    def __init__(self, grid_shape, n_agents, seed=None, load_from=None):
 
         self.rng = np.random.default_rng(seed=seed)
 
@@ -112,7 +112,7 @@ class FlatlandController:
                 self.agent.step()
 
             if render:
-                self.env_renderer.render_env()
+                self.env_renderer.render_env(show=True, show_agents=True)
 
             step += 1
             # Copy observation

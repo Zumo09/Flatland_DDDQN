@@ -21,7 +21,7 @@ from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 from flatland.utils.rendertools import RenderTool
-from dueling_double_dqn.env.tree_obs_utils import normalize_observation
+from utils.observation_utils import normalize_observation
 from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 from flatland.envs.agent_utils import RailAgentStatus
