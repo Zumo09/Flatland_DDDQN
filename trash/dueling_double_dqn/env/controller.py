@@ -6,7 +6,7 @@ from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 from flatland.utils.rendertools import RenderTool
 
-from dueling_double_dqn.agent import Agent
+from trash.dueling_double_dqn.agent import Agent
 from .observations import CustomObservation
 
 

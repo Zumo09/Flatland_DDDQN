@@ -32,7 +32,7 @@ class DDDQNPolicy(Policy):
         # Q-Network
         self.qnetwork_local = DuelingQNetwork(state_size, action_size,
                                               hidsize1=self.hidsize, hidsize2=self.hidsize,
-                                              learning_rate=self.learning_rate)
+                                              learning_rate=self.learning_rate if not evaluation_mode else None)
 
         if not evaluation_mode:
             self.qnetwork_target = DuelingQNetwork(state_size, action_size,

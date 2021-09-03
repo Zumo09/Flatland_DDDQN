@@ -1,4 +1,4 @@
-from dueling_double_dqn.env.controller import FlatlandController
+from trash.dueling_double_dqn.env import FlatlandController
 
 
 def main():

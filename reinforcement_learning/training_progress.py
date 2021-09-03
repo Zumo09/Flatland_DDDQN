@@ -10,7 +10,7 @@ from pprint import pprint
 import numpy as np
 # import torch
 from flatland.envs.malfunction_generators import malfunction_from_params, MalfunctionParameters
-# from flatland.envs.observations import TreeObsForRailEnv
+from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
@@ -18,23 +18,27 @@ from flatland.envs.schedule_generators import sparse_schedule_generator
 from flatland.utils.rendertools import RenderTool
 
 from reinforcement_learning.env_config import check_env_config, ENV_CONFIG, OBS_PARAMS
-from reinforcement_learning.observations import CustomObservation
 
 base_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(base_dir))
 
 from utils.deadlock_check import check_if_all_blocked
 from utils.timer import Timer
-# from utils.observation_utils import normalize_observation
+from utils.observation_utils import normalize_observation
 from reinforcement_learning.dddqn_policy import DDDQNPolicy
 
+# TODO voglio valutare il progresso del training usando solo un environment e caricando i vari checkpoint
 
-def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size, seed, render,
+
+def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size, state_size, seed, render,
                 allow_skipping, allow_caching):
     # Evaluation is faster on CPU (except if you use a really huge policy)
     parameters = {
         'use_gpu': False
     }
+
+    policy = DDDQNPolicy(state_size, action_size, Namespace(**parameters), evaluation_mode=True)
+    policy.load(checkpoint)
 
     env_params = Namespace(**env_params)
 
@@ -69,8 +73,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
 
     # Observation builder
     predictor = ShortestPathPredictorForRailEnv(observation_max_path_depth)
-    tree_observation = CustomObservation(max_depth=observation_tree_depth, predictor=predictor,
-                                         observation_radius=observation_radius)
+    tree_observation = TreeObsForRailEnv(max_depth=observation_tree_depth, predictor=predictor)
 
     # Setup the environment
     env = RailEnv(
@@ -96,17 +99,15 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
     completions = []
     nb_steps = []
     inference_times = []
+    preproc_times = []
     agent_times = []
     step_times = []
-
-    obs, _ = env.reset(regenerate_rail=True, regenerate_schedule=True, random_seed=seed)
-    policy = DDDQNPolicy(obs[0].shape[0], action_size, Namespace(**parameters), evaluation_mode=True)
-    policy.load(checkpoint)
 
     for episode_idx in range(n_eval_episodes):
         seed += 1
 
         inference_timer = Timer()
+        preproc_timer = Timer()
         agent_timer = Timer()
         step_timer = Timer()
 
@@ -137,13 +138,16 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
 
             agent_timer.start()
             for agent in env.get_agent_handles():
-                if obs[agent] is not None and info['action_required'][agent]:
+                if obs[agent] and info['action_required'][agent]:
                     if agent in agent_last_obs and np.all(agent_last_obs[agent] == obs[agent]):
                         nb_hit += 1
                         action = agent_last_action[agent]
 
                     else:
-                        norm_obs = obs[agent]
+                        preproc_timer.start()
+                        norm_obs = normalize_observation(obs[agent], tree_depth=observation_tree_depth,
+                                                         observation_radius=observation_radius)
+                        preproc_timer.end()
 
                         inference_timer.start()
                         action = policy.act(norm_obs, eps=0.0)
@@ -189,6 +193,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
         nb_steps.append(final_step)
 
         inference_times.append(inference_timer.get())
+        preproc_times.append(preproc_timer.get())
         agent_times.append(agent_timer.get())
         step_times.append(step_timer.get())
 
@@ -204,7 +209,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
             "☑️  Score: {:.3f} \tDone: {:.1f}% \tNb steps: {:.3f} "
             "\t🍭 Seed: {}"
             "\t🚉 Env: {:.3f}s  "
-            "\t🤖 Agent: {:.3f}s (per step: {:.3f}s) \t[infer: {:.3f}s]"
+            "\t🤖 Agent: {:.3f}s (per step: {:.3f}s) \t[preproc: {:.3f}s \tinfer: {:.3f}s]"
             "{}{}".format(
                 normalized_score,
                 completion * 100.0,
@@ -213,6 +218,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
                 step_timer.get(),
                 agent_timer.get(),
                 agent_timer.get() / final_step,
+                preproc_timer.get(),
                 inference_timer.get(),
                 skipped_text,
                 hit_text
@@ -250,16 +256,21 @@ def evaluate_agents(file, evaluation_env_config, n_evaluation_episodes, render, 
     # Calculate space dimensions and max steps
     max_steps = int(4 * 2 * (env_params.x_dim + env_params.y_dim + (env_params.n_agents / env_params.n_cities)))
     action_size = 5
+    tree_observation = TreeObsForRailEnv(max_depth=env_params.observation_tree_depth)
+    tree_depth = env_params.observation_tree_depth
+    num_features_per_node = tree_observation.observation_dim
+    n_nodes = sum([np.power(4, i) for i in range(tree_depth + 1)])
+    state_size = num_features_per_node * n_nodes
 
     results = []
     if render:
         results.append(eval_policy(params, file, eval_per_thread, max_steps, action_size,
-                                   0, render, allow_skipping, allow_caching))
+                                   state_size, 0, render, allow_skipping, allow_caching))
 
     else:
         with Pool() as p:
             results = p.starmap(eval_policy,
-                                [(params, file, 1, max_steps, action_size, seed * nb_threads,
+                                [(params, file, 1, max_steps, action_size, state_size, seed * nb_threads,
                                   render, allow_skipping, allow_caching)
                                  for seed in
                                  range(total_nb_eval)])

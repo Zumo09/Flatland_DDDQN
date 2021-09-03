@@ -3,11 +3,17 @@
     <words>
       <w>cummulated</w>
       <w>dones</w>
+      <w>hparams</w>
+      <w>hyperparameter</w>
       <w>impr</w>
       <w>minibatch</w>
       <w>pilsvg</w>
+      <w>preproc</w>
+      <w>probs</w>
+      <w>psutil</w>
       <w>qnetwork</w>
       <w>relu</w>
+      <w>timesteps</w>
     </words>
   </dictionary>
 </component>
