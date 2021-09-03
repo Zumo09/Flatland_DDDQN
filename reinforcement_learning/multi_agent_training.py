@@ -293,8 +293,8 @@ def train_agent(train_params, train_env_params, eval_env_params, obs_params):
             '\r🚂 Episode {}'
             '\t 🏆 Score: {:.3f}'
             ' Avg: {:.3f}'
-            '\t 💯 Done: {:.2f}%'
-            ' Avg: {:.2f}%'
+            '\t 💯 Done: {:3.2f}%'
+            ' Avg: {:3.2f}%'
             '\t 🎲 Epsilon: {:.3f} '
             '\t 🔀 Action Probs: {}'.format(
                 episode_idx,
@@ -368,8 +368,6 @@ def format_action_prob(action_probs):
 def eval_policy(env, policy, train_params, obs_params):
     n_eval_episodes = train_params.n_evaluation_episodes
     max_steps = env._max_episode_steps
-    tree_depth = obs_params.observation_tree_depth
-    observation_radius = obs_params.observation_radius
 
     action_dict = dict()
     scores = []
@@ -446,9 +444,9 @@ if __name__ == "__main__":
     env_params = [
         {
             # Test_0
-            "n_agents": 5,
-            "x_dim": 25,
-            "y_dim": 25,
+            "n_agents": 2,
+            "x_dim": 35,
+            "y_dim": 35,
             "n_cities": 2,
             "max_rails_between_cities": 2,
             "max_rails_in_city": 3,
