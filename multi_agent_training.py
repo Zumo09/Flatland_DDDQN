@@ -5,7 +5,6 @@ from datetime import datetime
 from pathlib import Path
 from pprint import pprint
 
-import matplotlib.pyplot as plt
 import numpy as np
 import psutil
 import wandb
@@ -149,11 +148,6 @@ def train_agent(config):
     if save_replay_buffer and (hdd.free / (2 ** 30)) < 500.0:
         print(f"⚠️  Careful! Saving replay buffers will quickly consume a lot of disk space. "
               f"You have {hdd.free / (2 ** 30):.2f}gb left.")
-
-    # # TensorBoard writer
-    # writer = SummaryWriter()
-    # writer.add_hparams(vars(train_params), {})
-    # writer.add_hparams(vars(train_env_params), {})
 
     training_timer = Timer()
     training_timer.start()
@@ -302,25 +296,6 @@ def train_agent(config):
             'episode': episode_idx
         })
 
-    fig, (ax1, ax2) = plt.subplots(2)
-
-    train_ep = np.arange(len(train_score_history))
-
-    ax1.set_title('Train score History')
-    ax1.scatter(train_ep, train_score_history, s=1)
-    ax1.plot(train_ep, train_score_avg_history)
-
-    test_ep = np.arange(1, len(test_scores_history) + 1) * checkpoint_interval
-    idx = np.array([test_ep for _ in range(n_eval_episodes)]).T
-    mean = np.mean(test_scores_history, axis=1)
-    std = np.std(test_scores_history, axis=1)
-
-    ax2.set_title('Test score History')
-    ax2.scatter(idx, test_scores_history, s=1.0)
-    ax2.errorbar(test_ep, mean, yerr=std)
-
-    plt.show()
-
 
 def format_action_prob(action_probs):
     action_probs = np.round(action_probs, 3)
@@ -389,10 +364,13 @@ if __name__ == "__main__":
     sys.path.append(str(base_dir))
 
     parser = ArgumentParser()
-    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2500, type=int)
+    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=50, type=int)
+    # parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2500, type=int)
     parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=0, type=int)
-    parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
-    parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
+    parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=3, type=int)
+    # parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
+    parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=10, type=int)
+    # parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
     parser.add_argument("--eps_start", help="max exploration", default=1.0, type=float)
     parser.add_argument("--eps_end", help="min exploration", default=0.01, type=float)
     parser.add_argument("--eps_decay", help="exploration decay", default=0.99, type=float)
@@ -428,5 +406,8 @@ if __name__ == "__main__":
     wandb.login(key='0f20b9f069a2312cc2b8e92e6f75310697d5fdfc')
 
     wandb.init(project='flatland-rl-prova-sweep', config=configuration)
+
+    print('\nWeigh and Biases Configuration')
+    pprint(wandb.config)
 
     train_agent(wandb.config)

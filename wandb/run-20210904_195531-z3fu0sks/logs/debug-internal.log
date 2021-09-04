@@ -1,0 +1,548 @@
+2021-09-04 19:55:33,218 INFO    MainThread:23840 [internal.py:wandb_internal():89] W&B internal server running at pid: 23840, started at: 2021-09-04 19:55:33.211410
+2021-09-04 19:55:33,220 INFO    WriterThread:23840 [datastore.py:open_for_write():77] open: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\run-z3fu0sks.wandb
+2021-09-04 19:55:33,221 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: check_version
+2021-09-04 19:55:33,224 DEBUG   SenderThread:23840 [sender.py:send():182] send: header
+2021-09-04 19:55:33,224 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: check_version
+2021-09-04 19:55:33,841 DEBUG   SenderThread:23840 [sender.py:send():182] send: run
+2021-09-04 19:55:34,207 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: run_start
+2021-09-04 19:55:34,209 INFO    SenderThread:23840 [dir_watcher.py:__init__():169] watching files in: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files
+2021-09-04 19:55:34,209 INFO    SenderThread:23840 [sender.py:_start_run_threads():743] run started: z3fu0sks with start time 1630778132
+2021-09-04 19:55:34,209 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:55:34,210 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:55:35,224 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:55:36,424 DEBUG   HandlerThread:23840 [meta.py:__init__():40] meta init
+2021-09-04 19:55:36,424 DEBUG   HandlerThread:23840 [meta.py:__init__():54] meta init done
+2021-09-04 19:55:36,424 DEBUG   HandlerThread:23840 [meta.py:probe():211] probe
+2021-09-04 19:55:36,432 DEBUG   HandlerThread:23840 [meta.py:_setup_git():201] setup git
+2021-09-04 19:55:36,569 DEBUG   HandlerThread:23840 [meta.py:_setup_git():208] setup git done
+2021-09-04 19:55:36,569 DEBUG   HandlerThread:23840 [meta.py:_save_pip():58] save pip
+2021-09-04 19:55:36,571 DEBUG   HandlerThread:23840 [meta.py:_save_pip():72] save pip done
+2021-09-04 19:55:36,571 DEBUG   HandlerThread:23840 [meta.py:_save_conda():79] save conda
+2021-09-04 19:55:36,580 ERROR   HandlerThread:23840 [meta.py:_save_conda():86] Error saving conda packages
+Traceback (most recent call last):
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\site-packages\wandb\sdk\internal\meta.py", line 84, in _save_conda
+    subprocess.call(["conda", "env", "export"], stdout=f)
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\subprocess.py", line 287, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\subprocess.py", line 729, in __init__
+    restore_signals, start_new_session)
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\subprocess.py", line 1017, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] Impossibile trovare il file specificato
+2021-09-04 19:55:36,581 DEBUG   HandlerThread:23840 [meta.py:_save_conda():87] save conda done
+2021-09-04 19:55:36,581 DEBUG   HandlerThread:23840 [meta.py:probe():249] probe done
+2021-09-04 19:55:36,585 DEBUG   SenderThread:23840 [sender.py:send():182] send: files
+2021-09-04 19:55:36,585 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-metadata.json with policy now
+2021-09-04 19:55:36,596 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:55:36,596 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:55:37,211 INFO    Thread-17 :23840 [upload_job.py:push():137] Uploaded file C:\Users\Zumo\AppData\Local\Temp\tmpmqng1x3qwandb\2boqn2v8-wandb-metadata.json
+2021-09-04 19:55:37,238 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\conda-environment.yaml
+2021-09-04 19:55:37,239 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-metadata.json
+2021-09-04 19:55:37,239 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:55:37,240 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\requirements.txt
+2021-09-04 19:55:39,251 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:55:45,319 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:55:51,852 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:55:51,853 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:55:57,465 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:55:57,465 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:55:57,467 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:55:58,419 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:55:59,435 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:56:03,664 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:56:03,664 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:56:03,666 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:56:04,490 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:56:05,502 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:56:07,057 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:56:07,057 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:56:08,040 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 19:56:22,259 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:56:22,259 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:56:23,716 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:56:23,716 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:56:23,718 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:56:24,667 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:56:25,678 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:56:37,445 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:56:37,445 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:56:41,635 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:56:41,636 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:56:41,637 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:56:41,778 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:56:41,877 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 19:56:43,786 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:56:52,637 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:56:52,637 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:57:00,123 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:57:00,123 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:57:00,124 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:57:00,948 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:57:01,950 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:57:07,854 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:57:07,854 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:57:15,781 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 19:57:17,653 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:57:17,653 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:57:17,654 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:57:18,113 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:57:20,123 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:57:23,052 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:57:23,052 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:57:37,184 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:57:37,185 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:57:37,185 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:57:37,284 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:57:38,267 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:57:38,267 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:57:40,316 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:57:49,156 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:57:49,157 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:57:49,158 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:57:49,389 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:57:49,573 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 19:57:50,403 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:57:53,494 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:57:53,494 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:58:08,680 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:58:08,680 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:58:08,966 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:58:08,966 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:58:08,967 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:58:09,614 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:58:09,615 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:58:23,375 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 19:58:23,906 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:58:23,907 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:58:25,015 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:58:25,015 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:58:25,016 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:58:25,805 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:58:25,805 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:58:33,861 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:58:39,110 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:58:39,111 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:58:54,310 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:58:54,310 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:58:54,698 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:58:54,698 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:58:54,699 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:58:55,069 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:58:56,084 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:58:57,016 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 19:59:09,517 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:59:09,517 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:59:13,644 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:59:13,645 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:59:13,646 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:59:14,261 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:59:16,282 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:59:24,728 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:59:24,728 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:59:30,825 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 19:59:38,432 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 19:59:38,432 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 19:59:38,434 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:59:38,527 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 19:59:39,919 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:59:39,919 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:59:40,539 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 19:59:55,134 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:59:55,134 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:00:02,944 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:00:02,944 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:00:02,946 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:00:03,803 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:00:04,613 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:00:04,815 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:00:10,342 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:00:10,342 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:00:11,743 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:00:11,744 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:00:11,744 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:00:11,903 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:00:12,907 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:00:15,108 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:00:15,109 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:00:15,110 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:00:15,925 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:00:16,928 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:00:25,551 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:00:25,551 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:00:32,720 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:00:32,720 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:00:32,721 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:00:33,100 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:00:35,131 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:00:38,395 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:00:40,768 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:00:40,768 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:00:41,800 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:00:41,800 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:00:41,801 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:00:42,197 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:00:43,210 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:00:55,109 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:00:55,110 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:00:55,111 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:00:55,339 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:00:55,989 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:00:55,989 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:00:57,360 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:01:00,791 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:01:00,791 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:01:00,792 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:01:01,382 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:01:03,398 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:01:11,193 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:01:11,193 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:01:12,351 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:01:13,485 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:01:26,395 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:01:26,396 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:01:41,241 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:01:41,242 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:01:41,243 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:01:41,730 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:01:42,733 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:01:42,885 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:01:42,886 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:01:42,886 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:01:43,130 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:01:43,130 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:01:43,736 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:01:44,743 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:01:46,275 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:01:57,677 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:01:57,678 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:01:57,678 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:01:57,882 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:01:58,329 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:01:58,329 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:01:58,886 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:02:02,591 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:02:02,591 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:02:02,592 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:02:02,919 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:02:04,939 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:02:11,064 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:02:11,065 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:02:11,065 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:02:11,994 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:02:13,007 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:02:13,513 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:02:13,514 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:02:20,270 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:02:28,717 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:02:28,718 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:02:41,862 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:02:41,862 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:02:41,863 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:02:42,225 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:02:43,233 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:02:43,902 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:02:43,902 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:02:53,857 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:02:53,857 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:02:53,858 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:02:54,335 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:02:54,637 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:02:55,341 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:02:59,095 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:02:59,096 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:03:14,295 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:03:14,295 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:03:19,397 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:03:19,397 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:03:19,399 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:03:19,498 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:03:21,518 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:03:25,811 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:03:25,812 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:03:25,813 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:03:26,539 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:03:27,546 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:03:28,637 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:03:29,527 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:03:29,527 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:03:33,254 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:03:33,254 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:03:33,255 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:03:33,583 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:03:35,612 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:03:39,652 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:03:44,728 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:03:44,728 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:03:59,926 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:03:59,926 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:04:02,384 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:04:08,659 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:04:08,659 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:04:08,660 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:04:08,988 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:04:09,990 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:04:15,195 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:04:15,195 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:04:25,558 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:04:25,558 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:04:25,559 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:04:26,143 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:04:28,168 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:04:30,418 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:04:30,418 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:04:36,099 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:04:39,348 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:04:39,348 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:04:39,349 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:04:40,314 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:04:40,314 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:04:45,617 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:04:45,617 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:04:49,773 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:04:49,774 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:04:49,774 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:04:50,386 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:04:52,413 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:05:00,821 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:05:00,821 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:05:03,624 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:05:03,624 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:05:03,625 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:05:04,548 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:05:06,569 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:05:09,915 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:05:15,257 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:05:15,257 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:05:15,258 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:05:15,671 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:05:16,018 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:05:16,018 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:05:16,685 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:05:18,223 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:05:18,223 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:05:18,224 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:05:18,710 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:05:20,738 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:05:31,217 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:05:31,217 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:05:43,641 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:05:46,370 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:05:46,371 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:05:46,372 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:05:46,463 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:05:46,463 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:05:47,019 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:05:48,028 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:06:01,668 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:06:01,668 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:06:07,216 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:06:07,216 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:06:07,217 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:06:08,223 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:06:08,223 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:06:16,887 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:06:16,888 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:06:17,423 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:06:18,055 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:06:18,056 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:06:18,057 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:06:18,338 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:06:20,353 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:06:32,080 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:06:32,081 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:06:38,516 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:06:44,826 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:06:44,826 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:06:44,827 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:06:45,566 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:06:46,571 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:06:47,269 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:06:47,269 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:06:51,189 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:06:52,102 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:06:52,103 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:06:52,104 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:06:52,622 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:06:54,651 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:06:55,578 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:06:55,579 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:06:55,579 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:06:55,653 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:06:56,665 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:07:02,468 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:07:02,468 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:07:10,644 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:07:10,644 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:07:10,645 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:07:10,772 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:07:12,786 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:07:17,680 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:07:17,680 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:07:23,571 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:07:23,571 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:07:23,573 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:07:23,910 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:07:24,918 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:07:24,988 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:07:32,263 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:07:32,263 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:07:32,264 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:07:32,895 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:07:32,895 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:07:33,021 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:07:35,045 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:07:48,106 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:07:48,106 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:07:49,809 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:07:49,809 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:07:49,810 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:07:50,186 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:07:51,189 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:07:58,765 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:08:03,313 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:08:03,313 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:08:18,251 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:08:18,251 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:08:18,252 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:08:18,464 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:08:18,495 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:08:18,495 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:08:19,466 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:08:30,408 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:08:30,408 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:08:30,410 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:08:30,601 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:08:31,612 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:08:32,550 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:08:33,724 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:08:33,724 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:08:47,530 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:08:47,531 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:08:47,531 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:08:47,776 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:08:48,915 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:08:48,916 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:08:49,805 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:08:55,857 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:09:04,105 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:09:04,105 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:09:06,306 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:09:19,300 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 20:09:19,300 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 20:09:21,394 DEBUG   SenderThread:23840 [sender.py:send():182] send: history
+2021-09-04 20:09:21,394 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:09:21,395 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:09:21,920 DEBUG   SenderThread:23840 [sender.py:send():182] send: telemetry
+2021-09-04 20:09:21,920 DEBUG   SenderThread:23840 [sender.py:send():182] send: exit
+2021-09-04 20:09:21,920 INFO    SenderThread:23840 [sender.py:send_exit():291] handling exit code: 0
+2021-09-04 20:09:21,920 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:21,920 INFO    SenderThread:23840 [sender.py:send_exit():293] handling runtime: 827
+2021-09-04 20:09:21,921 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:09:21,921 INFO    SenderThread:23840 [sender.py:send_exit():303] send defer
+2021-09-04 20:09:21,921 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:21,922 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:21,922 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 0
+2021-09-04 20:09:21,922 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:21,922 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 0
+2021-09-04 20:09:21,922 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 1
+2021-09-04 20:09:21,922 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:21,922 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 1
+2021-09-04 20:09:22,035 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:22,035 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 1
+2021-09-04 20:09:22,035 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:22,035 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 2
+2021-09-04 20:09:22,036 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:22,036 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:22,036 DEBUG   SenderThread:23840 [sender.py:send():182] send: stats
+2021-09-04 20:09:22,036 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 2
+2021-09-04 20:09:22,037 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:22,037 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 2
+2021-09-04 20:09:22,037 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 3
+2021-09-04 20:09:22,037 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:22,037 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 3
+2021-09-04 20:09:22,037 DEBUG   SenderThread:23840 [sender.py:send():182] send: summary
+2021-09-04 20:09:22,038 INFO    SenderThread:23840 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 20:09:22,038 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:22,039 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 3
+2021-09-04 20:09:22,039 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 4
+2021-09-04 20:09:22,039 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:22,039 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 4
+2021-09-04 20:09:22,039 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:22,039 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 4
+2021-09-04 20:09:22,124 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:09:22,124 INFO    Thread-12 :23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:09:22,153 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:22,273 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 5
+2021-09-04 20:09:22,273 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:22,273 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:22,273 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 5
+2021-09-04 20:09:22,274 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:22,274 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 5
+2021-09-04 20:09:22,274 INFO    SenderThread:23840 [dir_watcher.py:finish():283] shutting down directory watcher
+2021-09-04 20:09:22,386 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,134 INFO    SenderThread:23840 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\config.yaml
+2021-09-04 20:09:23,135 INFO    SenderThread:23840 [dir_watcher.py:finish():313] scan: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files
+2021-09-04 20:09:23,136 INFO    SenderThread:23840 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\conda-environment.yaml conda-environment.yaml
+2021-09-04 20:09:23,137 INFO    SenderThread:23840 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\config.yaml config.yaml
+2021-09-04 20:09:23,138 INFO    SenderThread:23840 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log output.log
+2021-09-04 20:09:23,139 INFO    SenderThread:23840 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\requirements.txt requirements.txt
+2021-09-04 20:09:23,147 INFO    SenderThread:23840 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-metadata.json wandb-metadata.json
+2021-09-04 20:09:23,148 INFO    SenderThread:23840 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json wandb-summary.json
+2021-09-04 20:09:23,153 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 6
+2021-09-04 20:09:23,154 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:23,155 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:23,155 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 6
+2021-09-04 20:09:23,158 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:23,158 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 6
+2021-09-04 20:09:23,159 INFO    SenderThread:23840 [file_pusher.py:finish():177] shutting down file pusher
+2021-09-04 20:09:23,271 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,272 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:23,380 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,381 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:23,490 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,490 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:23,597 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,598 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:23,706 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,707 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:23,812 INFO    Thread-18 :23840 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\config.yaml
+2021-09-04 20:09:23,813 INFO    Thread-19 :23840 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\output.log
+2021-09-04 20:09:23,817 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,817 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:23,887 INFO    Thread-20 :23840 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\requirements.txt
+2021-09-04 20:09:23,891 INFO    Thread-21 :23840 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\files\wandb-summary.json
+2021-09-04 20:09:23,927 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:23,927 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:24,035 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:24,036 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:24,096 INFO    Thread-11 :23840 [sender.py:transition_state():316] send defer: 7
+2021-09-04 20:09:24,097 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:24,097 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 7
+2021-09-04 20:09:24,097 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:24,098 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 7
+2021-09-04 20:09:24,143 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:24,422 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 8
+2021-09-04 20:09:24,423 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:24,424 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:24,424 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 8
+2021-09-04 20:09:24,424 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:24,424 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 8
+2021-09-04 20:09:24,424 INFO    SenderThread:23840 [sender.py:transition_state():316] send defer: 9
+2021-09-04 20:09:24,425 DEBUG   SenderThread:23840 [sender.py:send():182] send: final
+2021-09-04 20:09:24,426 DEBUG   SenderThread:23840 [sender.py:send():182] send: footer
+2021-09-04 20:09:24,426 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: defer
+2021-09-04 20:09:24,426 INFO    HandlerThread:23840 [handler.py:handle_request_defer():143] handle defer: 9
+2021-09-04 20:09:24,426 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: defer
+2021-09-04 20:09:24,427 INFO    SenderThread:23840 [sender.py:send_request_defer():312] handle sender defer: 9
+2021-09-04 20:09:24,532 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-04 20:09:24,532 DEBUG   SenderThread:23840 [sender.py:send_request():196] send_request: poll_exit
+2021-09-04 20:09:24,532 INFO    SenderThread:23840 [file_pusher.py:join():182] waiting for file pusher
+2021-09-04 20:09:24,535 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: get_summary
+2021-09-04 20:09:24,537 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: sampled_history
+2021-09-04 20:09:24,540 DEBUG   HandlerThread:23840 [handler.py:handle_request():126] handle_request: shutdown
+2021-09-04 20:09:24,541 INFO    HandlerThread:23840 [handler.py:finish():683] shutting down handler
+2021-09-04 20:09:25,430 INFO    WriterThread:23840 [datastore.py:close():281] close: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_195531-z3fu0sks\run-z3fu0sks.wandb
+2021-09-04 20:09:25,539 INFO    SenderThread:23840 [sender.py:finish():979] shutting down sender
+2021-09-04 20:09:25,539 INFO    SenderThread:23840 [file_pusher.py:finish():177] shutting down file pusher
+2021-09-04 20:09:25,539 INFO    SenderThread:23840 [file_pusher.py:join():182] waiting for file pusher
+2021-09-04 20:09:25,543 INFO    MainThread:23840 [internal.py:handle_exit():76] Internal process exited

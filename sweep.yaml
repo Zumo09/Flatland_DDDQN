@@ -18,7 +18,7 @@ parameters:
 project: flatland-rl-prova-sweep
 
 # (Flatland) D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN>wandb sweep sweep.yaml
-# wandb: Creating sweep from: sweep.yaml
-# wandb: Created sweep with ID: 9qu68uuv
-# wandb: View sweep at: https://wandb.ai/zumo09/flatland-rl-prova-sweep/sweeps/9qu68uuv
-# wandb: Run sweep agent with: wandb agent zumo09/flatland-rl-prova-sweep/9qu68uuv
+  #wandb: Creating sweep from: sweep.yaml
+  #wandb: Created sweep with ID: y0xao9ob
+#wandb: View sweep at: https://wandb.ai/zumo09/flatland-rl-prova-sweep/sweeps/y0xao9ob
+#wandb: Run sweep agent with: wandb agent zumo09/flatland-rl-prova-sweep/y0xao9ob

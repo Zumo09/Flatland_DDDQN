@@ -1,0 +1,84 @@
+2021-09-04 19:33:37,444 INFO    MainThread:25620 [internal.py:wandb_internal():89] W&B internal server running at pid: 25620, started at: 2021-09-04 19:33:37.438853
+2021-09-04 19:33:37,447 INFO    WriterThread:25620 [datastore.py:open_for_write():77] open: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\run-fvm97wze.wandb
+2021-09-04 19:33:37,448 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: check_version
+2021-09-04 19:33:37,451 DEBUG   SenderThread:25620 [sender.py:send():182] send: header
+2021-09-04 19:33:37,451 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: check_version
+2021-09-04 19:33:38,079 DEBUG   SenderThread:25620 [sender.py:send():182] send: run
+2021-09-04 19:33:38,484 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: run_start
+2021-09-04 19:33:38,486 INFO    SenderThread:25620 [dir_watcher.py:__init__():169] watching files in: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files
+2021-09-04 19:33:38,486 INFO    SenderThread:25620 [sender.py:_start_run_threads():743] run started: fvm97wze with start time 1630776816
+2021-09-04 19:33:38,487 DEBUG   SenderThread:25620 [sender.py:send():182] send: summary
+2021-09-04 19:33:38,487 INFO    SenderThread:25620 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 19:33:39,497 INFO    Thread-12 :25620 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\wandb-summary.json
+2021-09-04 19:33:40,948 DEBUG   HandlerThread:25620 [meta.py:__init__():40] meta init
+2021-09-04 19:33:40,948 DEBUG   HandlerThread:25620 [meta.py:__init__():54] meta init done
+2021-09-04 19:33:40,948 DEBUG   HandlerThread:25620 [meta.py:probe():211] probe
+2021-09-04 19:33:40,960 DEBUG   HandlerThread:25620 [meta.py:_setup_git():201] setup git
+2021-09-04 19:33:41,093 DEBUG   HandlerThread:25620 [meta.py:_setup_git():208] setup git done
+2021-09-04 19:33:41,094 DEBUG   HandlerThread:25620 [meta.py:_save_pip():58] save pip
+2021-09-04 19:33:41,095 DEBUG   HandlerThread:25620 [meta.py:_save_pip():72] save pip done
+2021-09-04 19:33:41,095 DEBUG   HandlerThread:25620 [meta.py:_save_conda():79] save conda
+2021-09-04 19:33:41,104 ERROR   HandlerThread:25620 [meta.py:_save_conda():86] Error saving conda packages
+Traceback (most recent call last):
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\site-packages\wandb\sdk\internal\meta.py", line 84, in _save_conda
+    subprocess.call(["conda", "env", "export"], stdout=f)
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\subprocess.py", line 287, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\subprocess.py", line 729, in __init__
+    restore_signals, start_new_session)
+  File "c:\users\zumo\anaconda3\envs\flatland\lib\subprocess.py", line 1017, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] Impossibile trovare il file specificato
+2021-09-04 19:33:41,105 DEBUG   HandlerThread:25620 [meta.py:_save_conda():87] save conda done
+2021-09-04 19:33:41,105 DEBUG   HandlerThread:25620 [meta.py:probe():249] probe done
+2021-09-04 19:33:41,109 DEBUG   SenderThread:25620 [sender.py:send():182] send: files
+2021-09-04 19:33:41,109 INFO    SenderThread:25620 [sender.py:_save_file():873] saving file wandb-metadata.json with policy now
+2021-09-04 19:33:41,122 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:33:41,122 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:33:41,518 INFO    Thread-12 :25620 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\output.log
+2021-09-04 19:33:41,518 INFO    Thread-12 :25620 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\requirements.txt
+2021-09-04 19:33:41,519 INFO    Thread-12 :25620 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\wandb-metadata.json
+2021-09-04 19:33:41,519 INFO    Thread-12 :25620 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\conda-environment.yaml
+2021-09-04 19:33:41,822 INFO    Thread-17 :25620 [upload_job.py:push():137] Uploaded file C:\Users\Zumo\AppData\Local\Temp\tmp46uvwl4jwandb\11pycf9i-wandb-metadata.json
+2021-09-04 19:33:43,528 INFO    Thread-12 :25620 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\output.log
+2021-09-04 19:33:51,274 INFO    Thread-12 :25620 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\output.log
+2021-09-04 19:33:56,388 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:33:56,388 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:34:11,601 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:34:11,601 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:34:15,401 DEBUG   SenderThread:25620 [sender.py:send():182] send: stats
+2021-09-04 19:34:26,844 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:34:26,844 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:34:42,049 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:34:42,049 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:34:57,156 DEBUG   SenderThread:25620 [sender.py:send():182] send: stats
+2021-09-04 19:34:57,248 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:34:57,249 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:35:12,462 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:35:12,463 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:35:27,676 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:35:27,676 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:35:34,788 DEBUG   SenderThread:25620 [sender.py:send():182] send: stats
+2021-09-04 19:35:42,889 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:35:42,890 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:35:58,112 DEBUG   HandlerThread:25620 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 19:35:58,112 DEBUG   SenderThread:25620 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 19:36:03,512 WARNING MainThread:25620 [internal.py:is_dead():365] Internal process exiting, parent pid 8552 disappeared
+2021-09-04 19:36:03,512 ERROR   MainThread:25620 [internal.py:wandb_internal():141] Internal process shutdown.
+2021-09-04 19:36:03,990 INFO    WriterThread:25620 [datastore.py:close():281] close: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\run-fvm97wze.wandb
+2021-09-04 19:36:04,150 INFO    HandlerThread:25620 [handler.py:finish():683] shutting down handler
+2021-09-04 19:36:04,358 INFO    SenderThread:25620 [sender.py:finish():979] shutting down sender
+2021-09-04 19:36:04,358 INFO    SenderThread:25620 [dir_watcher.py:finish():283] shutting down directory watcher
+2021-09-04 19:36:05,168 INFO    SenderThread:25620 [dir_watcher.py:finish():313] scan: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files
+2021-09-04 19:36:05,169 INFO    SenderThread:25620 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\conda-environment.yaml conda-environment.yaml
+2021-09-04 19:36:05,169 INFO    SenderThread:25620 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\config.yaml config.yaml
+2021-09-04 19:36:05,171 INFO    SenderThread:25620 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\output.log output.log
+2021-09-04 19:36:05,171 INFO    SenderThread:25620 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\requirements.txt requirements.txt
+2021-09-04 19:36:05,178 INFO    SenderThread:25620 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\wandb-metadata.json wandb-metadata.json
+2021-09-04 19:36:05,178 INFO    SenderThread:25620 [dir_watcher.py:finish():327] scan save: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\wandb-summary.json wandb-summary.json
+2021-09-04 19:36:05,182 INFO    SenderThread:25620 [file_pusher.py:finish():177] shutting down file pusher
+2021-09-04 19:36:05,182 INFO    SenderThread:25620 [file_pusher.py:join():182] waiting for file pusher
+2021-09-04 19:36:05,784 INFO    Thread-21 :25620 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\wandb-summary.json
+2021-09-04 19:36:05,784 INFO    Thread-19 :25620 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\output.log
+2021-09-04 19:36:05,846 INFO    Thread-20 :25620 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\requirements.txt
+2021-09-04 19:36:05,885 INFO    Thread-18 :25620 [upload_job.py:push():137] Uploaded file D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_193336-fvm97wze\files\config.yaml

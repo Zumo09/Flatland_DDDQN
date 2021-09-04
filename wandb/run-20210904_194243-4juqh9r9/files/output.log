@@ -1,0 +1,63 @@
+Weigh and Biases Configuration
+{'gamma': 0.9015684140381802, 'hidden_size': 128, 'learning_rate': 0.0014890763086499595, 'tau': 0.0006659458276374331, 'n_episodes': 50, 'env_config': 0, 'n_evaluation_episodes': 3, 'checkpoint_interval': 10, 'eps_start': 1.0, 'eps_end': 0.01, 'eps_decay': 0.99, 'buffer_size': 100000, 'buffer_min_size': 0, 'restore_replay_buffer': '', 'save_replay_buffer': False, 'batch_size': 128, 'update_every': 8, 'render': False, 'training_id': '210904194240', 'n_agents': 2, 'x_dim': 35, 'y_dim': 35, 'n_cities': 2, 'max_rails_between_cities': 2, 'max_rails_in_city': 3, 'malfunction_rate': 0.02, 'seed': 0, 'observation_tree_depth': 2, 'observation_radius': 10, 'observation_max_path_depth': 30}
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+💾 Replay buffer status: 0/100000 experiences
+🚉 Training 2 trains on 35x35 grid for 50 episodes, evaluating on 3 episodes every 10 episodes. Training id '210904194240'.
+
+🚂 Episode    0	🏆 Score: -0.305 (Avg: -0.993)	💯 Done: 100.00% (Avg:   1.00%)	🎲 Epsilon: 0.990 	🔀 Action Probs: ↻ 0.191 ← 0.231 ↑ 0.231 → 0.177 ◼ 0.170  	✅ Eval: score -0.677 done  33.33%
+
+
+
+
+
+
+
+
+
+
+🚂 Episode   10	🏆 Score: -0.577 (Avg: -0.949)	💯 Done:  50.00% (Avg:   7.12%)	🎲 Epsilon: 0.895 	🔀 Action Probs: ↻ 0.194 ← 0.239 ↑ 0.174 → 0.168 ◼ 0.225  	✅ Eval: score -0.998 done   0.00%
+
+
+
+
+
+
+
+
+
+
+🚂 Episode   20	🏆 Score: -0.998 (Avg: -0.909)	💯 Done:   0.00% (Avg:  11.64%)	🎲 Epsilon: 0.810 	🔀 Action Probs: ↻ 0.130 ← 0.195 ↑ 0.195 → 0.312 ◼ 0.169  	✅ Eval: score -0.458 done  66.67%
+
+
+
+
+
+
+
+
+
+
+🚂 Episode   30	🏆 Score: -0.998 (Avg: -0.877)	💯 Done:   0.00% (Avg:  15.83%)	🎲 Epsilon: 0.732 	🔀 Action Probs: ↻ 0.172 ← 0.215 ↑ 0.108 → 0.226 ◼ 0.280  	✅ Eval: score -0.998 done   0.00%
+
+
+
+
+
+
+
+
+
+
+🚂 Episode   40	🏆 Score: -0.548 (Avg: -0.841)	💯 Done: 100.00% (Avg:  20.53%)	🎲 Epsilon: 0.662 	🔀 Action Probs: ↻ 0.187 ← 0.187 ↑ 0.245 → 0.203 ◼ 0.179  	✅ Eval: score -0.998 done   0.00%
+
+
+
+
+
+
+
+
+
+
+🚂 Episode   50	🏆 Score: -0.688 (Avg: -0.814)	💯 Done:  50.00% (Avg:  24.82%)	🎲 Epsilon: 0.599 	🔀 Action Probs: ↻ 0.216 ← 0.182 ↑ 0.181 → 0.224 ◼ 0.198  	✅ Eval: score -0.842 done  16.67%

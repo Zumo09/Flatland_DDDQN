@@ -1,0 +1,5 @@
+Weigh and Biases Configuration
+{'gamma': 0.9927235971184768, 'hidden_size': 128, 'learning_rate': 0.005334216071038176, 'tau': 0.003299504481167367, 'n_episodes': 50, 'env_config': 0, 'n_evaluation_episodes': 3, 'checkpoint_interval': 10, 'eps_start': 1.0, 'eps_end': 0.01, 'eps_decay': 0.99, 'buffer_size': 100000, 'buffer_min_size': 0, 'restore_replay_buffer': '', 'save_replay_buffer': False, 'batch_size': 128, 'update_every': 8, 'render': False, 'training_id': '210904193333', 'n_agents': 2, 'x_dim': 35, 'y_dim': 35, 'n_cities': 2, 'max_rails_between_cities': 2, 'max_rails_in_city': 3, 'malfunction_rate': 0.02, 'seed': 0, 'observation_tree_depth': 2, 'observation_radius': 10, 'observation_max_path_depth': 30}
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+💾 Replay buffer status: 0/100000 experiences
