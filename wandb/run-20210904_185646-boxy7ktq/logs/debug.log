@@ -1,0 +1,25 @@
+2021-09-04 18:56:46,805 INFO    MainThread:21320 [wandb_setup.py:_flush():69] setting env: {'entity': 'zumo09', 'project': 'flatland-rl-prova-sweep', 'sweep_id': '9qu68uuv', 'root_dir': 'D:\\Users\\Zumo\\Documents\\UNIVERSITÀ\\AI\\DL\\Flatland_DDDQN', 'run_id': 'boxy7ktq', 'sweep_param_path': 'D:\\Users\\Zumo\\Documents\\UNIVERSITÀ\\AI\\DL\\Flatland_DDDQN\\wandb\\sweep-9qu68uuv\\config-boxy7ktq.yaml'}
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_setup.py:_flush():69] setting login settings: {'api_key': '0f20b9f069a2312cc2b8e92e6f75310697d5fdfc'}
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_setup.py:_flush():69] setting login settings: {'api_key': '0f20b9f069a2312cc2b8e92e6f75310697d5fdfc'}
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_setup.py:_flush():69] setting login settings: {}
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_init.py:_log_setup():342] Logging user logs to D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_185646-boxy7ktq\logs\debug.log
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_init.py:_log_setup():343] Logging internal logs to D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\wandb\run-20210904_185646-boxy7ktq\logs\debug-internal.log
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_init.py:init():375] calling init triggers
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_init.py:init():382] wandb.init called with sweep_config: {'gamma': 0.9892121665893857, 'hidden_size': 256, 'learning_rate': 0.004062361517936452, 'tau': 0.0014500666427785594}
+config: {'n_episodes': 2500, 'env_config': 0, 'n_evaluation_episodes': 25, 'checkpoint_interval': 100, 'eps_start': 1.0, 'eps_end': 0.01, 'eps_decay': 0.99, 'buffer_size': 100000, 'buffer_min_size': 0, 'restore_replay_buffer': '', 'save_replay_buffer': False, 'batch_size': 128, 'gamma': 0.9892121665893857, 'tau': 0.0014500666427785594, 'learning_rate': 0.004062361517936452, 'hidden_size': 256, 'update_every': 8, 'render': False, 'training_id': '210904185644', 'n_agents': 2, 'x_dim': 35, 'y_dim': 35, 'n_cities': 2, 'max_rails_between_cities': 2, 'max_rails_in_city': 3, 'malfunction_rate': 0.02, 'seed': 0, 'observation_tree_depth': 2, 'observation_radius': 10, 'observation_max_path_depth': 30}
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [wandb_init.py:init():424] starting backend
+2021-09-04 18:56:46,806 INFO    MainThread:21320 [backend.py:_multiprocessing_setup():72] multiprocessing start_methods=spawn, using: spawn
+2021-09-04 18:56:46,812 INFO    MainThread:21320 [backend.py:ensure_launched():135] starting backend process...
+2021-09-04 18:56:46,891 INFO    MainThread:21320 [backend.py:ensure_launched():140] started backend process with pid: 11876
+2021-09-04 18:56:46,892 INFO    MainThread:21320 [wandb_init.py:init():429] backend started and connected
+2021-09-04 18:56:46,894 INFO    MainThread:21320 [wandb_run.py:_config_callback():843] config_cb None None {'gamma': 0.9892121665893857, 'hidden_size': 256, 'learning_rate': 0.004062361517936452, 'tau': 0.0014500666427785594}
+2021-09-04 18:56:46,895 INFO    MainThread:21320 [wandb_init.py:init():477] updated telemetry
+2021-09-04 18:56:46,895 INFO    MainThread:21320 [wandb_init.py:init():500] communicating current version
+2021-09-04 18:56:48,663 INFO    MainThread:21320 [wandb_init.py:init():505] got version response 
+2021-09-04 18:56:48,663 INFO    MainThread:21320 [wandb_init.py:init():513] communicating run to backend with 30 second timeout
+2021-09-04 18:56:49,048 INFO    MainThread:21320 [wandb_init.py:init():540] starting run threads in backend
+2021-09-04 18:56:51,395 INFO    MainThread:21320 [wandb_run.py:_console_start():1601] atexit reg
+2021-09-04 18:56:51,396 INFO    MainThread:21320 [wandb_run.py:_redirect():1475] redirect: SettingsConsole.WRAP
+2021-09-04 18:56:51,398 INFO    MainThread:21320 [wandb_run.py:_redirect():1512] Wrapping output streams.
+2021-09-04 18:56:51,401 INFO    MainThread:21320 [wandb_run.py:_redirect():1536] Redirects installed.
+2021-09-04 18:56:51,401 INFO    MainThread:21320 [wandb_init.py:init():565] run started, returning control to user process

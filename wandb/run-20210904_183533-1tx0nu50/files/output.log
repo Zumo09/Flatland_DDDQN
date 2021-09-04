@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "D:/Users/Zumo/Documents/UNIVERSITÀ/AI/DL/Flatland_DDDQN/reinforcement_learning/multi_agent_training.py", line 436, in <module>
+    train_agent(wandb.config)
+  File "D:/Users/Zumo/Documents/UNIVERSITÀ/AI/DL/Flatland_DDDQN/reinforcement_learning/multi_agent_training.py", line 81, in train_agent
+    training_id = config.training_id
+  File "C:\Users\Zumo\anaconda3\envs\Flatland\lib\site-packages\wandb\sdk\wandb_config.py", line 151, in __getattr__
+    return self.__getitem__(key)
+  File "C:\Users\Zumo\anaconda3\envs\Flatland\lib\site-packages\wandb\sdk\wandb_config.py", line 122, in __getitem__
+    return self._items[key]
+KeyError: 'training_id'

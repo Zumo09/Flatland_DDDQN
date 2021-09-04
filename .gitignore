@@ -1,13 +1,7 @@
-
 *.pb
 *.data-00000-of-00001
 *.index
-*.pyc
 *.pyc
 *.iml
 *.xml
-*.pb
-*.pb
-*.index
-*.data-00000-of-00001
 *.h5

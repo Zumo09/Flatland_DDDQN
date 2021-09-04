@@ -1,0 +1,10 @@
+wandb_version: 1
+
+gamma:
+  value: 0.933136069267367
+hidden_size:
+  value: 256
+learning_rate:
+  value: 0.0059654075113202715
+tau:
+  value: 0.001333792012308543

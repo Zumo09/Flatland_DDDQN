@@ -1,0 +1,197 @@
+2021-09-04 18:38:09,233 INFO    MainThread:14596 [internal.py:wandb_internal():89] W&B internal server running at pid: 14596, started at: 2021-09-04 18:38:09.226166
+2021-09-04 18:38:09,236 INFO    WriterThread:14596 [datastore.py:open_for_write():77] open: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\run-xe0kc1tn.wandb
+2021-09-04 18:38:09,236 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: check_version
+2021-09-04 18:38:09,239 DEBUG   SenderThread:14596 [sender.py:send():182] send: header
+2021-09-04 18:38:09,239 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: check_version
+2021-09-04 18:38:09,860 DEBUG   SenderThread:14596 [sender.py:send():182] send: run
+2021-09-04 18:38:10,238 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: run_start
+2021-09-04 18:38:10,238 INFO    SenderThread:14596 [dir_watcher.py:__init__():169] watching files in: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files
+2021-09-04 18:38:10,238 INFO    SenderThread:14596 [sender.py:_start_run_threads():743] run started: xe0kc1tn with start time 1630773488
+2021-09-04 18:38:10,239 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:38:10,239 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:38:11,251 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:38:12,507 DEBUG   HandlerThread:14596 [meta.py:__init__():40] meta init
+2021-09-04 18:38:12,507 DEBUG   HandlerThread:14596 [meta.py:__init__():54] meta init done
+2021-09-04 18:38:12,507 DEBUG   HandlerThread:14596 [meta.py:probe():211] probe
+2021-09-04 18:38:12,526 DEBUG   HandlerThread:14596 [meta.py:_setup_git():201] setup git
+2021-09-04 18:38:12,658 DEBUG   HandlerThread:14596 [meta.py:_setup_git():208] setup git done
+2021-09-04 18:38:12,658 DEBUG   HandlerThread:14596 [meta.py:_save_pip():58] save pip
+2021-09-04 18:38:12,660 DEBUG   HandlerThread:14596 [meta.py:_save_pip():72] save pip done
+2021-09-04 18:38:12,660 DEBUG   HandlerThread:14596 [meta.py:_save_conda():79] save conda
+2021-09-04 18:38:12,667 ERROR   HandlerThread:14596 [meta.py:_save_conda():86] Error saving conda packages
+Traceback (most recent call last):
+  File "C:\Users\Zumo\anaconda3\envs\Flatland\lib\site-packages\wandb\sdk\internal\meta.py", line 84, in _save_conda
+    subprocess.call(["conda", "env", "export"], stdout=f)
+  File "C:\Users\Zumo\anaconda3\envs\Flatland\lib\subprocess.py", line 287, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "C:\Users\Zumo\anaconda3\envs\Flatland\lib\subprocess.py", line 729, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\Zumo\anaconda3\envs\Flatland\lib\subprocess.py", line 1017, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] Impossibile trovare il file specificato
+2021-09-04 18:38:12,668 DEBUG   HandlerThread:14596 [meta.py:_save_conda():87] save conda done
+2021-09-04 18:38:12,668 DEBUG   HandlerThread:14596 [meta.py:probe():249] probe done
+2021-09-04 18:38:12,672 DEBUG   SenderThread:14596 [sender.py:send():182] send: files
+2021-09-04 18:38:12,672 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-metadata.json with policy now
+2021-09-04 18:38:12,679 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:38:12,679 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:38:13,270 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:38:13,271 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\conda-environment.yaml
+2021-09-04 18:38:13,271 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\requirements.txt
+2021-09-04 18:38:13,272 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_created():217] file/dir created: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-metadata.json
+2021-09-04 18:38:13,367 INFO    Thread-17 :14596 [upload_job.py:push():137] Uploaded file C:\Users\Zumo\AppData\Local\Temp\tmpn98lxvakwandb\1pyx3vr6-wandb-metadata.json
+2021-09-04 18:38:15,287 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:38:25,388 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:38:27,922 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:38:27,922 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:38:43,119 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:38:43,120 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:38:44,130 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:38:58,325 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:38:58,325 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:39:13,574 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:39:13,574 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:39:17,859 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:39:28,782 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:39:28,782 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:39:44,008 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:39:44,009 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:39:51,608 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:39:59,199 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:39:59,199 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:40:14,405 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:40:14,405 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:40:25,237 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:40:29,631 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:40:29,631 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:40:44,847 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:40:44,847 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:40:58,999 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:41:00,057 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:41:00,058 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:41:15,275 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:41:15,275 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:41:30,488 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:41:30,488 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:41:32,725 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:41:43,948 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:41:43,948 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:41:43,950 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:41:44,283 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:41:45,686 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:41:45,686 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:41:46,299 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:41:57,982 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:41:57,983 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:41:57,983 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:41:58,417 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:42:00,433 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:42:00,876 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:42:00,876 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:42:06,541 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:42:16,099 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:42:16,099 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:42:17,215 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:42:17,215 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:42:17,217 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:42:17,579 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:42:18,582 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:42:31,289 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:42:31,290 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:42:36,987 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:42:36,987 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:42:36,988 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:42:37,763 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:42:38,765 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:42:40,350 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:42:46,498 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:42:46,498 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:43:01,699 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:43:01,699 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:43:03,639 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:43:03,640 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:43:03,641 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:43:04,006 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:43:05,023 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:43:14,215 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:43:16,901 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:43:16,901 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:43:22,030 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:43:22,031 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:43:22,032 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:43:22,179 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:43:25,209 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:43:32,115 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:43:32,116 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:43:40,256 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:43:40,257 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:43:40,259 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:43:40,331 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:43:41,333 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:43:47,313 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:43:47,313 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:43:48,102 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:43:52,544 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:43:52,544 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:43:52,545 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:43:53,456 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:43:54,469 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:44:01,132 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:44:01,133 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:44:01,133 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:44:01,523 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:44:02,507 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:44:02,508 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:44:02,539 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:44:17,698 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:44:17,698 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:44:17,700 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:44:17,742 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:44:17,743 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:44:18,677 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:44:18,677 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:44:21,917 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:44:32,941 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:44:32,941 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:44:34,138 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:44:34,138 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:44:34,139 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:44:34,837 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:44:34,837 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:44:41,274 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:44:41,274 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:44:41,275 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:44:41,886 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:44:42,887 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:44:48,145 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:44:48,146 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:44:49,112 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:44:49,112 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:44:49,114 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:44:49,942 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:44:50,954 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:44:55,791 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:45:03,347 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:45:03,348 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:45:14,936 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:45:14,936 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:45:14,937 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:45:15,182 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:45:17,192 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:45:18,560 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:45:18,561 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:45:29,656 DEBUG   SenderThread:14596 [sender.py:send():182] send: stats
+2021-09-04 18:45:33,785 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:45:33,786 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:45:39,875 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:45:39,876 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:45:39,876 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:45:40,389 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:45:41,394 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
+2021-09-04 18:45:48,977 DEBUG   HandlerThread:14596 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-04 18:45:48,978 DEBUG   SenderThread:14596 [sender.py:send_request():196] send_request: stop_status
+2021-09-04 18:45:50,090 DEBUG   SenderThread:14596 [sender.py:send():182] send: history
+2021-09-04 18:45:50,090 DEBUG   SenderThread:14596 [sender.py:send():182] send: summary
+2021-09-04 18:45:50,091 INFO    SenderThread:14596 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-04 18:45:50,482 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\wandb-summary.json
+2021-09-04 18:45:51,483 INFO    Thread-12 :14596 [dir_watcher.py:_on_file_modified():230] file/dir modified: D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN\reinforcement_learning\wandb\run-20210904_183807-xe0kc1tn\files\output.log
