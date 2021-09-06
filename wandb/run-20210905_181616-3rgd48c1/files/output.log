@@ -1,0 +1,37 @@
+Weigh and Biases Configuration
+n_episodes                    	:	2500
+env_config                    	:	0
+n_evaluation_episodes         	:	25
+checkpoint_interval           	:	100
+eps_start                     	:	1.0
+eps_end                       	:	0.01
+eps_decay                     	:	0.99
+invalid_action_penalty        	:	0.0
+step_penalty                  	:	-1.0
+global_reward                 	:	1.0
+stop_penalty                  	:	0.0
+start_penalty                 	:	0.0
+buffer_size                   	:	100000
+buffer_min_size               	:	0
+restore_replay_buffer         	:	
+save_replay_buffer            	:	False
+batch_size                    	:	128
+gamma                         	:	0.93
+tau                           	:	0.001
+learning_rate                 	:	8e-05
+hidden_size                   	:	128
+update_every                  	:	8
+render                        	:	False
+training_id                   	:	210905181614
+n_agents                      	:	2
+x_dim                         	:	35
+y_dim                         	:	35
+n_cities                      	:	2
+max_rails_between_cities      	:	2
+max_rails_in_city             	:	3
+malfunction_rate              	:	0.02
+seed                          	:	0
+observation_tree_depth        	:	2
+observation_radius            	:	10
+observation_max_path_depth    	:	30
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator

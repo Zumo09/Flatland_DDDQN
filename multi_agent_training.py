@@ -51,7 +51,7 @@ def create_rail_env(env_params):
         max_duration=50
     )
 
-    return RailEnv(
+    env = RailEnv(
         width=x_dim, height=y_dim,
         rail_generator=sparse_rail_generator(
             max_num_cities=n_cities,
@@ -65,6 +65,14 @@ def create_rail_env(env_params):
         obs_builder_object=observation,
         random_seed=seed
     )
+
+    env.invalid_action_penalty = env_params.invalid_action_penalty
+    env.step_penalty = env_params.step_penalty
+    env.global_reward = env_params.global_reward
+    env.stop_penalty = env_params.stop_penalty  # penalty for stopping a moving agent
+    env.start_penalty = env_params.start_penalty  # penalty for starting a stopped agent
+
+    return env
 
 
 def train_agent(config):
@@ -364,25 +372,31 @@ if __name__ == "__main__":
     sys.path.append(str(base_dir))
 
     parser = ArgumentParser()
-    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=50, type=int)
+    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=500, type=int)
     # parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2500, type=int)
     parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=0, type=int)
-    parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=3, type=int)
+    parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=5, type=int)
     # parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
-    parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=10, type=int)
-    # parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
+    parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
     parser.add_argument("--eps_start", help="max exploration", default=1.0, type=float)
     parser.add_argument("--eps_end", help="min exploration", default=0.01, type=float)
     parser.add_argument("--eps_decay", help="exploration decay", default=0.99, type=float)
+
+    parser.add_argument("--invalid_action_penalty", help="reward invalid action penalty", default=0.0, type=float)
+    parser.add_argument("--step_penalty", help="reward step penalty", default=-1.0, type=float)
+    parser.add_argument("--global_reward", help="global reward", default=1.0, type=float)
+    parser.add_argument("--stop_penalty", help="penalty for stopping a moving agent", default=0.0, type=float)
+    parser.add_argument("--start_penalty", help="penalty for starting a stopped agent", default=0.0, type=float)
+
     parser.add_argument("--buffer_size", help="replay buffer size", default=int(1e5), type=int)
     parser.add_argument("--buffer_min_size", help="min buffer size to start training", default=0, type=int)
     parser.add_argument("--restore_replay_buffer", help="replay buffer to restore", default="", type=str)
     parser.add_argument("--save_replay_buffer", help="save replay buffer at each evaluation interval", default=False,
                         type=bool)
     parser.add_argument("--batch_size", help="minibatch size", default=128, type=int)
-    parser.add_argument("--gamma", help="discount factor", default=0.99, type=float)
+    parser.add_argument("--gamma", help="discount factor", default=0.93, type=float)
     parser.add_argument("--tau", help="soft update of target parameters", default=1e-3, type=float)
-    parser.add_argument("--learning_rate", help="learning rate", default=0.5e-4, type=float)
+    parser.add_argument("--learning_rate", help="learning rate", default=0.8e-4, type=float)
     parser.add_argument("--hidden_size", help="hidden size (2 fc layers)", default=128, type=int)
     parser.add_argument("--update_every", help="how often to update the network", default=8, type=int)
     parser.add_argument("--render", help="render 1 episode in 100", default=False, type=bool)
@@ -390,10 +404,10 @@ if __name__ == "__main__":
 
     train_env_params = get_env_config(training_params.env_config)
 
-    print("\nTraining parameters:")
-    pprint(vars(training_params))
-    print("\nTraining environment parameters (Test_{}):".format(training_params.env_config))
-    pprint(train_env_params)
+    # print("\nTraining parameters:")
+    # pprint(vars(training_params))
+    # print("\nTraining environment parameters (Test_{}):".format(training_params.env_config))
+    # pprint(train_env_params)
 
     # Unique ID for this training
     now = datetime.now()
@@ -407,7 +421,9 @@ if __name__ == "__main__":
 
     wandb.init(project='flatland-rl-prova-sweep', config=configuration)
 
-    print('\nWeigh and Biases Configuration')
-    pprint(wandb.config)
+    print('\nWeigh and Biases Configuration\n')
+    for k, v in wandb.config.items():
+        print(f'{k.rjust(30)}\t:\t{v}')
+    print('\n')
 
     train_agent(wandb.config)

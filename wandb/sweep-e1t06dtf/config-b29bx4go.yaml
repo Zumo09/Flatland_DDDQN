@@ -1,0 +1,8 @@
+wandb_version: 1
+
+global_reward:
+  value: 0.8144835596656307
+invalid_action_penalty:
+  value: -1.699688312065859
+step_penalty:
+  value: -0.10625678245225179
