@@ -1,0 +1,28 @@
+{
+    "os": "Windows-10-10.0.19041-SP0",
+    "python": "3.6.13",
+    "heartbeatAt": "2021-09-06T18:28:44.552769",
+    "startedAt": "2021-09-06T18:28:40.065420",
+    "docker": null,
+    "gpu": "NVIDIA GeForce GTX 1060 6GB",
+    "gpu_count": 1,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "--global_reward=100",
+        "--invalid_action_penalty=0",
+        "--step_penalty=-1.5"
+    ],
+    "state": "running",
+    "program": "multi_agent_training.py",
+    "codePath": "multi_agent_training.py",
+    "git": {
+        "remote": "https://github.com/Zumo09/Flatland_DDDQN.git",
+        "commit": "bd69927a0e3fe4c8e66015dc5bde27abd7c225e6"
+    },
+    "email": "63203939+Zumo09@users.noreply.github.com",
+    "root": "D:/Users/Zumo/Documents/UNIVERSIT\u00c0/AI/DL/Flatland_DDDQN",
+    "host": "DESKTOP-JVHH37L",
+    "username": "Zumo",
+    "executable": "c:\\users\\zumo\\anaconda3\\envs\\flatland\\python.exe"
+}

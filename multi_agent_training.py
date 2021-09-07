@@ -3,7 +3,6 @@ import sys
 from argparse import ArgumentParser
 from datetime import datetime
 from pathlib import Path
-from pprint import pprint
 
 import numpy as np
 import psutil
@@ -43,6 +42,7 @@ def create_rail_env(env_params):
     predictor = ShortestPathPredictorForRailEnv(observation_max_path_depth)
     observation = CustomObservation(max_depth=observation_tree_depth, observation_radius=observation_radius,
                                     predictor=predictor)
+    # observation = GraphObsForRailEnv(predictor)
 
     # Break agents from time to time
     malfunction_parameters = MalfunctionParameters(
@@ -300,8 +300,8 @@ def train_agent(config):
             'training_smoothed_normalized_score': smoothed_normalized_score,
             'training_completion': np.mean(completion),
             'training_smoothed_completion': np.mean(smoothed_completion),
-            'epsilon': eps_start,
-            'episode': episode_idx
+            # 'epsilon': eps_start,
+            # 'episode': episode_idx
         })
 
 
