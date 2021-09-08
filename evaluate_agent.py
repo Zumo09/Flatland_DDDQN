@@ -33,7 +33,11 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
                 allow_skipping, allow_caching):
     # Evaluation is faster on CPU (except if you use a really huge policy)
     parameters = {
-        'use_gpu': False
+        'use_gpu': False,
+        'hidden_size_1': 1,
+        'hidden_size_2': 1,
+        'hidden_size_3': 1,
+        'learning_rate': 0
     }
 
     env_params = Namespace(**env_params)
@@ -49,7 +53,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
     # Malfunction and speed profiles
     # TODO pass these parameters properly from main!
     malfunction_parameters = MalfunctionParameters(
-        malfunction_rate=1. / 2000,  # Rate of malfunctions
+        malfunction_rate=env_params.malfunction_rate,  # Rate of malfunctions
         min_duration=20,  # Minimal duration
         max_duration=50  # Max duration
     )

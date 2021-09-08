@@ -110,6 +110,7 @@ def train_agent(config):
         env_renderer = RenderTool(train_env, gl="PGL")
 
     state_size = obs[0].shape[0]
+    print(f'state size : {state_size}')
 
     # The action space of flatland is 5 discrete actions
     action_size = 5
@@ -374,7 +375,7 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=500, type=int)
     # parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2500, type=int)
-    parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=0, type=int)
+    parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=1, type=int)
     parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=5, type=int)
     # parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
     parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
@@ -382,9 +383,9 @@ if __name__ == "__main__":
     parser.add_argument("--eps_end", help="min exploration", default=0.01, type=float)
     parser.add_argument("--eps_decay", help="exploration decay", default=0.99, type=float)
 
-    parser.add_argument("--invalid_action_penalty", help="reward invalid action penalty", default=0.0, type=float)
-    parser.add_argument("--step_penalty", help="reward step penalty", default=-1.0, type=float)
-    parser.add_argument("--global_reward", help="global reward", default=1.0, type=float)
+    parser.add_argument("--invalid_action_penalty", help="reward invalid action penalty", default=-1.0, type=float)
+    parser.add_argument("--step_penalty", help="reward step penalty", default=-1.5, type=float)
+    parser.add_argument("--global_reward", help="global reward", default=5.0, type=float)
     parser.add_argument("--stop_penalty", help="penalty for stopping a moving agent", default=0.0, type=float)
     parser.add_argument("--start_penalty", help="penalty for starting a stopped agent", default=0.0, type=float)
 
@@ -397,17 +398,14 @@ if __name__ == "__main__":
     parser.add_argument("--gamma", help="discount factor", default=0.93, type=float)
     parser.add_argument("--tau", help="soft update of target parameters", default=1e-3, type=float)
     parser.add_argument("--learning_rate", help="learning rate", default=0.8e-4, type=float)
-    parser.add_argument("--hidden_size", help="hidden size (2 fc layers)", default=128, type=int)
+    parser.add_argument("--hidden_size_1", help="hidden size 1st layer", default=512, type=int)
+    parser.add_argument("--hidden_size_2", help="hidden size 2nd layer", default=128, type=int)
+    parser.add_argument("--hidden_size_3", help="hidden size 3rd layer", default=8, type=int)
     parser.add_argument("--update_every", help="how often to update the network", default=8, type=int)
     parser.add_argument("--render", help="render 1 episode in 100", default=False, type=bool)
     training_params = parser.parse_args()
 
     train_env_params = get_env_config(training_params.env_config)
-
-    # print("\nTraining parameters:")
-    # pprint(vars(training_params))
-    # print("\nTraining environment parameters (Test_{}):".format(training_params.env_config))
-    # pprint(train_env_params)
 
     # Unique ID for this training
     now = datetime.now()
@@ -419,7 +417,7 @@ if __name__ == "__main__":
 
     wandb.login(key='0f20b9f069a2312cc2b8e92e6f75310697d5fdfc')
 
-    wandb.init(project='flatland-rl-prova-sweep', config=configuration)
+    wandb.init(project='flatland-rl-01', config=configuration)
 
     print('\nWeigh and Biases Configuration\n')
     for k, v in wandb.config.items():

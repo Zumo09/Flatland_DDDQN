@@ -16,11 +16,8 @@ class DDDQNPolicy(Policy):
 
         self.state_size = state_size
         self.action_size = action_size
-        self.double_dqn = True
-        self.hidsize = 1
 
         if not evaluation_mode:
-            self.hidsize = parameters.hidden_size
             self.buffer_size = parameters.buffer_size
             self.batch_size = parameters.batch_size
             self.update_every = parameters.update_every
@@ -30,14 +27,10 @@ class DDDQNPolicy(Policy):
             self.buffer_min_size = parameters.buffer_min_size
 
         # Q-Network
-        self.qnetwork_local = DuelingQNetwork(state_size, action_size,
-                                              hidsize1=self.hidsize, hidsize2=self.hidsize,
-                                              learning_rate=self.learning_rate if not evaluation_mode else None)
+        self.qnetwork_local = DuelingQNetwork(state_size, action_size, parameters)
 
         if not evaluation_mode:
-            self.qnetwork_target = DuelingQNetwork(state_size, action_size,
-                                                   hidsize1=self.hidsize, hidsize2=self.hidsize,
-                                                   learning_rate=self.learning_rate)
+            self.qnetwork_target = DuelingQNetwork(state_size, action_size, parameters)
             self._soft_update()
             self.memory = ReplayBuffer(self.buffer_size, self.batch_size)
 

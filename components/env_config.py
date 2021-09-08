@@ -15,17 +15,17 @@ ENV_CONFIG = [
     },
     {
         # Test_1
-        "n_agents": 10,
-        "x_dim": 30,
-        "y_dim": 30,
+        "n_agents": 5,
+        "x_dim": 35,
+        "y_dim": 35,
         "n_cities": 2,
         "max_rails_between_cities": 2,
         "max_rails_in_city": 3,
         "malfunction_rate": 1 / 100,
         "seed": 0,
-        "observation_tree_depth": 2,
+        "observation_tree_depth": 3,
         "observation_radius": 10,
-        "observation_max_path_depth": 20
+        "observation_max_path_depth": 30
     },
     {
         # Test_2

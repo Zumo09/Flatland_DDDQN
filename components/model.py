@@ -10,24 +10,24 @@ from tensorflow.keras.backend import mean
 from tensorflow.keras.models import load_model
 
 
-def DuelingQNetwork(state_size, action_size, learning_rate=1e-4, hidsize1=256, hidsize2=128):
+def DuelingQNetwork(state_size, action_size, params):
     observations = Input(shape=(state_size,), name='observation')
-    x = Dense(hidsize1, activation="relu", name='dense_1')(observations)
+    x = Dense(params.hidden_size_1, activation="relu", name='dense_1')(observations)
 
-    val = Dense(hidsize1, activation='relu', name='val_1')(x)
-    val = Dense(hidsize2, activation='relu', name='val_2')(val)
+    val = Dense(params.hidden_size_2, activation='relu', name='val_1')(x)
+    val = Dense(params.hidden_size_3, activation='relu', name='val_2')(val)
     val = Dense(1, name='val_3')(val)
 
     # advantage calculation
-    adv = Dense(hidsize1, activation='relu', name='adv_1')(x)
-    adv = Dense(hidsize2, activation='relu', name='adv_2')(adv)
+    adv = Dense(params.hidden_size_2, activation='relu', name='adv_1')(x)
+    adv = Dense(params.hidden_size_3, activation='relu', name='adv_2')(adv)
     adv = Dense(action_size, name='adv_3')(adv)
 
     q_values = val + adv - mean(adv, axis=1, keepdims=True)
 
     model = Model(inputs=observations, outputs=q_values)
 
-    model.compile(optimizer=Adam(learning_rate=learning_rate), loss=MeanSquaredError())
+    model.compile(optimizer=Adam(learning_rate=params.learning_rate), loss=MeanSquaredError())
 
     return model
 
