@@ -11,11 +11,14 @@ from components.policy import Policy
 class DDDQNPolicy(Policy):
     """Dueling Double DQN policy"""
 
-    def __init__(self, state_size, action_size, parameters, evaluation_mode=False):
+    def __init__(self, state_size, parameters, evaluation_mode=False):
         self.evaluation_mode = evaluation_mode
 
-        self.state_size = state_size
-        self.action_size = action_size
+        # self.state_size = state_size
+        # self.action_size = action_size
+        # self._action_diff = 5 - self.action_size
+
+        self.action_size = 4
 
         if not evaluation_mode:
             self.buffer_size = parameters.buffer_size
@@ -27,10 +30,10 @@ class DDDQNPolicy(Policy):
             self.buffer_min_size = parameters.buffer_min_size
 
         # Q-Network
-        self.qnetwork_local = DuelingQNetwork(state_size, action_size, parameters)
+        self.qnetwork_local = DuelingQNetwork(state_size, self.action_size, parameters)
 
         if not evaluation_mode:
-            self.qnetwork_target = DuelingQNetwork(state_size, action_size, parameters)
+            self.qnetwork_target = DuelingQNetwork(state_size, self.action_size, parameters)
             self._soft_update()
             self.memory = ReplayBuffer(self.buffer_size, self.batch_size)
 
@@ -38,20 +41,21 @@ class DDDQNPolicy(Policy):
             self.loss = 0.0
 
     def act(self, state, eps=0.):
-        state = np.expand_dims(state, 0)
-        action_values = self.qnetwork_local(state)
-
         # Epsilon-greedy action selection
         if random.random() > eps:
-            return np.argmax(action_values)
+            state = np.expand_dims(state, 0)
+            action_values = self.qnetwork_local(state)
+            action = np.argmax(action_values)
         else:
-            return random.choice(np.arange(self.action_size))
+            action = random.choice(np.arange(self.action_size))
+
+        return action + 1
 
     def step(self, state, action, reward, next_state, done):
         assert not self.evaluation_mode, "Policy has been initialized for evaluation only."
 
         # Save experience in replay memory
-        self.memory.add(state, action, reward, next_state, done)
+        self.memory.add(state, action - 1, reward, next_state, done)
 
         # Learn every UPDATE_EVERY time steps.
         self.t_step = (self.t_step + 1) % self.update_every
@@ -77,8 +81,7 @@ class DDDQNPolicy(Policy):
                 # selection of action is from model
                 # update is from target model
                 a = np.argmax(target_next[i])
-                target[i][actions[i]] = rewards[i] + self.gamma * (
-                    target_val[i][a])
+                target[i][actions[i]] = rewards[i] + self.gamma * (target_val[i][a])
 
         # make minibatch which includes target q value and predicted q value
         # and do the model fit!
@@ -117,18 +120,18 @@ class DDDQNPolicy(Policy):
         self.qnetwork_local = load_dueling_dqn(filename + '/local')
         self.qnetwork_target = load_dueling_dqn(filename + '/target')
 
-    def save_replay_buffer(self, filename):
-        memory = self.memory.memory
-        with open(filename, 'wb') as f:
-            pickle.dump(list(memory)[-500000:], f)
+    # def save_replay_buffer(self, filename):
+    #     memory = self.memory.memory
+    #     with open(filename, 'wb') as f:
+    #         pickle.dump(list(memory)[-500000:], f)
+    #
+    # def load_replay_buffer(self, filename):
+    #     with open(filename, 'rb') as f:
+    #         self.memory.memory = pickle.load(f)
 
-    def load_replay_buffer(self, filename):
-        with open(filename, 'rb') as f:
-            self.memory.memory = pickle.load(f)
-
-    def test(self):
-        self.act(np.array([[0] * self.state_size]))
-        self._learn()
+    # def test(self):
+    #     self.act(np.array([[0] * self.state_size]))
+    #     self._learn()
 
 
 Experience = namedtuple("Experience", field_names=["state", "action", "reward", "next_state", "done"])
@@ -158,11 +161,11 @@ class ReplayBuffer:
         """Randomly sample a batch of experiences from memory."""
         experiences = random.sample(self.memory, k=self.batch_size)
 
-        states = self.__v_stack_impr([e.state for e in experiences if e is not None])
-        actions = self.__v_stack_impr([e.action for e in experiences if e is not None])
-        rewards = self.__v_stack_impr([e.reward for e in experiences if e is not None])
-        next_states = self.__v_stack_impr([e.next_state for e in experiences if e is not None])
-        dones = self.__v_stack_impr([e.done for e in experiences if e is not None]).astype(np.uint8)
+        states = self.__v_stack([e.state for e in experiences if e is not None])
+        actions = self.__v_stack([e.action for e in experiences if e is not None])
+        rewards = self.__v_stack([e.reward for e in experiences if e is not None])
+        next_states = self.__v_stack([e.next_state for e in experiences if e is not None])
+        dones = self.__v_stack([e.done for e in experiences if e is not None]).astype(np.uint8)
 
         return states, actions, rewards, next_states, dones
 
@@ -174,4 +177,13 @@ class ReplayBuffer:
     def __v_stack_impr(states):
         sub_dim = len(states[0][0]) if isinstance(states[0], Iterable) else 1
         np_states = np.reshape(np.array(states), (len(states), sub_dim))
+        return np_states
+
+    @staticmethod
+    def __v_stack(states):
+        if isinstance(states[0], Iterable):
+            sub_dim = len(states[0][0])
+            np_states = np.reshape(np.array(states), (len(states), sub_dim))
+        else:
+            np_states = np.array(states)
         return np_states

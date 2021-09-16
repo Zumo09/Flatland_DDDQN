@@ -5,7 +5,6 @@ from datetime import datetime
 from pathlib import Path
 
 import numpy as np
-import psutil
 import wandb
 from flatland.envs.malfunction_generators import malfunction_from_params, MalfunctionParameters
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
@@ -13,15 +12,10 @@ from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 
+from components.custom_normalized_tree import TreeObsNormalized
 from components.dddqn_policy import DDDQNPolicy
 from components.env_config import get_env_config
-from components.custom_normalized_tree import TreeObsNormalized
-from components.observations import CustomObservation
 from utils.timer import Timer
-
-"""
-Agent documentation: https://flatland.aicrowd.com/getting-started/rl/multi-agent.html
-"""
 
 
 def create_rail_env(env_params):
@@ -97,8 +91,6 @@ def train_agent(config):
     n_episodes = config.n_episodes
     checkpoint_interval = config.checkpoint_interval
     n_eval_episodes = config.n_evaluation_episodes
-    restore_replay_buffer = config.restore_replay_buffer
-    save_replay_buffer = config.save_replay_buffer
 
     # Set the seeds
     random.seed(seed)
@@ -113,16 +105,13 @@ def train_agent(config):
     state_size = obs[0].shape[0]
     print(f'state size : {state_size}')
 
-    # The action space of flatland is 5 discrete actions
-    action_size = 5
-
     # Max number of steps per episode
     # This is the official formula used during evaluations
     # See details in flatland.envs.schedule_generators.sparse_schedule_generator
     # max_steps = int(4 * 2 * (env.height + env.width + (n_agents / n_cities)))
     max_steps = train_env._max_episode_steps
 
-    action_count = [0] * action_size
+    action_count = [0] * 5
     action_dict = dict()
     agent_obs = [None] * n_agents
     agent_prev_obs = [None] * n_agents
@@ -140,24 +129,7 @@ def train_agent(config):
     test_scores_history = []
 
     # Double Dueling DQN policy
-    policy = DDDQNPolicy(state_size, action_size, config)
-
-    # Loads existing replay buffer
-    if restore_replay_buffer:
-        try:
-            policy.load_replay_buffer(restore_replay_buffer)
-            policy.test()
-        except RuntimeError as e:
-            print("\n🛑 Could't load replay buffer, were the experiences generated using the same tree depth?")
-            print(e)
-            exit(1)
-
-    print("\n💾 Replay buffer status: {}/{} experiences".format(len(policy.memory.memory), config.buffer_size))
-
-    hdd = psutil.disk_usage('/')
-    if save_replay_buffer and (hdd.free / (2 ** 30)) < 500.0:
-        print(f"⚠️  Careful! Saving replay buffers will quickly consume a lot of disk space. "
-              f"You have {hdd.free / (2 ** 30):.2f}gb left.")
+    policy = DDDQNPolicy(state_size, config)
 
     training_timer = Timer()
     training_timer.start()
@@ -166,19 +138,17 @@ def train_agent(config):
           f"evaluating on {n_eval_episodes} episodes every {checkpoint_interval} episodes. "
           f"Training id '{training_id}'.\n")
 
-    for episode_idx in range(n_episodes + 1):
-        step_timer = Timer()
-        reset_timer = Timer()
-        learn_timer = Timer()
-        inference_timer = Timer()
+    main_timer = Timer()
+    step_timer = Timer()
+    learn_timer = Timer()
+    inference_timer = Timer()
 
+    for episode_idx in range(n_episodes + 1):
+        main_timer.start()
         # Reset environment
-        reset_timer.start()
         obs, info = train_env.reset(regenerate_rail=True, regenerate_schedule=True)
-        reset_timer.end()
 
         score = 0
-        actions_taken = []
 
         # Build initial agent-specific observations
         for agent in train_env.get_agent_handles():
@@ -200,9 +170,9 @@ def train_agent(config):
                     # else:
                     update_values[agent] = True
                     action = policy.act(agent_obs[agent], eps=eps_start)
-
+                    if action == 0:
+                        print('WTF?!')
                     action_count[action] += 1
-                    actions_taken.append(action)
                 else:
                     # An action is not required if the train hasn't joined the railway network,
                     # if it already reached its target, or if is currently malfunctioning.
@@ -216,14 +186,13 @@ def train_agent(config):
             next_obs, all_rewards, done, info = train_env.step(action_dict)
             step_timer.end()
 
+            learn_timer.start()
             # Update replay buffer and train agent
             for agent in train_env.get_agent_handles():
                 if update_values[agent] or done['__all__']:
                     # Only learn from timesteps where somethings happened
-                    learn_timer.start()
                     policy.step(agent_prev_obs[agent], agent_prev_action[agent], all_rewards[agent],
                                 agent_obs[agent], done[agent])
-                    learn_timer.end()
 
                     agent_prev_obs[agent] = agent_obs[agent].copy()
                     agent_prev_action[agent] = action_dict[agent]
@@ -233,11 +202,14 @@ def train_agent(config):
                     agent_obs[agent] = next_obs[agent]
 
                 score += all_rewards[agent]
+            learn_timer.end()
 
             # nb_steps = step
 
             if done['__all__']:
                 break
+
+        main_timer.end()
 
         # Epsilon decay
         eps_start = max(eps_end, eps_decay * eps_start)
@@ -247,7 +219,7 @@ def train_agent(config):
         completion = tasks_finished / max(1, train_env.get_num_agents())
         normalized_score = score / (max_steps * train_env.get_num_agents())
         action_probs = action_count / np.sum(action_count)
-        action_count = [1] * action_size
+        action_count = [0] * 5
 
         smoothing = 0.99
         smoothed_normalized_score = smoothed_normalized_score * smoothing + normalized_score * (1.0 - smoothing)
@@ -260,13 +232,19 @@ def train_agent(config):
         if episode_idx % checkpoint_interval == 0:
             policy.save('./checkpoints/' + training_id + '/' + str(episode_idx))
 
-            if save_replay_buffer:
-                policy.save_replay_buffer('./replay_buffers/' + training_id + '/' + str(episode_idx) + '.pkl')
+            # if save_replay_buffer:
+            #     policy.save_replay_buffer('./replay_buffers/' + training_id + '/' + str(episode_idx) + '.pkl')
 
+        time = main_timer.get()
+        inf_time = 100 * inference_timer.get() / time
+        step_time = 100 * step_timer.get() / time
+        learn_time = 100 * learn_timer.get() / time
         print(
             f'\r🚂 Episode {episode_idx:4d}\t🏆 Score: {normalized_score:.3f} (Avg: {smoothed_normalized_score:.3f})'
             f'\t💯 Done: {100 * completion:6.2f}% (Avg: {100 * smoothed_completion:6.2f}%)'
-            f'\t🎲 Epsilon: {eps_start:.3f} \t🔀 Action Probs: {format_action_prob(action_probs)}', end=" ")
+            f'\t🎲 Epsilon: {eps_start:.3f} \t🔀 Action Probs: {format_action_prob(action_probs)}'
+            f'\t⏱ Time: {time:6.2f} (inference: {inf_time:4.2f}%, step: {step_time:4.2f}%, learn: {learn_time:4.2f}%)',
+            end="")
 
         # Evaluate policy and log results at some interval
         if episode_idx % checkpoint_interval == 0 and n_eval_episodes > 0:
@@ -288,6 +266,11 @@ def train_agent(config):
                 'test_smoothed_completion': smoothed_eval_completion
             }, commit=False)
 
+            main_timer.reset()
+            step_timer.reset()
+            learn_timer.reset()
+            inference_timer.reset()
+
         # Save log to WandB
         wandb.log({
             'training_normalized_score': normalized_score,
@@ -297,6 +280,8 @@ def train_agent(config):
             # 'epsilon': eps_start,
             # 'episode': episode_idx
         })
+
+    print('Total time: ', training_timer.get_current())
 
 
 def format_action_prob(action_probs):
@@ -382,17 +367,17 @@ if __name__ == "__main__":
 
     parser.add_argument("--buffer_size", help="replay buffer size", default=int(1e5), type=int)
     parser.add_argument("--buffer_min_size", help="min buffer size to start training", default=0, type=int)
-    parser.add_argument("--restore_replay_buffer", help="replay buffer to restore", default="", type=str)
-    parser.add_argument("--save_replay_buffer", help="save replay buffer at each evaluation interval", default=False,
-                        type=bool)
-    parser.add_argument("--batch_size", help="minibatch size", default=256, type=int)
+    parser.add_argument("--batch_size", help="minibatch size", default=128, type=int)
     parser.add_argument("--gamma", help="discount factor", default=0.93, type=float)
     parser.add_argument("--tau", help="soft update of target parameters", default=1e-3, type=float)
     parser.add_argument("--learning_rate", help="learning rate", default=0.8e-4, type=float)
     parser.add_argument("--hidden_size_1", help="hidden size 1st layer", default=256, type=int)
     parser.add_argument("--hidden_size_2", help="hidden size 2nd layer", default=128, type=int)
     parser.add_argument("--hidden_size_3", help="hidden size 3rd layer", default=32, type=int)
-    parser.add_argument("--update_every", help="how often to update the network", default=8, type=int)
+    parser.add_argument("--update_every", help="how often to update the network", default=32, type=int)
+    # parser.add_argument("--restore_replay_buffer", help="replay buffer to restore", default="", type=str)
+    # parser.add_argument("--save_replay_buffer", help="save replay buffer at each evaluation interval", default=False,
+    #                     type=bool)
     training_params = parser.parse_args()
 
     train_env_params = get_env_config(training_params.env_config)
@@ -407,7 +392,7 @@ if __name__ == "__main__":
 
     wandb.login(key='0f20b9f069a2312cc2b8e92e6f75310697d5fdfc')
 
-    wandb.init(project='flatland-rl-softmax-obs', config=configuration)
+    wandb.init(project='flatland-rl-4op', config=configuration)
 
     print('\nWeigh and Biases Configuration\n')
     for k, v in wandb.config.items():

@@ -1,24 +1,19 @@
 program: multi_agent_training.py
 method: random
 metric:
-  name: test_smoothed_score
+  name: test_smoothed_completion
   goal: maximize
 parameters:
   learning_rate:
-    min: 0.0001
-    max: 0.01
-  gamma:
-    min: 0.9
-    max: 0.9999
+    values: [0.0001, 0.0005, 0.001]
   tau:
-    min: 0.0005
-    max: 0.005
-  hidden_size:
-    values: [128, 256]
-project: flatland-rl-prova-sweep
+    values: [0.0001, 0.0005, 0.001]
+  gamma:
+    values: [0.93, 0.95, 0.99]
+project: flatland-rl-sweep-15092021
 
-# (Flatland) D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN>wandb sweep sweep.yaml
-  #wandb: Creating sweep from: sweep.yaml
-  #wandb: Created sweep with ID: y0xao9ob
-#wandb: View sweep at: https://wandb.ai/zumo09/flatland-rl-prova-sweep/sweeps/y0xao9ob
-#wandb: Run sweep agent with: wandb agent zumo09/flatland-rl-prova-sweep/y0xao9ob
+#(Flatland) D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN>wandb sweep sweep.yaml
+#wandb: Creating sweep from: sweep.yaml
+#wandb: Created sweep with ID: 3f6dw2q0
+#wandb: View sweep at: https://wandb.ai/zumo09/flatland-rl-sweep-15092021/sweeps/3f6dw2q0
+#wandb: Run sweep agent with: wandb agent zumo09/flatland-rl-sweep-15092021/3f6dw2q0

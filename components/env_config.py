@@ -10,7 +10,7 @@ ENV_CONFIG = [
         "malfunction_rate": 1 / 50,
         "seed": 0,
         "observation_tree_depth": 2,
-        "observation_radius": 10,
+        # "observation_radius": 10,
         "observation_max_path_depth": 30
     },
     {
@@ -24,7 +24,7 @@ ENV_CONFIG = [
         "malfunction_rate": 1 / 100,
         "seed": 0,
         "observation_tree_depth": 3,
-        "observation_radius": 10,
+        # "observation_radius": 10,
         "observation_max_path_depth": 30
     },
     {
@@ -38,7 +38,7 @@ ENV_CONFIG = [
         "malfunction_rate": 1 / 200,
         "seed": 0,
         "observation_tree_depth": 2,
-        "observation_radius": 10,
+        # "observation_radius": 10,
         "observation_max_path_depth": 20
     },
 ]

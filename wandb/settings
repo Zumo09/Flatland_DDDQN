@@ -1,0 +1,5 @@
+[default]
+entity = zumo09
+project = flatland-rl-softmax-obs
+base_url = https://api.wandb.ai
+

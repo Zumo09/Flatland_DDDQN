@@ -8,7 +8,6 @@ from pathlib import Path
 from pprint import pprint
 
 import numpy as np
-# import torch
 from flatland.envs.malfunction_generators import malfunction_from_params, MalfunctionParameters
 # from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
