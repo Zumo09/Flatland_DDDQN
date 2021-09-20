@@ -1,14 +1,12 @@
-import pickle
 import random
 from collections import namedtuple, deque, Iterable
 
 import numpy as np
 
 from components.model import DuelingQNetwork, load_dueling_dqn
-from components.policy import Policy
 
 
-class DDDQNPolicy(Policy):
+class DDDQNPolicy:
     """Dueling Double DQN policy"""
 
     def __init__(self, state_size, parameters, evaluation_mode=False):
@@ -119,19 +117,6 @@ class DDDQNPolicy(Policy):
     def load(self, filename):
         self.qnetwork_local = load_dueling_dqn(filename + '/local')
         self.qnetwork_target = load_dueling_dqn(filename + '/target')
-
-    # def save_replay_buffer(self, filename):
-    #     memory = self.memory.memory
-    #     with open(filename, 'wb') as f:
-    #         pickle.dump(list(memory)[-500000:], f)
-    #
-    # def load_replay_buffer(self, filename):
-    #     with open(filename, 'rb') as f:
-    #         self.memory.memory = pickle.load(f)
-
-    # def test(self):
-    #     self.act(np.array([[0] * self.state_size]))
-    #     self._learn()
 
 
 Experience = namedtuple("Experience", field_names=["state", "action", "reward", "next_state", "done"])

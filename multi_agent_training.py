@@ -15,8 +15,7 @@ from flatland.envs.schedule_generators import sparse_schedule_generator
 
 from components.dddqn_policy import DDDQNPolicy
 from components.env_config import get_env_config
-from components.custom_normalized_tree import TreeObsNormalized
-from components.observations import CustomObservation
+from trash.custom_normalized_tree import TreeObsNormalized
 from utils.timer import Timer
 
 """

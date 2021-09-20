@@ -4,7 +4,7 @@ from argparse import ArgumentParser, Namespace
 from collections import deque
 from pathlib import Path
 
-from components.observations import CustomObservation
+from trash.observations import CustomObservation
 
 base_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(base_dir))

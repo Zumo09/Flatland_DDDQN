@@ -103,7 +103,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
     step_times = []
 
     obs, _ = env.reset(regenerate_rail=True, regenerate_schedule=True, random_seed=seed)
-    policy = DDDQNPolicy(obs[0].shape[0], action_size, Namespace(**parameters), evaluation_mode=True)
+    policy = DDDQNPolicy(obs[0].shape[0], Namespace(**parameters), evaluation_mode=True)
     policy.load(checkpoint)
 
     for episode_idx in range(n_eval_episodes):

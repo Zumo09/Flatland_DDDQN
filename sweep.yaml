@@ -1,4 +1,4 @@
-program: multi_agent_training.py
+program: multi_agent_training_4act.py
 method: random
 metric:
   name: test_smoothed_completion
@@ -6,14 +6,16 @@ metric:
 parameters:
   learning_rate:
     values: [0.0001, 0.0005, 0.001]
-  tau:
-    values: [0.0001, 0.0005, 0.001]
-  gamma:
-    values: [0.93, 0.95, 0.99]
-project: flatland-rl-sweep-15092021
+  hidden_size_1:
+    values: [256, 128]
+  hidden_size_2:
+    values: [128, 64]
+  hidden_size_3:
+    values: [64, 32]
+project: flatland-rl-epsgreedy-sweep
 
 #(Flatland) D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN>wandb sweep sweep.yaml
-#wandb: Creating sweep from: sweep.yaml
-#wandb: Created sweep with ID: 3f6dw2q0
-#wandb: View sweep at: https://wandb.ai/zumo09/flatland-rl-sweep-15092021/sweeps/3f6dw2q0
-#wandb: Run sweep agent with: wandb agent zumo09/flatland-rl-sweep-15092021/3f6dw2q0
+  #wandb: Creating sweep from: sweep.yaml
+  #wandb: Created sweep with ID: c72z3erq
+#wandb: View sweep at: https://wandb.ai/zumo09/flatland-rl-epsgreedy-sweep/sweeps/c72z3erq
+#wandb: Run sweep agent with: wandb agent zumo09/flatland-rl-epsgreedy-sweep/c72z3erq

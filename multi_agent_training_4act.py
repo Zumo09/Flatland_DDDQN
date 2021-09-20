@@ -12,9 +12,9 @@ from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 
-from components.custom_normalized_tree import TreeObsNormalized
 from components.dddqn_policy import DDDQNPolicy
 from components.env_config import get_env_config
+from components.observations import CustomObservation
 from utils.timer import Timer
 
 
@@ -33,8 +33,7 @@ def create_rail_env(env_params):
 
     # Observation builder
     predictor = ShortestPathPredictorForRailEnv(observation_max_path_depth)
-    observation = TreeObsNormalized(max_depth=observation_tree_depth, predictor=predictor)
-    # observation = CustomObservation(max_depth=observation_tree_depth, predictor=predictor)
+    observation = CustomObservation(max_depth=observation_tree_depth, predictor=predictor)
 
     # Only fast trains in Round 1
     speed_profiles = {
@@ -138,13 +137,13 @@ def train_agent(config):
           f"evaluating on {n_eval_episodes} episodes every {checkpoint_interval} episodes. "
           f"Training id '{training_id}'.\n")
 
-    main_timer = Timer()
-    step_timer = Timer()
-    learn_timer = Timer()
-    inference_timer = Timer()
+    # main_timer = Timer()
+    # step_timer = Timer()
+    # learn_timer = Timer()
+    # inference_timer = Timer()
 
     for episode_idx in range(n_episodes + 1):
-        main_timer.start()
+        # main_timer.start()
         # Reset environment
         obs, info = train_env.reset(regenerate_rail=True, regenerate_schedule=True)
 
@@ -158,16 +157,9 @@ def train_agent(config):
 
         # Run episode
         for step in range(max_steps - 1):
-            inference_timer.start()
+            # inference_timer.start()
             for agent in train_env.get_agent_handles():
                 if info['action_required'][agent]:
-                    # agent_obj = train_env.agents
-                    # possible_transitions = train_env.rail.get_transitions(*agent_obj.position, agent_obj.direction)
-                    # num_transitions = np.count_nonzero(possible_transitions)
-                    # if num_transitions == 1:
-                    #     update_values[agent] = False
-                    #     action = 2  # If only one transition is allowed, then go forward and don't save the transition
-                    # else:
                     update_values[agent] = True
                     action = policy.act(agent_obs[agent], eps=eps_start)
                     if action == 0:
@@ -179,14 +171,14 @@ def train_agent(config):
                     update_values[agent] = False
                     action = 0
                 action_dict.update({agent: action})
-            inference_timer.end()
+            # inference_timer.end()
 
             # Environment step
-            step_timer.start()
+            # step_timer.start()
             next_obs, all_rewards, done, info = train_env.step(action_dict)
-            step_timer.end()
+            # step_timer.end()
 
-            learn_timer.start()
+            # learn_timer.start()
             # Update replay buffer and train agent
             for agent in train_env.get_agent_handles():
                 if update_values[agent] or done['__all__']:
@@ -202,14 +194,14 @@ def train_agent(config):
                     agent_obs[agent] = next_obs[agent]
 
                 score += all_rewards[agent]
-            learn_timer.end()
+            # learn_timer.end()
 
             # nb_steps = step
 
             if done['__all__']:
                 break
 
-        main_timer.end()
+        # main_timer.end()
 
         # Epsilon decay
         eps_start = max(eps_end, eps_decay * eps_start)
@@ -232,19 +224,16 @@ def train_agent(config):
         if episode_idx % checkpoint_interval == 0:
             policy.save('./checkpoints/' + training_id + '/' + str(episode_idx))
 
-            # if save_replay_buffer:
-            #     policy.save_replay_buffer('./replay_buffers/' + training_id + '/' + str(episode_idx) + '.pkl')
-
-        time = main_timer.get()
-        inf_time = 100 * inference_timer.get() / time
-        step_time = 100 * step_timer.get() / time
-        learn_time = 100 * learn_timer.get() / time
+        # time = main_timer.get()
+        # inf_time = 100 * inference_timer.get() / time
+        # step_time = 100 * step_timer.get() / time
+        # learn_time = 100 * learn_timer.get() / time
         print(
             f'\r🚂 Episode {episode_idx:4d}\t🏆 Score: {normalized_score:.3f} (Avg: {smoothed_normalized_score:.3f})'
             f'\t💯 Done: {100 * completion:6.2f}% (Avg: {100 * smoothed_completion:6.2f}%)'
             f'\t🎲 Epsilon: {eps_start:.3f} \t🔀 Action Probs: {format_action_prob(action_probs)}'
-            f'\t⏱ Time: {time:6.2f} (inference: {inf_time:4.2f}%, step: {step_time:4.2f}%, learn: {learn_time:4.2f}%)',
-            end="")
+            # f'\t⏱ Time: {time:6.2f} (inference: {inf_time:4.2f}%, step: {step_time:4.2f}%, learn: {learn_time:4.2f}%)'
+            , end="")
 
         # Evaluate policy and log results at some interval
         if episode_idx % checkpoint_interval == 0 and n_eval_episodes > 0:
@@ -266,10 +255,10 @@ def train_agent(config):
                 'test_smoothed_completion': smoothed_eval_completion
             }, commit=False)
 
-            main_timer.reset()
-            step_timer.reset()
-            learn_timer.reset()
-            inference_timer.reset()
+            # main_timer.reset()
+            # step_timer.reset()
+            # learn_timer.reset()
+            # inference_timer.reset()
 
         # Save log to WandB
         wandb.log({
@@ -351,7 +340,7 @@ if __name__ == "__main__":
     sys.path.append(str(base_dir))
 
     parser = ArgumentParser()
-    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=3000, type=int)
+    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2000, type=int)
     parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=0, type=int)
     parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
     parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
@@ -368,16 +357,14 @@ if __name__ == "__main__":
     parser.add_argument("--buffer_size", help="replay buffer size", default=int(1e5), type=int)
     parser.add_argument("--buffer_min_size", help="min buffer size to start training", default=0, type=int)
     parser.add_argument("--batch_size", help="minibatch size", default=128, type=int)
-    parser.add_argument("--gamma", help="discount factor", default=0.93, type=float)
+    parser.add_argument("--gamma", help="discount factor", default=0.98, type=float)
     parser.add_argument("--tau", help="soft update of target parameters", default=1e-3, type=float)
     parser.add_argument("--learning_rate", help="learning rate", default=0.8e-4, type=float)
     parser.add_argument("--hidden_size_1", help="hidden size 1st layer", default=256, type=int)
     parser.add_argument("--hidden_size_2", help="hidden size 2nd layer", default=128, type=int)
     parser.add_argument("--hidden_size_3", help="hidden size 3rd layer", default=32, type=int)
-    parser.add_argument("--update_every", help="how often to update the network", default=32, type=int)
-    # parser.add_argument("--restore_replay_buffer", help="replay buffer to restore", default="", type=str)
-    # parser.add_argument("--save_replay_buffer", help="save replay buffer at each evaluation interval", default=False,
-    #                     type=bool)
+    parser.add_argument("--update_every", help="how often to update the network", default=16, type=int)
+
     training_params = parser.parse_args()
 
     train_env_params = get_env_config(training_params.env_config)

@@ -5,8 +5,7 @@ from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 
-from components.custom_normalized_tree import TreeObsNormalized
-from components.observation_2 import CustomObservation
+from trash.custom_normalized_tree import TreeObsNormalized
 
 
 def train_agent():
