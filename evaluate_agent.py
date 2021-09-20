@@ -67,13 +67,11 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
 
     # Observation parameters
     observation_tree_depth = env_params.observation_tree_depth
-    observation_radius = env_params.observation_radius
     observation_max_path_depth = env_params.observation_max_path_depth
 
     # Observation builder
     predictor = ShortestPathPredictorForRailEnv(observation_max_path_depth)
-    tree_observation = CustomObservation(max_depth=observation_tree_depth, predictor=predictor,
-                                         observation_radius=observation_radius)
+    tree_observation = CustomObservation(max_depth=observation_tree_depth, predictor=predictor)
 
     # Setup the environment
     env = RailEnv(
