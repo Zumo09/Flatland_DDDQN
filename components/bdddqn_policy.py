@@ -2,10 +2,10 @@ import random
 from collections import namedtuple, deque, Iterable
 import numpy as np
 
-from components.model import dueling_q_network, load_dueling_dqn
+from components.model import bootstrapped_dueling_q_network, load_dueling_dqn
 
 
-class DDDQNPolicy:
+class BDDDQNPolicy:
     """Dueling Double DQN policy"""
 
     def __init__(self, state_size, parameters, evaluation_mode=False):
@@ -25,34 +25,51 @@ class DDDQNPolicy:
             self.tau = parameters.tau
             self.gamma = parameters.gamma
             self.buffer_min_size = parameters.buffer_min_size
+            self.num_heads = parameters.num_heads
+            self.p_head = parameters.p_head
 
         # Q-Network
-        self.qnetwork_local = dueling_q_network(state_size, self.action_size, parameters)
+        self.qnetwork_local = bootstrapped_dueling_q_network(state_size, self.action_size, parameters)
 
         if not evaluation_mode:
-            self.qnetwork_target = dueling_q_network(state_size, self.action_size, parameters)
+            self.qnetwork_target = bootstrapped_dueling_q_network(state_size, self.action_size, parameters)
             self._soft_update()
             self.memory = ReplayBuffer(self.buffer_size, self.batch_size)
 
             self.t_step = 0
             self.loss = 0.0
 
-    def act(self, state, eps=0.):
-        # Epsilon-greedy action selection
-        if random.random() > eps:
-            state = np.expand_dims(state, 0)
-            action_values = self.qnetwork_local(state)
-            action = np.argmax(action_values)
-        else:
-            action = random.choice(np.arange(self.action_size))
+    def _random_mask(self):
+        return np.random.rand(self.num_heads) < self.p_head
+
+    # def act(self, state, eps=0.):
+    #     # Epsilon-greedy action selection
+    #     if random.random() > eps:
+    #         state = np.expand_dims(state, 0)
+    #         action_values = self.qnetwork_local(state)
+    #         action = np.argmax(action_values)
+    #     else:
+    #         action = random.choice(np.arange(self.action_size))
+    #
+    #     return action + 1
+
+    def act(self, state, head=None):
+        state = np.expand_dims(state, 0)
+        action_values = self.qnetwork_local(state)
+        if head is not None:    # single head selected
+            action = np.argmax(action_values[head])
+        else:   #ensemble method
+            votes = np.sum(action_values, axis=0)
+            return np.argmax(votes)
 
         return action + 1
 
     def step(self, state, action, reward, next_state, done):
         assert not self.evaluation_mode, "Policy has been initialized for evaluation only."
 
+        mask = self._random_mask()
         # Save experience in replay memory
-        self.memory.add(state, action - 1, reward, next_state, done)
+        self.memory.add(state, action - 1, reward, next_state, done, mask)
 
         # Learn every UPDATE_EVERY time steps.
         self.t_step = (self.t_step + 1) % self.update_every
@@ -62,28 +79,47 @@ class DDDQNPolicy:
                 self._learn()
 
     def _learn(self):
-        states, actions, rewards, next_states, dones = self.memory.sample()
+        states, actions, rewards, next_states, dones, masks = self.memory.sample()
 
         target = self.qnetwork_local.predict(states)
         target_next = self.qnetwork_local.predict(next_states)
         target_val = self.qnetwork_target.predict(next_states)
 
-        for i in range(self.memory.batch_size):
-            # like Q Learning, get maximum Q value at s'
-            # But from target model
-            if dones[i]:
-                target[i][actions[i]] = rewards[i]
-            else:
-                # the key point of Double DQN
-                # selection of action is from model
-                # update is from target model
-                a = np.argmax(target_next[i])
-                target[i][actions[i]] = rewards[i] + self.gamma * (target_val[i][a])
+        if self.num_heads == 1:
+            target = [target]
+            target_next = [target_next]
+            target_val = [target_val]
 
-        # make minibatch which includes target q value and predicted q value
-        # and do the model fit!
-        self.qnetwork_local.fit(states, target, batch_size=self.batch_size,
-                                epochs=1, verbose=0)
+        for head in range(self.num_heads):
+            train_states = []
+            train_targets = []
+            size = 0
+
+            for i in range(self.memory.batch_size):
+                if masks[i][head]:
+                    train_states.append(states[i])
+                    train_targets.append(target[head][i])
+                    size += 1
+                    # like Q Learning, get maximum Q value at s'
+                    # But from target model
+                    if dones[i]:
+                        target[head][i][actions[i]] = rewards[i]
+                    else:
+                        # the key point of Double DQN
+                        # selection of action is from model
+                        # update is from target model
+                        a = np.argmax(target_next[head][i])
+                        target[head][i][actions[i]] = rewards[i] + self.gamma * (target_val[head][i][a])
+
+            # make minibatch which includes target q value and predicted q value
+            # and do the model fit!
+            head_name = 'q_values_' + str(head)
+            # print('----------------X------------------')
+            # print(np.array(train_states))
+            # print('----------------Y------------------')
+            # print(np.array(train_targets))
+            self.qnetwork_local.fit(np.array(train_states), y={head_name: np.array(train_targets)},
+                                    batch_size=size, epochs=1, verbose=0)
 
         # Update target network
         self._soft_update(self.tau)
@@ -118,7 +154,7 @@ class DDDQNPolicy:
         self.qnetwork_target = load_dueling_dqn(filename + '/target')
 
 
-Experience = namedtuple("Experience", field_names=["state", "action", "reward", "next_state", "done"])
+Experience = namedtuple("Experience", field_names=["state", "action", "reward", "next_state", "done", "mask"])
 
 
 class ReplayBuffer:
@@ -136,9 +172,9 @@ class ReplayBuffer:
         self.memory = deque(maxlen=buffer_size)
         self.batch_size = batch_size
 
-    def add(self, state, action, reward, next_state, done):
+    def add(self, state, action, reward, next_state, done, mask):
         """Add a new experience to memory."""
-        e = Experience(np.expand_dims(state, 0), action, reward, np.expand_dims(next_state, 0), done)
+        e = Experience(np.expand_dims(state, 0), action, reward, np.expand_dims(next_state, 0), done, mask)
         self.memory.append(e)
 
     def sample(self):
@@ -150,8 +186,9 @@ class ReplayBuffer:
         rewards = self.__v_stack([e.reward for e in experiences if e is not None])
         next_states = self.__v_stack([e.next_state for e in experiences if e is not None])
         dones = self.__v_stack([e.done for e in experiences if e is not None]).astype(np.uint8)
+        masks = np.array([e.mask for e in experiences if e is not None])
 
-        return states, actions, rewards, next_states, dones
+        return states, actions, rewards, next_states, dones, masks
 
     def __len__(self):
         """Return the current size of internal memory."""

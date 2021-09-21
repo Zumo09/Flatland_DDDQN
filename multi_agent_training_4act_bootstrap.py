@@ -12,10 +12,12 @@ from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 
-from components.dddqn_policy import DDDQNPolicy
+from components.bdddqn_policy import BDDDQNPolicy
 from components.env_config import get_env_config
 from components.observations import CustomObservation
 from utils.timer import Timer
+
+import tensorflow as tf
 
 
 def create_rail_env(env_params):
@@ -128,7 +130,7 @@ def train_agent(config):
     test_scores_history = []
 
     # Double Dueling DQN policy
-    policy = DDDQNPolicy(state_size, config)
+    policy = BDDDQNPolicy(state_size, config)
 
     training_timer = Timer()
     training_timer.start()
@@ -148,6 +150,7 @@ def train_agent(config):
         obs, info = train_env.reset(regenerate_rail=True, regenerate_schedule=True)
 
         score = 0
+        head = np.random.randint(config.num_heads)
 
         # Build initial agent-specific observations
         for agent in train_env.get_agent_handles():
@@ -161,7 +164,7 @@ def train_agent(config):
             for agent in train_env.get_agent_handles():
                 if info['action_required'][agent]:
                     update_values[agent] = True
-                    action = policy.act(agent_obs[agent], eps=eps_start)
+                    action = policy.act(agent_obs[agent], head=head)
                     if action == 0:
                         print('WTF?!')
                     action_count[action] += 1
@@ -203,9 +206,6 @@ def train_agent(config):
 
         # main_timer.end()
 
-        # Epsilon decay
-        eps_start = max(eps_end, eps_decay * eps_start)
-
         # Collect information about training
         tasks_finished = sum(done[idx] for idx in train_env.get_agent_handles())
         completion = tasks_finished / max(1, train_env.get_num_agents())
@@ -231,9 +231,9 @@ def train_agent(config):
         print(
             f'\r🚂 Episode {episode_idx:4d}\t🏆 Score: {normalized_score:.3f} (Avg: {smoothed_normalized_score:.3f})'
             f'\t💯 Done: {100 * completion:6.2f}% (Avg: {100 * smoothed_completion:6.2f}%)'
-            f'\t🎲 Epsilon: {eps_start:.3f} \t🔀 Action Probs: {format_action_prob(action_probs)}'
+            f'\t🔀 Action Probs: {format_action_prob(action_probs)}'
             # f'\t⏱ Time: {time:6.2f} (inference: {inf_time:4.2f}%, step: {step_time:4.2f}%, learn: {learn_time:4.2f}%)'
-            , end="")
+        )
 
         # Evaluate policy and log results at some interval
         if episode_idx % checkpoint_interval == 0 and n_eval_episodes > 0:
@@ -308,7 +308,7 @@ def eval_policy(env, policy, train_params):
 
                 action = 0
                 if info['action_required'][agent]:
-                    action = policy.act(agent_obs[agent], eps=0.0)
+                    action = policy.act(agent_obs[agent])
                 action_dict.update({agent: action})
 
             obs, all_rewards, done, info = env.step(action_dict)
@@ -339,6 +339,8 @@ if __name__ == "__main__":
     base_dir = Path(__file__).resolve().parent.parent
     sys.path.append(str(base_dir))
 
+    tf.config.run_functions_eagerly(True)
+
     parser = ArgumentParser()
     parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2000, type=int)
     parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=0, type=int)
@@ -365,7 +367,7 @@ if __name__ == "__main__":
     parser.add_argument("--hidden_size_3", help="hidden size 3rd layer", default=32, type=int)
     parser.add_argument("--update_every", help="how often to update the network", default=16, type=int)
     parser.add_argument("--num_heads", help="number of heads of the bootstrapped q network", default=1, type=int)
-    parser.add_argument("--p_head", help="probability of a head to be included in the mask", default=0.5, type=float)
+    parser.add_argument("--p_head", help="probability of a head to be included in the mask", default=1, type=float)
 
     training_params = parser.parse_args()
 

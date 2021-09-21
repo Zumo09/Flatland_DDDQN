@@ -1,0 +1,124 @@
+Weigh and Biases Configuration
+                    n_episodes	:	2000
+                    env_config	:	0
+         n_evaluation_episodes	:	25
+           checkpoint_interval	:	100
+                     eps_start	:	1.0
+                       eps_end	:	0.01
+                     eps_decay	:	0.998
+        invalid_action_penalty	:	-1.0
+                  step_penalty	:	-1.5
+                 global_reward	:	5.0
+                  stop_penalty	:	0.0
+                 start_penalty	:	0.0
+                   buffer_size	:	100000
+               buffer_min_size	:	0
+                    batch_size	:	128
+                         gamma	:	0.98
+                           tau	:	0.001
+                 learning_rate	:	8e-05
+                 hidden_size_1	:	256
+                 hidden_size_2	:	128
+                 hidden_size_3	:	32
+                  update_every	:	16
+                     num_heads	:	1
+                        p_head	:	1
+                   training_id	:	210921163305
+                      n_agents	:	3
+                         x_dim	:	35
+                         y_dim	:	35
+                      n_cities	:	2
+      max_rails_between_cities	:	2
+             max_rails_in_city	:	3
+              malfunction_rate	:	0.02
+                          seed	:	0
+        observation_tree_depth	:	2
+    observation_max_path_depth	:	30
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+state size : 63
+🚉 Training 3 trains on 35x35 grid for 2000 episodes, evaluating on 25 episodes every 100 episodes. Training id '210921163305'.
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py:4211: UserWarning: Even though the `tf.config.experimental_run_functions_eagerly` option is set, this option does not apply to tf.data functions. To force eager execution of tf.data functions, please use `tf.data.experimental.enable_debug_mode()`.
+  warnings.warn(
+🚂 Episode    0	🏆 Score: -0.549 (Avg: -0.995)	💯 Done:  66.67% (Avg:   0.67%)	🎲 Epsilon: 0.998 	🔀 Action Probs: ↻ 0.000 ← 0.002 ↑ 0.978 → 0.021 ◼ 0.000
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\utils\generic_utils.py:494: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  warnings.warn('Custom mask layers require a config and must override '
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\utils\generic_utils.py:494: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  warnings.warn('Custom mask layers require a config and must override '
+	✅ Eval: score -0.999 done  40.00%
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py:4211: UserWarning: Even though the `tf.config.experimental_run_functions_eagerly` option is set, this option does not apply to tf.data functions. To force eager execution of tf.data functions, please use `tf.data.experimental.enable_debug_mode()`.
+  warnings.warn(
+🚂 Episode    1	🏆 Score: -1.497 (Avg: -1.001)	💯 Done:   0.00% (Avg:   0.66%)	🎲 Epsilon: 0.996 	🔀 Action Probs: ↻ 0.000 ← 0.002 ↑ 0.997 → 0.002 ◼ 0.000
+🚂 Episode    2	🏆 Score: -0.382 (Avg: -0.994)	💯 Done: 100.00% (Avg:   1.65%)	🎲 Epsilon: 0.994 	🔀 Action Probs: ↻ 0.000 ← 0.071 ↑ 0.816 → 0.113 ◼ 0.000
+🚂 Episode    3	🏆 Score: -1.077 (Avg: -0.995)	💯 Done:  33.33% (Avg:   1.97%)	🎲 Epsilon: 0.992 	🔀 Action Probs: ↻ 0.000 ← 0.006 ↑ 0.993 → 0.001 ◼ 0.000
+🚂 Episode    4	🏆 Score: -1.497 (Avg: -1.000)	💯 Done:   0.00% (Avg:   1.95%)	🎲 Epsilon: 0.990 	🔀 Action Probs: ↻ 0.000 ← 0.025 ↑ 0.876 → 0.030 ◼ 0.069
+🚂 Episode    5	🏆 Score: -1.497 (Avg: -1.005)	💯 Done:   0.00% (Avg:   1.93%)	🎲 Epsilon: 0.988 	🔀 Action Probs: ↻ 0.000 ← 0.010 ↑ 0.948 → 0.041 ◼ 0.000
+🚂 Episode    6	🏆 Score: -0.799 (Avg: -1.003)	💯 Done:  66.67% (Avg:   2.58%)	🎲 Epsilon: 0.986 	🔀 Action Probs: ↻ 0.000 ← 0.007 ↑ 0.964 → 0.029 ◼ 0.000
+🚂 Episode    7	🏆 Score: -1.497 (Avg: -1.008)	💯 Done:   0.00% (Avg:   2.55%)	🎲 Epsilon: 0.984 	🔀 Action Probs: ↻ 0.000 ← 0.000 ↑ 0.996 → 0.004 ◼ 0.000
+🚂 Episode    8	🏆 Score: -1.074 (Avg: -1.009)	💯 Done:  33.33% (Avg:   2.86%)	🎲 Epsilon: 0.982 	🔀 Action Probs: ↻ 0.000 ← 0.263 ↑ 0.723 → 0.014 ◼ 0.000
+🚂 Episode    9	🏆 Score: -1.191 (Avg: -1.011)	💯 Done:  33.33% (Avg:   3.17%)	🎲 Epsilon: 0.980 	🔀 Action Probs: ↻ 0.000 ← 0.106 ↑ 0.882 → 0.012 ◼ 0.000
+🚂 Episode   10	🏆 Score: -1.497 (Avg: -1.015)	💯 Done:   0.00% (Avg:   3.13%)	🎲 Epsilon: 0.978 	🔀 Action Probs: ↻ 0.000 ← 0.000 ↑ 0.995 → 0.005 ◼ 0.000
+🚂 Episode   11	🏆 Score: -1.230 (Avg: -1.018)	💯 Done:  33.33% (Avg:   3.44%)	🎲 Epsilon: 0.976 	🔀 Action Probs: ↻ 0.000 ← 0.048 ↑ 0.377 → 0.042 ◼ 0.533
+🚂 Episode   12	🏆 Score: -1.497 (Avg: -1.022)	💯 Done:   0.00% (Avg:   3.40%)	🎲 Epsilon: 0.974 	🔀 Action Probs: ↻ 0.000 ← 0.000 ↑ 0.795 → 0.063 ◼ 0.142
+🚂 Episode   13	🏆 Score: -1.349 (Avg: -1.026)	💯 Done:  33.33% (Avg:   3.70%)	🎲 Epsilon: 0.972 	🔀 Action Probs: ↻ 0.000 ← 0.006 ↑ 0.471 → 0.101 ◼ 0.422
+🚂 Episode   14	🏆 Score: -1.497 (Avg: -1.030)	💯 Done:   0.00% (Avg:   3.66%)	🎲 Epsilon: 0.970 	🔀 Action Probs: ↻ 0.000 ← 0.000 ↑ 0.979 → 0.021 ◼ 0.000
+🚂 Episode   15	🏆 Score: -1.052 (Avg: -1.031)	💯 Done:  33.33% (Avg:   3.96%)	🎲 Epsilon: 0.968 	🔀 Action Probs: ↻ 0.000 ← 0.383 ↑ 0.208 → 0.409 ◼ 0.000
+🚂 Episode   16	🏆 Score: -1.069 (Avg: -1.031)	💯 Done:  33.33% (Avg:   4.25%)	🎲 Epsilon: 0.967 	🔀 Action Probs: ↻ 0.000 ← 0.012 ↑ 0.921 → 0.067 ◼ 0.000
+Traceback (most recent call last):
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\multi_agent_training_4act_bootstrap.py", line 396, in <module>
+    train_agent(wandb.config)
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\multi_agent_training_4act_bootstrap.py", line 189, in train_agent
+    policy.step(agent_prev_obs[agent], agent_prev_action[agent], all_rewards[agent],
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 80, in step
+    self._learn()
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 122, in _learn
+    self.qnetwork_local.fit(np.array(train_states), y={head_name: np.array(train_targets)},
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\training.py", line 1134, in fit
+    data_handler = data_adapter.get_data_handler(
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\data_adapter.py", line 1383, in get_data_handler
+    return DataHandler(*args, **kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\data_adapter.py", line 1138, in __init__
+    self._adapter = adapter_cls(
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\data_adapter.py", line 286, in __init__
+    indices_dataset = indices_dataset.map(permutation).prefetch(1)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py", line 1861, in map
+    return MapDataset(self, map_func, preserve_cardinality=True)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py", line 4981, in __init__
+    self._map_func = StructuredFunctionWrapper(
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py", line 4218, in __init__
+    self._function = fn_factory()
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\eager\function.py", line 3150, in get_concrete_function
+    graph_function = self._get_concrete_function_garbage_collected(
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\eager\function.py", line 3116, in _get_concrete_function_garbage_collected
+    graph_function, _ = self._maybe_define_function(args, kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\eager\function.py", line 3463, in _maybe_define_function
+    graph_function = self._create_graph_function(args, kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\eager\function.py", line 3298, in _create_graph_function
+    func_graph_module.func_graph_from_py_func(
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\framework\func_graph.py", line 1007, in func_graph_from_py_func
+    func_outputs = python_func(*func_args, **func_kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py", line 4195, in wrapped_fn
+    ret = wrapper_helper(*args)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py", line 4125, in wrapper_helper
+    ret = autograph.tf_convert(self._func, ag_ctx)(*nested_args)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 692, in wrapper
+    return converted_call(f, args, kwargs, options=options)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 382, in converted_call
+    return _call_unconverted(f, args, kwargs, options)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 463, in _call_unconverted
+    return f(*args, **kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\data_adapter.py", line 277, in permutation
+    indices = tf.range(num_samples, dtype=tf.int64)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\util\dispatch.py", line 206, in wrapper
+    return target(*args, **kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\ops\math_ops.py", line 2064, in range
+    return gen_math_ops._range(start, limit, delta, name=name)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\ops\gen_math_ops.py", line 7368, in _range
+    _, _, _op, _outputs = _op_def_library._apply_op_helper(
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\framework\op_def_library.py", line 377, in _apply_op_helper
+    with g.as_default(), ops.name_scope(name) as scope:
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\framework\func_graph.py", line 369, in as_default
+    outer_cm = super(FuncGraph, self).as_default()
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\framework\ops.py", line 3975, in as_default
+    def as_default(self):
+KeyboardInterrupt

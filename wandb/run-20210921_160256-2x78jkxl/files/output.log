@@ -1,0 +1,148 @@
+Weigh and Biases Configuration
+                    n_episodes	:	2000
+                    env_config	:	0
+         n_evaluation_episodes	:	25
+           checkpoint_interval	:	100
+                     eps_start	:	1.0
+                       eps_end	:	0.01
+                     eps_decay	:	0.998
+        invalid_action_penalty	:	-1.0
+                  step_penalty	:	-1.5
+                 global_reward	:	5.0
+                  stop_penalty	:	0.0
+                 start_penalty	:	0.0
+                   buffer_size	:	100000
+               buffer_min_size	:	0
+                    batch_size	:	128
+                         gamma	:	0.98
+                           tau	:	0.001
+                 learning_rate	:	8e-05
+                 hidden_size_1	:	256
+                 hidden_size_2	:	128
+                 hidden_size_3	:	32
+                  update_every	:	16
+                     num_heads	:	2
+                        p_head	:	0.5
+                   training_id	:	210921160255
+                      n_agents	:	3
+                         x_dim	:	35
+                         y_dim	:	35
+                      n_cities	:	2
+      max_rails_between_cities	:	2
+             max_rails_in_city	:	3
+              malfunction_rate	:	0.02
+                          seed	:	0
+        observation_tree_depth	:	2
+    observation_max_path_depth	:	30
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+state size : 63
+🚉 Training 3 trains on 35x35 grid for 2000 episodes, evaluating on 25 episodes every 100 episodes. Training id '210921160255'.
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py:4211: UserWarning: Even though the `tf.config.experimental_run_functions_eagerly` option is set, this option does not apply to tf.data functions. To force eager execution of tf.data functions, please use `tf.data.experimental.enable_debug_mode()`.
+  warnings.warn(
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_1/kernel:0', 'val_0_1/bias:0', 'adv_0_1/kernel:0', 'adv_0_1/bias:0', 'val_1_1/kernel:0', 'val_1_1/bias:0', 'adv_1_1/kernel:0', 'adv_1_1/bias:0', 'val_2_1/kernel:0', 'val_2_1/bias:0', 'adv_2_1/kernel:0', 'adv_2_1/bias:0'] when minimizing the loss.
+WARNING:tensorflow:Gradients do not exist for variables ['val_0_0/kernel:0', 'val_0_0/bias:0', 'adv_0_0/kernel:0', 'adv_0_0/bias:0', 'val_1_0/kernel:0', 'val_1_0/bias:0', 'adv_1_0/kernel:0', 'adv_1_0/bias:0', 'val_2_0/kernel:0', 'val_2_0/bias:0', 'adv_2_0/kernel:0', 'adv_2_0/bias:0'] when minimizing the loss.
+Traceback (most recent call last):
+  File "C:/Users/emman/OneDrive/Scuola/Unibo/DL - Deep Learning/Project/Repo/Flatland_DDDQN/multi_agent_training_4act_bootstrap.py", line 396, in <module>
+    train_agent(wandb.config)
+  File "C:/Users/emman/OneDrive/Scuola/Unibo/DL - Deep Learning/Project/Repo/Flatland_DDDQN/multi_agent_training_4act_bootstrap.py", line 189, in train_agent
+    policy.step(agent_prev_obs[agent], agent_prev_action[agent], all_rewards[agent],
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 80, in step
+    self._learn()
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 87, in _learn
+    target_val = self.qnetwork_target.predict(next_states)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\training.py", line 1751, in predict
+    tmp_batch_outputs = self.predict_function(iterator)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\training.py", line 1586, in predict_function
+    return step_function(self, iterator)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\training.py", line 1576, in step_function
+    outputs = model.distribute_strategy.run(run_step, args=(data,))
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 1286, in run
+    return self._extended.call_for_each_replica(fn, args=args, kwargs=kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 2849, in call_for_each_replica
+    return self._call_for_each_replica(fn, args, kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\distribute\distribute_lib.py", line 3632, in _call_for_each_replica
+    return fn(*args, **kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\autograph\impl\api.py", line 597, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\training.py", line 1569, in run_step
+    outputs = model.predict_step(data)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\training.py", line 1537, in predict_step
+    return self(x, training=False)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\base_layer.py", line 1011, in __call__
+    self._clear_losses()
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\base_layer.py", line 1542, in _clear_losses
+    for layer in self._flatten_layers():
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\engine\base_layer.py", line 2859, in _flatten_layers
+    yield m
+KeyboardInterrupt

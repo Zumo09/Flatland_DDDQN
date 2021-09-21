@@ -1,0 +1,54 @@
+Weigh and Biases Configuration
+                    n_episodes	:	2000
+                    env_config	:	0
+         n_evaluation_episodes	:	25
+           checkpoint_interval	:	100
+                     eps_start	:	1.0
+                       eps_end	:	0.01
+                     eps_decay	:	0.998
+        invalid_action_penalty	:	-1.0
+                  step_penalty	:	-1.5
+                 global_reward	:	5.0
+                  stop_penalty	:	0.0
+                 start_penalty	:	0.0
+                   buffer_size	:	100000
+               buffer_min_size	:	0
+                    batch_size	:	128
+                         gamma	:	0.98
+                           tau	:	0.001
+                 learning_rate	:	8e-05
+                 hidden_size_1	:	256
+                 hidden_size_2	:	128
+                 hidden_size_3	:	32
+                  update_every	:	16
+                     num_heads	:	1
+                        p_head	:	0.5
+                   training_id	:	210921151005
+                      n_agents	:	3
+                         x_dim	:	35
+                         y_dim	:	35
+                      n_cities	:	2
+      max_rails_between_cities	:	2
+             max_rails_in_city	:	3
+              malfunction_rate	:	0.02
+                          seed	:	0
+        observation_tree_depth	:	2
+    observation_max_path_depth	:	30
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+state size : 63
+🚉 Training 3 trains on 35x35 grid for 2000 episodes, evaluating on 25 episodes every 100 episodes. Training id '210921151005'.
+Traceback (most recent call last):
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\multi_agent_training_4act_bootstrap.py", line 392, in <module>
+    train_agent(wandb.config)
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\multi_agent_training_4act_bootstrap.py", line 187, in train_agent
+    policy.step(agent_prev_obs[agent], agent_prev_action[agent], all_rewards[agent],
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 79, in step
+    self._learn()
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 82, in _learn
+    states, actions, rewards, next_states, dones, masks = self.memory.sample()
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 179, in sample
+    masks = self.__v_stack([e.mask for e in experiences if e is not None]).astype(np.uint8)
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 196, in __v_stack
+    sub_dim = len(states[0][0])
+TypeError: object of type 'numpy.bool_' has no len()

@@ -1,0 +1,72 @@
+Weigh and Biases Configuration
+                    n_episodes	:	2000
+                    env_config	:	0
+         n_evaluation_episodes	:	25
+           checkpoint_interval	:	100
+                     eps_start	:	1.0
+                       eps_end	:	0.01
+                     eps_decay	:	0.998
+        invalid_action_penalty	:	-1.0
+                  step_penalty	:	-1.5
+                 global_reward	:	5.0
+                  stop_penalty	:	0.0
+                 start_penalty	:	0.0
+                   buffer_size	:	100000
+               buffer_min_size	:	0
+                    batch_size	:	128
+                         gamma	:	0.98
+                           tau	:	0.001
+                 learning_rate	:	8e-05
+                 hidden_size_1	:	256
+                 hidden_size_2	:	128
+                 hidden_size_3	:	32
+                  update_every	:	16
+                     num_heads	:	2
+                        p_head	:	0.5
+                   training_id	:	210921155634
+                      n_agents	:	3
+                         x_dim	:	35
+                         y_dim	:	35
+                      n_cities	:	2
+      max_rails_between_cities	:	2
+             max_rails_in_city	:	3
+              malfunction_rate	:	0.02
+                          seed	:	0
+        observation_tree_depth	:	2
+    observation_max_path_depth	:	30
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+state size : 63
+🚉 Training 3 trains on 35x35 grid for 2000 episodes, evaluating on 25 episodes every 100 episodes. Training id '210921155634'.
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\utils\generic_utils.py:494: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  warnings.warn('Custom mask layers require a config and must override '
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\keras\utils\generic_utils.py:494: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  warnings.warn('Custom mask layers require a config and must override '
+🚂 Episode    0	🏆 Score: -1.497 (Avg: -1.005)	💯 Done:   0.00% (Avg:   0.00%)	🎲 Epsilon: 0.998 	🔀 Action Probs: ↻ 0.000 ← 0.098 ↑ 0.000 → 0.902 ◼ 0.000
+Traceback (most recent call last):
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\multi_agent_training_4act_bootstrap.py", line 396, in <module>
+    train_agent(wandb.config)
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\multi_agent_training_4act_bootstrap.py", line 243, in train_agent
+    scores, completions, nb_steps_eval = eval_policy(eval_env, policy, config)
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\multi_agent_training_4act_bootstrap.py", line 317, in eval_policy
+    obs, all_rewards, done, info = env.step(action_dict)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\flatland\envs\rail_env.py", line 590, in step
+    return self._get_observations(), self.rewards_dict, self.dones, info_dict
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\flatland\envs\rail_env.py", line 1070, in _get_observations
+    self.obs_dict = self.obs_builder.get_many(list(range(self.get_num_agents())))
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\flatland\envs\observations.py", line 109, in get_many
+    observations = super().get_many(handles)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\flatland\core\env_observation_builder.py", line 55, in get_many
+    observations[h] = self.get(h)
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\observations.py", line 11, in get
+    obs = super(CustomObservation, self).get(handle=handle)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\flatland\envs\observations.py", line 241, in get
+    self._explore_branch(handle, new_cell, branch_direction, 1, 1)
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\flatland\envs\observations.py", line 476, in _explore_branch
+    branch_observation, branch_visited = self._explore_branch(handle,
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\flatland\envs\observations.py", line 333, in _explore_branch
+    if int_position in np.delete(self.predicted_pos[predicted_time], handle, 0):
+  File "<__array_function__ internals>", line 5, in delete
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\numpy\lib\function_base.py", line 4385, in delete
+    new[tuple(slobj)] = arr[tuple(slobj)]
+KeyboardInterrupt

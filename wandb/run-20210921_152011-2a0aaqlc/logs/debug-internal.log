@@ -1,0 +1,160 @@
+2021-09-21 15:20:15,722 INFO    MainThread:23064 [internal.py:wandb_internal():86] W&B internal server running at pid: 23064, started at: 2021-09-21 15:20:15.705596
+2021-09-21 15:20:15,728 INFO    WriterThread:23064 [datastore.py:open_for_write():77] open: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\run-2a0aaqlc.wandb
+2021-09-21 15:20:15,729 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: check_version
+2021-09-21 15:20:15,733 DEBUG   SenderThread:23064 [sender.py:send():182] send: header
+2021-09-21 15:20:15,737 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: check_version
+2021-09-21 15:20:15,978 DEBUG   SenderThread:23064 [sender.py:send():182] send: run
+2021-09-21 15:20:16,698 INFO    SenderThread:23064 [dir_watcher.py:__init__():169] watching files in: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files
+2021-09-21 15:20:16,699 INFO    SenderThread:23064 [sender.py:_start_run_threads():740] run started: 2a0aaqlc with start time 1632230412
+2021-09-21 15:20:16,700 DEBUG   SenderThread:23064 [sender.py:send():182] send: summary
+2021-09-21 15:20:16,702 INFO    SenderThread:23064 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-21 15:20:16,704 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: run_start
+2021-09-21 15:20:17,711 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_created():217] file/dir created: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\wandb-summary.json
+2021-09-21 15:20:22,460 DEBUG   HandlerThread:23064 [meta.py:__init__():40] meta init
+2021-09-21 15:20:22,461 DEBUG   HandlerThread:23064 [meta.py:__init__():54] meta init done
+2021-09-21 15:20:22,461 DEBUG   HandlerThread:23064 [meta.py:probe():211] probe
+2021-09-21 15:20:22,613 DEBUG   HandlerThread:23064 [meta.py:_setup_git():201] setup git
+2021-09-21 15:20:22,752 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_created():217] file/dir created: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\output.log
+2021-09-21 15:20:22,806 DEBUG   HandlerThread:23064 [meta.py:_setup_git():208] setup git done
+2021-09-21 15:20:22,807 DEBUG   HandlerThread:23064 [meta.py:_save_pip():58] save pip
+2021-09-21 15:20:22,848 DEBUG   HandlerThread:23064 [meta.py:_save_pip():72] save pip done
+2021-09-21 15:20:22,848 DEBUG   HandlerThread:23064 [meta.py:_save_conda():79] save conda
+2021-09-21 15:20:22,854 ERROR   HandlerThread:23064 [meta.py:_save_conda():86] Error saving conda packages
+Traceback (most recent call last):
+  File "C:\Users\emman\.conda\envs\main-env\lib\site-packages\wandb\sdk\internal\meta.py", line 84, in _save_conda
+    subprocess.call(["conda", "env", "export"], stdout=f)
+  File "C:\Users\emman\.conda\envs\main-env\lib\subprocess.py", line 349, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "C:\Users\emman\.conda\envs\main-env\lib\subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\emman\.conda\envs\main-env\lib\subprocess.py", line 1420, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+FileNotFoundError: [WinError 2] Impossibile trovare il file specificato
+2021-09-21 15:20:22,858 DEBUG   HandlerThread:23064 [meta.py:_save_conda():87] save conda done
+2021-09-21 15:20:22,858 DEBUG   HandlerThread:23064 [meta.py:probe():249] probe done
+2021-09-21 15:20:22,876 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-21 15:20:22,876 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: stop_status
+2021-09-21 15:20:23,153 DEBUG   SenderThread:23064 [sender.py:send():182] send: files
+2021-09-21 15:20:23,153 INFO    SenderThread:23064 [sender.py:_save_file():873] saving file wandb-metadata.json with policy now
+2021-09-21 15:20:23,767 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_modified():230] file/dir modified: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\output.log
+2021-09-21 15:20:23,769 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_created():217] file/dir created: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\conda-environment.yaml
+2021-09-21 15:20:23,769 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_created():217] file/dir created: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\wandb-metadata.json
+2021-09-21 15:20:23,770 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_created():217] file/dir created: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\requirements.txt
+2021-09-21 15:20:24,000 INFO    Thread-17 :23064 [upload_job.py:push():137] Uploaded file C:\Users\emman\AppData\Local\Temp\tmp5ph_n84owandb\258jdwg0-wandb-metadata.json
+2021-09-21 15:20:37,885 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_modified():230] file/dir modified: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\output.log
+2021-09-21 15:20:38,201 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: stop_status
+2021-09-21 15:20:38,202 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: stop_status
+2021-09-21 15:20:41,795 DEBUG   SenderThread:23064 [sender.py:send():182] send: telemetry
+2021-09-21 15:20:41,796 DEBUG   SenderThread:23064 [sender.py:send():182] send: exit
+2021-09-21 15:20:41,796 INFO    SenderThread:23064 [sender.py:send_exit():291] handling exit code: 1
+2021-09-21 15:20:41,797 INFO    SenderThread:23064 [sender.py:send_exit():293] handling runtime: 25
+2021-09-21 15:20:41,797 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:41,798 INFO    SenderThread:23064 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-21 15:20:41,798 INFO    SenderThread:23064 [sender.py:send_exit():303] send defer
+2021-09-21 15:20:41,799 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:41,799 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:41,800 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 0
+2021-09-21 15:20:41,800 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:41,801 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 0
+2021-09-21 15:20:41,801 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 1
+2021-09-21 15:20:41,802 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:41,802 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 1
+2021-09-21 15:20:41,874 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:41,874 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 1
+2021-09-21 15:20:41,874 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 2
+2021-09-21 15:20:41,874 DEBUG   SenderThread:23064 [sender.py:send():182] send: stats
+2021-09-21 15:20:41,874 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:41,874 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 2
+2021-09-21 15:20:41,874 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:41,874 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 2
+2021-09-21 15:20:41,874 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 3
+2021-09-21 15:20:41,874 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:41,874 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 3
+2021-09-21 15:20:41,874 DEBUG   SenderThread:23064 [sender.py:send():182] send: summary
+2021-09-21 15:20:41,890 INFO    SenderThread:23064 [sender.py:_save_file():873] saving file wandb-summary.json with policy end
+2021-09-21 15:20:41,890 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:41,891 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 3
+2021-09-21 15:20:41,891 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 4
+2021-09-21 15:20:41,891 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:41,891 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 4
+2021-09-21 15:20:41,891 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:41,891 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 4
+2021-09-21 15:20:41,906 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:41,924 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_modified():230] file/dir modified: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\output.log
+2021-09-21 15:20:41,925 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_modified():230] file/dir modified: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\wandb-summary.json
+2021-09-21 15:20:42,225 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 5
+2021-09-21 15:20:42,225 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:42,225 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:42,225 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 5
+2021-09-21 15:20:42,225 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:42,225 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 5
+2021-09-21 15:20:42,225 INFO    SenderThread:23064 [dir_watcher.py:finish():283] shutting down directory watcher
+2021-09-21 15:20:42,341 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:42,926 INFO    Thread-12 :23064 [dir_watcher.py:_on_file_modified():230] file/dir modified: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\config.yaml
+2021-09-21 15:20:42,926 INFO    SenderThread:23064 [dir_watcher.py:finish():313] scan: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files
+2021-09-21 15:20:42,926 INFO    SenderThread:23064 [dir_watcher.py:finish():327] scan save: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\conda-environment.yaml conda-environment.yaml
+2021-09-21 15:20:42,926 INFO    SenderThread:23064 [dir_watcher.py:finish():327] scan save: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\config.yaml config.yaml
+2021-09-21 15:20:42,926 INFO    SenderThread:23064 [dir_watcher.py:finish():327] scan save: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\output.log output.log
+2021-09-21 15:20:42,926 INFO    SenderThread:23064 [dir_watcher.py:finish():327] scan save: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\requirements.txt requirements.txt
+2021-09-21 15:20:42,947 INFO    SenderThread:23064 [dir_watcher.py:finish():327] scan save: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\wandb-metadata.json wandb-metadata.json
+2021-09-21 15:20:42,959 INFO    SenderThread:23064 [dir_watcher.py:finish():327] scan save: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\wandb-summary.json wandb-summary.json
+2021-09-21 15:20:42,978 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 6
+2021-09-21 15:20:42,980 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:42,983 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:42,984 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 6
+2021-09-21 15:20:42,992 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:42,992 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 6
+2021-09-21 15:20:42,992 INFO    SenderThread:23064 [file_pusher.py:finish():177] shutting down file pusher
+2021-09-21 15:20:43,091 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,092 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,209 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,210 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,324 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,325 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,431 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,431 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,540 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,540 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,646 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,647 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,759 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,759 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,810 INFO    Thread-21 :23064 [upload_job.py:push():137] Uploaded file C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\wandb-summary.json
+2021-09-21 15:20:43,827 INFO    Thread-19 :23064 [upload_job.py:push():137] Uploaded file C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\output.log
+2021-09-21 15:20:43,844 INFO    Thread-20 :23064 [upload_job.py:push():137] Uploaded file C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\requirements.txt
+2021-09-21 15:20:43,863 INFO    Thread-18 :23064 [upload_job.py:push():137] Uploaded file C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\files\config.yaml
+2021-09-21 15:20:43,876 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,877 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:43,988 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:43,992 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:44,076 INFO    Thread-11 :23064 [sender.py:transition_state():316] send defer: 7
+2021-09-21 15:20:44,078 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:44,078 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 7
+2021-09-21 15:20:44,078 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:44,079 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 7
+2021-09-21 15:20:44,097 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:44,262 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 8
+2021-09-21 15:20:44,264 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:44,265 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:44,265 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 8
+2021-09-21 15:20:44,265 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:44,265 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 8
+2021-09-21 15:20:44,265 INFO    SenderThread:23064 [sender.py:transition_state():316] send defer: 9
+2021-09-21 15:20:44,265 DEBUG   SenderThread:23064 [sender.py:send():182] send: final
+2021-09-21 15:20:44,265 DEBUG   SenderThread:23064 [sender.py:send():182] send: footer
+2021-09-21 15:20:44,265 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: defer
+2021-09-21 15:20:44,265 INFO    HandlerThread:23064 [handler.py:handle_request_defer():143] handle defer: 9
+2021-09-21 15:20:44,265 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: defer
+2021-09-21 15:20:44,265 INFO    SenderThread:23064 [sender.py:send_request_defer():312] handle sender defer: 9
+2021-09-21 15:20:44,377 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: poll_exit
+2021-09-21 15:20:44,377 DEBUG   SenderThread:23064 [sender.py:send_request():196] send_request: poll_exit
+2021-09-21 15:20:44,377 INFO    SenderThread:23064 [file_pusher.py:join():182] waiting for file pusher
+2021-09-21 15:20:44,377 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: get_summary
+2021-09-21 15:20:44,377 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: sampled_history
+2021-09-21 15:20:44,377 DEBUG   HandlerThread:23064 [handler.py:handle_request():126] handle_request: shutdown
+2021-09-21 15:20:44,377 INFO    HandlerThread:23064 [handler.py:finish():683] shutting down handler
+2021-09-21 15:20:45,278 INFO    WriterThread:23064 [datastore.py:close():281] close: C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\wandb\run-20210921_152011-2a0aaqlc\run-2a0aaqlc.wandb
+2021-09-21 15:20:45,394 INFO    SenderThread:23064 [sender.py:finish():979] shutting down sender
+2021-09-21 15:20:45,394 INFO    SenderThread:23064 [file_pusher.py:finish():177] shutting down file pusher
+2021-09-21 15:20:45,395 INFO    SenderThread:23064 [file_pusher.py:join():182] waiting for file pusher
+2021-09-21 15:20:45,402 INFO    MainThread:23064 [internal.py:handle_exit():76] Internal process exited

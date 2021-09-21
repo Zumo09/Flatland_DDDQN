@@ -1,0 +1,128 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.12.1
+    framework: keras
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.9.6
+    start_time: 1632231418
+    t:
+      1:
+      - 2
+      - 3
+      2:
+      - 2
+      - 3
+      4: 3.9.6
+      5: 0.12.1
+      8:
+      - 3
+      - 5
+batch_size:
+  desc: null
+  value: 128
+buffer_min_size:
+  desc: null
+  value: 0
+buffer_size:
+  desc: null
+  value: 100000
+checkpoint_interval:
+  desc: null
+  value: 100
+env_config:
+  desc: null
+  value: 0
+eps_decay:
+  desc: null
+  value: 0.998
+eps_end:
+  desc: null
+  value: 0.01
+eps_start:
+  desc: null
+  value: 1.0
+gamma:
+  desc: null
+  value: 0.98
+global_reward:
+  desc: null
+  value: 5.0
+hidden_size_1:
+  desc: null
+  value: 256
+hidden_size_2:
+  desc: null
+  value: 128
+hidden_size_3:
+  desc: null
+  value: 32
+invalid_action_penalty:
+  desc: null
+  value: -1.0
+learning_rate:
+  desc: null
+  value: 8.0e-05
+malfunction_rate:
+  desc: null
+  value: 0.02
+max_rails_between_cities:
+  desc: null
+  value: 2
+max_rails_in_city:
+  desc: null
+  value: 3
+n_agents:
+  desc: null
+  value: 3
+n_cities:
+  desc: null
+  value: 2
+n_episodes:
+  desc: null
+  value: 2000
+n_evaluation_episodes:
+  desc: null
+  value: 25
+num_heads:
+  desc: null
+  value: 2
+observation_max_path_depth:
+  desc: null
+  value: 30
+observation_tree_depth:
+  desc: null
+  value: 2
+p_head:
+  desc: null
+  value: 0.5
+seed:
+  desc: null
+  value: 0
+start_penalty:
+  desc: null
+  value: 0.0
+step_penalty:
+  desc: null
+  value: -1.5
+stop_penalty:
+  desc: null
+  value: 0.0
+tau:
+  desc: null
+  value: 0.001
+training_id:
+  desc: null
+  value: '210921153655'
+update_every:
+  desc: null
+  value: 16
+x_dim:
+  desc: null
+  value: 35
+y_dim:
+  desc: null
+  value: 35

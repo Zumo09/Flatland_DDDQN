@@ -1,0 +1,124 @@
+Weigh and Biases Configuration
+                    n_episodes	:	2000
+                    env_config	:	0
+         n_evaluation_episodes	:	25
+           checkpoint_interval	:	100
+                     eps_start	:	1.0
+                       eps_end	:	0.01
+                     eps_decay	:	0.998
+        invalid_action_penalty	:	-1.0
+                  step_penalty	:	-1.5
+                 global_reward	:	5.0
+                  stop_penalty	:	0.0
+                 start_penalty	:	0.0
+                   buffer_size	:	100000
+               buffer_min_size	:	0
+                    batch_size	:	128
+                         gamma	:	0.98
+                           tau	:	0.001
+                 learning_rate	:	8e-05
+                 hidden_size_1	:	256
+                 hidden_size_2	:	128
+                 hidden_size_3	:	32
+                  update_every	:	16
+                     num_heads	:	2
+                        p_head	:	0.5
+                   training_id	:	210921162847
+                      n_agents	:	3
+                         x_dim	:	35
+                         y_dim	:	35
+                      n_cities	:	2
+      max_rails_between_cities	:	2
+             max_rails_in_city	:	3
+              malfunction_rate	:	0.02
+                          seed	:	0
+        observation_tree_depth	:	2
+    observation_max_path_depth	:	30
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+DEPRECATED - RailEnv arg: malfunction_and_process_data - use malfunction_generator
+state size : 63
+🚉 Training 3 trains on 35x35 grid for 2000 episodes, evaluating on 25 episodes every 100 episodes. Training id '210921162847'.
+C:\Users\emman\.conda\envs\main-env\lib\site-packages\tensorflow\python\data\ops\dataset_ops.py:4211: UserWarning: Even though the `tf.config.experimental_run_functions_eagerly` option is set, this option does not apply to tf.data functions. To force eager execution of tf.data functions, please use `tf.data.experimental.enable_debug_mode()`.
+  warnings.warn(
+----------------X------------------
+[[ 0.   0.   7.3 ...  4.   2.  -1. ]
+ [ 0.   0.  20.3 ...  4.   2.  -1. ]
+ [ 0.   0.  30.9 ...  4.   2.  -1. ]
+ ...
+ [ 0.   0.  30.3 ...  4.   2.  -1. ]
+ [ 0.   0.  34.8 ...  4.   2.  -1. ]
+ [ 0.   0.   8.3 ...  4.   2.  -1. ]]
+----------------Y------------------
+[[-2.1140866   3.620405   -0.47966754 -0.7707609 ]
+ [ 1.6583073   2.015157    0.19059248 -0.7860866 ]
+ [ 0.2853654   1.4538872  -0.64366007 -1.6364844 ]
+ [-0.11019915  1.2853943  -0.77355224 -1.8202152 ]
+ [ 0.44728872  1.5242655  -0.5860702  -1.5506374 ]
+ [-1.1794796   3.317494    2.810199   -1.2444093 ]
+ [ 0.21741548 -0.61354023  0.09180477 -0.6777824 ]
+ [ 0.7729863   0.04299489 -0.8024967  -0.3702681 ]
+ [ 0.750194    0.5328909  -0.58472496 -0.7142109 ]
+ [ 0.75993323  1.6518011  -0.4807128  -1.3938228 ]
+ [-0.3861524   1.1506146  -0.83272564 -1.9790348 ]
+ [ 0.8612005   1.9784976  -0.37354237 -1.3407089 ]
+ [ 0.8614641   0.7423913  -0.53608435 -0.7672412 ]
+ [ 2.652653    1.6786164   0.5772255  -1.0157526 ]
+ [ 1.4359326   1.6735213   0.12791377 -0.42882973]
+ [ 1.7828536   2.410824    0.5402629  -0.6887894 ]
+ [ 0.7722633   0.61133105 -0.5654198  -0.8056195 ]
+ [ 1.8087231   2.501637    0.59479403 -0.6588724 ]
+ [-0.5853906   1.0416687  -0.87223583 -2.093155  ]
+ [ 0.80733     1.6688449  -0.46409553 -1.3703158 ]
+ [ 1.4359326   1.5580146   0.12791377 -0.42882973]
+ [ 1.0033724   1.0604848  -0.44639084 -0.9856825 ]
+ [ 1.6959596   2.1269772   0.28278884 -0.7635757 ]
+ [ 0.66049373  1.6143143  -0.51106715 -1.4409184 ]
+ [ 0.6086429   1.5943404  -0.52837396 -1.4665961 ]
+ [-0.15341398 -0.9559571  -0.12604067 -0.67539597]
+ [ 1.3064703  -2.1392982   2.1438842  -0.06945357]
+ [ 0.03509122  1.3424237  -0.7280284  -1.7556142 ]
+ [-7.3467307   1.7731566  -1.2630455  -6.3231277 ]
+ [ 0.17917654  1.4059908  -0.6839602  -1.6917787 ]
+ [ 1.565906    1.7286386   0.02476111 -0.79748535]
+ [-1.1013727   3.6208048   3.61453    -1.201797  ]
+ [ 1.4359326   1.6735213   0.12791377 -0.42882973]
+ [-0.20122361  1.2421266  -0.7972045  -1.8675396 ]
+ [-3.094357    3.6880772  -0.9687817  -3.6269922 ]
+ [ 1.3128029  -1.0361842  -0.32153913 -0.41819462]
+ [-0.53749067  1.0697705  -0.8618124  -2.0648065 ]
+ [ 0.33989078  1.4772569  -0.6242002  -1.6085635 ]
+ [ 1.6180309   1.8721776   0.10803783 -0.8032135 ]
+ [-1.3245039  -0.9418452  -0.24141115 -0.942759  ]
+ [ 1.3058628   3.4847112   2.205779   -0.09500873]
+ [-0.24689323  1.2202847  -0.8066333  -1.8950713 ]
+ [ 1.3206693   1.21958    -0.23089297 -0.57861334]
+ [ 1.0026376   1.3927984  -0.3529145  -1.1028361 ]
+ [ 0.9840437   1.2342126  -0.5635207  -1.2460208 ]
+ [ 1.305523    3.550282    2.2695558  -0.13556048]
+ [-1.3832743   2.5632653   0.73857135 -0.553154  ]
+ [ 0.9666432   1.0582522  -0.5447484  -1.163821  ]
+ [ 0.92121685  0.88740957 -0.5413637  -1.0557281 ]
+ [-0.01097089  1.3249198  -0.7403561  -1.7744775 ]
+ [ 2.5953493   0.9064859   1.4596409  -0.43358856]
+ [ 1.3063121   3.6195037   2.3341968  -0.1804294 ]
+ [ 1.3452108   1.0174775  -0.17103146 -1.9449372 ]
+ [-1.1794796   3.317494    2.9111938  -1.2444093 ]
+ [-1.1794796   3.317494    2.6148586  -1.2444093 ]
+ [ 0.748095    0.33365586 -0.61107147 -0.44081378]
+ [ 1.3058628   3.4847112   2.205779   -0.09500873]
+ [ 1.3144832   1.1121925  -0.28287637 -0.498582  ]
+ [ 1.0219119   1.234514   -0.40251303 -1.0522082 ]
+ [-1.3226116   3.405324    3.0228372  -1.4092245 ]
+ [-1.1375644   3.2045496   3.523244   -1.1083419 ]
+ [-0.33924067  1.1739252  -0.8235354  -1.9505558 ]
+ [ 2.8449373   3.4780774   1.4727916  -0.28926122]]
+Traceback (most recent call last):
+  File "C:/Users/emman/OneDrive/Scuola/Unibo/DL - Deep Learning/Project/Repo/Flatland_DDDQN/multi_agent_training_4act_bootstrap.py", line 396, in <module>
+    train_agent(wandb.config)
+  File "C:/Users/emman/OneDrive/Scuola/Unibo/DL - Deep Learning/Project/Repo/Flatland_DDDQN/multi_agent_training_4act_bootstrap.py", line 189, in train_agent
+    policy.step(agent_prev_obs[agent], agent_prev_action[agent], all_rewards[agent],
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 80, in step
+    self._learn()
+  File "C:\Users\emman\OneDrive\Scuola\Unibo\DL - Deep Learning\Project\Repo\Flatland_DDDQN\components\bdddqn_policy.py", line 117, in _learn
+    self.qnetwork_local.fit(np.array(train_states), y={head_name: np.array(train_targets)},
+KeyboardInterrupt
