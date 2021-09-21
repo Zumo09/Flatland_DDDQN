@@ -138,36 +138,21 @@ class ReplayBuffer:
 
     def add(self, state, action, reward, next_state, done):
         """Add a new experience to memory."""
-        e = Experience(np.expand_dims(state, 0), action, reward, np.expand_dims(next_state, 0), done)
+        e = Experience(state, action, reward, next_state, done)
         self.memory.append(e)
 
     def sample(self):
         """Randomly sample a batch of experiences from memory."""
         experiences = random.sample(self.memory, k=self.batch_size)
 
-        states = self.__v_stack([e.state for e in experiences if e is not None])
-        actions = self.__v_stack([e.action for e in experiences if e is not None])
-        rewards = self.__v_stack([e.reward for e in experiences if e is not None])
-        next_states = self.__v_stack([e.next_state for e in experiences if e is not None])
-        dones = self.__v_stack([e.done for e in experiences if e is not None]).astype(np.uint8)
+        states = np.array([e.state for e in experiences if e is not None])
+        actions = np.array([e.action for e in experiences if e is not None])
+        rewards = np.array([e.reward for e in experiences if e is not None])
+        next_states = np.array([e.next_state for e in experiences if e is not None])
+        dones = np.array([e.done for e in experiences if e is not None]).astype(np.uint8)
 
         return states, actions, rewards, next_states, dones
 
     def __len__(self):
         """Return the current size of internal memory."""
         return len(self.memory)
-
-    @staticmethod
-    def __v_stack_impr(states):
-        sub_dim = len(states[0][0]) if isinstance(states[0], Iterable) else 1
-        np_states = np.reshape(np.array(states), (len(states), sub_dim))
-        return np_states
-
-    @staticmethod
-    def __v_stack(states):
-        if isinstance(states[0], Iterable):
-            sub_dim = len(states[0][0])
-            np_states = np.reshape(np.array(states), (len(states), sub_dim))
-        else:
-            np_states = np.array(states)
-        return np_states

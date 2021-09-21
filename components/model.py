@@ -32,12 +32,6 @@ def load_dueling_dqn(path):
     return load_model(path)
 
 
-def _preprocessing_network(inputs, state_size, params):
-    x = Dense(params.hidden_size_1, activation="relu", name='dense_0')(inputs)
-
-    return x
-
-
 def _dueling_network(inputs, action_size, params, index=0):
     # value calculation
     val = Dense(params.hidden_size_2, activation='relu', name='val_0_' + str(index))(inputs)
@@ -50,9 +44,7 @@ def _dueling_network(inputs, action_size, params, index=0):
     adv = Dense(action_size, name='adv_2_' + str(index))(adv)
 
     # q value calculation
-    add = Add(name='add_' + str(index))([val, adv])
-    average = mean(adv, axis=1, keepdims=True)
-    q_values = Subtract(name='q_values_' + str(index))([add, average])
+    q_values = val + adv - mean(adv, axis=1, keepdims=True)
 
     return q_values
 
@@ -60,15 +52,16 @@ def _dueling_network(inputs, action_size, params, index=0):
 def bootstrapped_dueling_q_network(state_size, action_size, params):
     inputs = Input(shape=(state_size,), name='observation')
 
-    prep_net = _preprocessing_network(inputs, state_size, params)
+    prep_net = Dense(params.hidden_size_1, activation="relu", name='dense_0')(inputs)
 
     heads = []
     for i in range(params.num_heads):
-        head = _dueling_network(prep_net, action_size, params, i)
-        heads.append(head)
+        head_q = _dueling_network(prep_net, action_size, params, i)
 
-    model = Model(inputs=inputs, outputs=heads, name='bootstrapped_dueling_q_network_' + str(params.num_heads) + '_heads')
+        model = Model(inputs=inputs, outputs=head_q, name=f'bootstrapped_ddqn_head_{i}_of_{params.num_heads}')
 
-    model.compile(optimizer=Adam(learning_rate=params.learning_rate), loss=MeanSquaredError())
+        model.compile(optimizer=Adam(learning_rate=params.learning_rate), loss=MeanSquaredError())
 
-    return model
+        heads.append(model)
+
+    return heads

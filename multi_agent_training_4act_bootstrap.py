@@ -344,7 +344,7 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2000, type=int)
     parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=0, type=int)
-    parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
+    parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=5, type=int)
     parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
     parser.add_argument("--eps_start", help="max exploration", default=1.0, type=float)
     parser.add_argument("--eps_end", help="min exploration", default=0.01, type=float)
@@ -366,8 +366,8 @@ if __name__ == "__main__":
     parser.add_argument("--hidden_size_2", help="hidden size 2nd layer", default=128, type=int)
     parser.add_argument("--hidden_size_3", help="hidden size 3rd layer", default=32, type=int)
     parser.add_argument("--update_every", help="how often to update the network", default=16, type=int)
-    parser.add_argument("--num_heads", help="number of heads of the bootstrapped q network", default=1, type=int)
-    parser.add_argument("--p_head", help="probability of a head to be included in the mask", default=1, type=float)
+    parser.add_argument("--num_heads", help="number of heads of the bootstrapped q network", default=4, type=int)
+    parser.add_argument("--p_head", help="probability of a head to be included in the mask", default=0.5, type=float)
 
     training_params = parser.parse_args()
 
@@ -383,7 +383,7 @@ if __name__ == "__main__":
 
     wandb.login(key='0f20b9f069a2312cc2b8e92e6f75310697d5fdfc')
 
-    wandb.init(project='flatland-rl-4op', config=configuration)
+    wandb.init(project='flatland-rl-4op-bootstrap', config=configuration)
 
     print('\nWeigh and Biases Configuration\n')
     for k, v in wandb.config.items():
