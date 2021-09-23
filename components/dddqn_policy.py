@@ -17,7 +17,10 @@ class DDDQNPolicy:
 
         self.action_size = 4
 
-        if not evaluation_mode:
+        if evaluation_mode:
+            self.qnetwork_local = None
+
+        else:
             self.buffer_size = parameters.buffer_size
             self.batch_size = parameters.batch_size
             self.update_every = parameters.update_every
@@ -26,10 +29,9 @@ class DDDQNPolicy:
             self.gamma = parameters.gamma
             self.buffer_min_size = parameters.buffer_min_size
 
-        # Q-Network
-        self.qnetwork_local = dueling_q_network(state_size, self.action_size, parameters)
+            # Q-Network
+            self.qnetwork_local = dueling_q_network(state_size, self.action_size, parameters)
 
-        if not evaluation_mode:
             self.qnetwork_target = dueling_q_network(state_size, self.action_size, parameters)
             self._soft_update()
             self.memory = ReplayBuffer(self.buffer_size, self.batch_size)

@@ -45,8 +45,10 @@ class BDDDQNPolicy:
             action_values = self.local_networks[head](state)
             action = np.argmax(action_values)
         else:   # ensemble method
-            votes = np.sum([net(state) for net in self.local_networks], axis=0)
-            return np.argmax(votes)
+            votes = np.zeros(self.action_size)
+            for net in self.local_networks:
+                votes += net(state)
+            action = np.argmax(votes)
 
         return action + 1
 

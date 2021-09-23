@@ -24,7 +24,7 @@ sys.path.append(str(base_dir))
 
 from utils.deadlock_check import check_if_all_blocked
 from utils.timer import Timer
-from components.dddqn_policy import DDDQNPolicy
+from components.bdddqn_policy import BDDDQNPolicy
 
 
 def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size, seed, render,
@@ -96,7 +96,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
     step_times = []
 
     obs, _ = env.reset(regenerate_rail=True, regenerate_schedule=True, random_seed=seed)
-    policy = DDDQNPolicy(None, None, evaluation_mode=True)
+    policy = BDDDQNPolicy(obs[0].shape[0], Namespace(**parameters), evaluation_mode=True)
     policy.load(checkpoint)
 
     for episode_idx in range(n_eval_episodes):

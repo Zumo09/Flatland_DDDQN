@@ -359,12 +359,12 @@ if __name__ == "__main__":
     parser.add_argument("--batch_size", help="minibatch size", default=128, type=int)
     parser.add_argument("--gamma", help="discount factor", default=0.98, type=float)
     parser.add_argument("--tau", help="soft update of target parameters", default=1e-3, type=float)
-    parser.add_argument("--learning_rate", help="learning rate", default=0.8e-4, type=float)
+    parser.add_argument("--learning_rate", help="learning rate", default=0.1e-3, type=float)
     parser.add_argument("--hidden_size_1", help="hidden size 1st layer", default=256, type=int)
-    parser.add_argument("--hidden_size_2", help="hidden size 2nd layer", default=128, type=int)
+    parser.add_argument("--hidden_size_2", help="hidden size 2nd layer", default=64, type=int)
     parser.add_argument("--hidden_size_3", help="hidden size 3rd layer", default=32, type=int)
     parser.add_argument("--update_every", help="how often to update the network", default=16, type=int)
-    parser.add_argument("--num_heads", help="number of heads of the bootstrapped q network", default=1, type=int)
+    parser.add_argument("--num_heads", help="number of heads of the bootstrapped q network", default=4, type=int)
     parser.add_argument("--p_head", help="probability of a head to be included in the mask", default=0.5, type=float)
 
     training_params = parser.parse_args()
@@ -381,7 +381,7 @@ if __name__ == "__main__":
 
     wandb.login(key='0f20b9f069a2312cc2b8e92e6f75310697d5fdfc')
 
-    wandb.init(project='flatland-rl-4op', config=configuration)
+    wandb.init(project='frl-single-greedy-vs-boot', config=configuration)
 
     print('\nWeigh and Biases Configuration\n')
     for k, v in wandb.config.items():

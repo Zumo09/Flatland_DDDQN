@@ -1,7 +1,7 @@
 ENV_CONFIG = [
     {
         # Test_0
-        "n_agents": 3,
+        "n_agents": 1,
         "x_dim": 35,
         "y_dim": 35,
         "n_cities": 2,
