@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c4fc695-69ae-4ba0-9480-e1ef614b185e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/stampa_pesi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +70,7 @@
       <recent name="D:\Users\Zumo\Documents\UNIVERSITÀ\AI\DL\Flatland_DDDQN" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.evaluate_agent">
+  <component name="RunManager" selected="Python.stampa_pesi">
     <configuration name="evaluate_agent" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Flatland_DDDQN" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,14 +155,37 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="stampa_pesi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Flatland_DDDQN" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stampa_pesi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.multi_agent_training_4act_bootstrap" />
       <item itemvalue="Python.stampa" />
       <item itemvalue="Python.evaluate_agent_boot" />
       <item itemvalue="Python.evaluate_agent" />
+      <item itemvalue="Python.stampa_pesi" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.stampa_pesi" />
         <item itemvalue="Python.evaluate_agent" />
         <item itemvalue="Python.multi_agent_training_4act_bootstrap" />
         <item itemvalue="Python.evaluate_agent_boot" />
@@ -222,38 +246,38 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1061" y="442" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1632423403050" />
-    <state width="2539" height="523" key="GridCell.Tab.0.bottom" timestamp="1632489713179">
+    <state width="1653" height="1095" key="GridCell.Tab.0.bottom" timestamp="1632499533349">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1631647385393">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.bottom.inPresentationMode/0.0.2560.1400@0.0.2560.1400" timestamp="1631647385393" />
-    <state width="2539" height="523" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1632489713179" />
-    <state width="2539" height="523" key="GridCell.Tab.0.center" timestamp="1632489713179">
+    <state width="1653" height="1095" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1632499533349" />
+    <state width="1653" height="1095" key="GridCell.Tab.0.center" timestamp="1632499533348">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1631647385393">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.center.inPresentationMode/0.0.2560.1400@0.0.2560.1400" timestamp="1631647385393" />
-    <state width="2539" height="523" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1632489713179" />
-    <state width="2539" height="523" key="GridCell.Tab.0.left" timestamp="1632489713179">
+    <state width="1653" height="1095" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1632499533348" />
+    <state width="1653" height="1095" key="GridCell.Tab.0.left" timestamp="1632499533348">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1631647385393">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.left.inPresentationMode/0.0.2560.1400@0.0.2560.1400" timestamp="1631647385393" />
-    <state width="2539" height="523" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1632489713179" />
-    <state width="2539" height="523" key="GridCell.Tab.0.right" timestamp="1632489713179">
+    <state width="1653" height="1095" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1632499533348" />
+    <state width="1653" height="1095" key="GridCell.Tab.0.right" timestamp="1632499533349">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1631647385393">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2539" height="376" key="GridCell.Tab.0.right.inPresentationMode/0.0.2560.1400@0.0.2560.1400" timestamp="1631647385393" />
-    <state width="2539" height="523" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1632489713179" />
+    <state width="1653" height="1095" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1632499533349" />
     <state x="782" y="346" key="SettingsEditor" timestamp="1632489709794">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
