@@ -1,7 +1,6 @@
 import sys
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
-from pprint import pprint
 
 import numpy as np
 from flatland.envs.malfunction_generators import malfunction_from_params, MalfunctionParameters
