@@ -1,6 +1,6 @@
 # Flatland Reinforcement Learning
 
-## Weight and Biases projcts:
+## Weight and Biases projects:
 
 * [Epsilon Greedy vs Bootstrapped DQN](https://wandb.ai/zumo09/frl-eps-vs-boot?workspace=user-zumo09)
 
