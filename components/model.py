@@ -1,9 +1,9 @@
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense, Input, Add, Average, Subtract
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.backend import mean
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.losses import MeanSquaredError
+from tensorflow.keras.models import Model
 from tensorflow.keras.models import load_model
+from tensorflow.keras.optimizers import Adam
 
 
 def dueling_q_network(state_size, action_size, params):

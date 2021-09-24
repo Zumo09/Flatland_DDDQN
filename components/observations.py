@@ -28,7 +28,7 @@ class CustomObservation(TreeObsForRailEnv):
         tree_list = [self.node_decomposition(obs)]
         childs = self.childs_decomposition(obs[12], 1)
         # call for the child_decomposition(obs[12], 1) function: obs[12] is the thirteenth attribute of a Node object;
-        # '1' as second argument is used to initialize the depth paramater for gathering information about nodes
+        # '1' as second argument is used to initialize the depth parameter for gathering information about nodes
         # (see the below exaplanation of the function).
 
         tree_list.append(childs)
@@ -87,14 +87,11 @@ class CustomObservation(TreeObsForRailEnv):
             if childs[direction] == -np.inf:
 
                 minus_one_array = - np.ones(
-                    12)  # '-np.inf'is substituted with an array of legth 12, whose elements are -1. In this way,
+                    12)  # '-np.inf'is substituted with an array of length 12, whose elements are -1. In this way,
                 # we have observations of the same length.
 
-                if depth < self.max_depth:  # here, the part of filling the observation starts. This must be done in order to
-                    # have observations of the same dimension
-                    # MAX_DEPTH must be known (global variable)
-
-                    depth_copy = depth  # just for safety
+                if depth < self.max_depth:  # here, the part of filling the observation starts. This must be done in
+                    # order to have observations of the same dimension
 
                     fill_childs_list = []  # this is the final list that will be used to add all the missing nodes (when
                     # we have reached the maximum depth)
@@ -120,9 +117,8 @@ class CustomObservation(TreeObsForRailEnv):
 
                 if childs[direction][12] != {}:  # if there are children
 
-                    childs_node_data = self.childs_decomposition(childs[direction][12],
-                                                            depth + 1)  # here, childs_decomposition() function is called
-                    # recursively
+                    childs_node_data = self.childs_decomposition(childs[direction][12], depth + 1)
+                    # here, childs_decomposition() function is called recursively
                     childs_list.append((direction, depth, node_data, childs_node_data))
 
                 else:  # otherwise..it means that we have reached the end of the observation
@@ -135,8 +131,6 @@ class CustomObservation(TreeObsForRailEnv):
     to have observations of the same dimension '''
 
     def fill_childs(self, fill_childs_list, depth, letters_list):
-        temp_list = []
-
         if depth < self.max_depth:
 
             for letter in letters_list:  # just take a single letter
@@ -171,8 +165,8 @@ class CustomObservation(TreeObsForRailEnv):
             'B': 4
         }
 
-        final_array = self.sub_tree_encoding(tree_decomposed[1], final_array,
-                                        tree_dict)  # call of the sub_tree_encoding() function (see below for explanation)
+        final_array = self.sub_tree_encoding(tree_decomposed[1], final_array, tree_dict)
+        # call of the sub_tree_encoding() function (see below for explanation)
 
         return final_array
 
@@ -186,16 +180,16 @@ class CustomObservation(TreeObsForRailEnv):
                 final_array = np.append(final_array, sub_tree[1])  # append the depth
                 final_array = np.append(final_array, sub_tree[2])  # append the value (the sum of the array)
 
-            elif len(sub_tree) == 4 and isinstance(sub_tree[-1],
-                                                   list):  # this is the case in which a node is charaterized by a fourth
+            elif len(sub_tree) == 4 and isinstance(sub_tree[-1], list):
+                # this is the case in which a node is charaterized by a fourth
                 # element that is a list of children
 
                 final_array = np.append(final_array, tree_dict[sub_tree[0]])  # append the encoded direction
                 final_array = np.append(final_array, sub_tree[1])  # append the depth
                 final_array = np.append(final_array, sub_tree[2])  # append the value
 
-                final_array = self.sub_tree_encoding(sub_tree[3], final_array,
-                                                tree_dict)  # call recurisvely the sub_tree_encoding function,
+                final_array = self.sub_tree_encoding(sub_tree[3], final_array, tree_dict)
+                # call recurisvely the sub_tree_encoding function,
                 # passing as 'tree_decomposed' element the list of children
 
         return final_array

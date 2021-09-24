@@ -1,15 +1,10 @@
-import math
-import multiprocessing
-import os
 import sys
 from argparse import ArgumentParser, Namespace
-from multiprocessing import Pool
 from pathlib import Path
 from pprint import pprint
 
 import numpy as np
 from flatland.envs.malfunction_generators import malfunction_from_params, MalfunctionParameters
-# from flatland.envs.observations import TreeObsForRailEnv
 from flatland.envs.predictions import ShortestPathPredictorForRailEnv
 from flatland.envs.rail_env import RailEnv
 from flatland.envs.rail_generators import sparse_rail_generator
@@ -27,13 +22,7 @@ from utils.timer import Timer
 from components.dddqn_policy import DDDQNPolicy
 
 
-def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size, seed, render,
-                allow_skipping, allow_caching):
-    # Evaluation is faster on CPU (except if you use a really huge policy)
-    parameters = {
-        'num_heads': 4
-    }
-
+def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_skipping, allow_caching):
     env_params = Namespace(**env_params)
 
     # Environment parameters
@@ -45,7 +34,6 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
     max_rails_in_city = env_params.max_rails_in_city
 
     # Malfunction and speed profiles
-    # TODO pass these parameters properly from main!
     malfunction_parameters = MalfunctionParameters(
         malfunction_rate=env_params.malfunction_rate,  # Rate of malfunctions
         min_duration=20,  # Minimal duration
@@ -87,6 +75,8 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
     if render:
         env_renderer = RenderTool(env, gl="PGL")
 
+    max_steps = env._max_episode_steps
+
     action_dict = dict()
     scores = []
     completions = []
@@ -95,7 +85,6 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
     agent_times = []
     step_times = []
 
-    obs, _ = env.reset(regenerate_rail=True, regenerate_schedule=True, random_seed=seed)
     policy = DDDQNPolicy(None, None, evaluation_mode=True)
     policy.load(checkpoint)
 
@@ -124,7 +113,6 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
 
         for step in range(max_steps - 1):
             if allow_skipping and check_if_all_blocked(env):
-                # FIXME why -1? bug where all agents are "done" after max_steps!
                 skipped = max_steps - step - 1
                 final_step = max_steps - 2
                 n_unfinished_agents = sum(not done[idx] for idx in env.get_agent_handles())
@@ -219,19 +207,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, max_steps, action_size,
 
 
 def evaluate_agents(file, evaluation_env_config, n_evaluation_episodes, render, allow_skipping, allow_caching):
-    nb_threads = 1
-    eval_per_thread = n_evaluation_episodes
-
-    if not render:
-        nb_threads = multiprocessing.cpu_count()
-        eval_per_thread = max(1, math.ceil(n_evaluation_episodes / nb_threads))
-
-    total_nb_eval = eval_per_thread * nb_threads
-    print("Will evaluate policy {} over {} episodes on {} threads.".format(file, total_nb_eval, nb_threads))
-
-    if total_nb_eval != n_evaluation_episodes:
-        print("(Rounding up from {} to fill all cores)".format(n_evaluation_episodes))
-
+    print("Will evaluate policy {} over {} episodes.".format(file, n_evaluation_episodes))
     # Observation parameters need to match the ones used during training!
 
     params = get_env_config(evaluation_env_config)
@@ -240,22 +216,7 @@ def evaluate_agents(file, evaluation_env_config, n_evaluation_episodes, render, 
     print("Environment parameters:")
     pprint(params)
 
-    # Calculate space dimensions and max steps
-    max_steps = int(4 * 2 * (env_params.x_dim + env_params.y_dim + (env_params.n_agents / env_params.n_cities)))
-    action_size = 5
-
-    results = []
-    # if render:
-    results.append(eval_policy(params, file, eval_per_thread, max_steps, action_size,
-                               0, render, allow_skipping, allow_caching))
-
-    # else:
-    #     with Pool() as p:
-    #         results = p.starmap(eval_policy,
-    #                             [(params, file, 1, max_steps, action_size, seed * nb_threads,
-    #                               render, allow_skipping, allow_caching)
-    #                              for seed in
-    #                              range(total_nb_eval)])
+    results = [eval_policy(env_params, file, n_evaluation_episodes, 0, render, allow_skipping, allow_caching)]
 
     scores = []
     completions = []
@@ -298,7 +259,6 @@ if __name__ == "__main__":
     parser.add_argument("--allow_caching", help="caches the last observation-action pair", action='store_true')
     args = parser.parse_args()
 
-    os.environ["OMP_NUM_THREADS"] = str(1)
     evaluate_agents(file=args.file, evaluation_env_config=args.evaluation_env_config,
                     n_evaluation_episodes=args.n_evaluation_episodes, render=args.render,
                     allow_skipping=args.allow_skipping, allow_caching=args.allow_caching)

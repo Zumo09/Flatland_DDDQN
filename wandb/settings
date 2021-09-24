@@ -1,5 +1,5 @@
 [default]
 entity = zumo09
-project = flatland-rl-softmax-obs
+project = frl-eps-vs-boot
 base_url = https://api.wandb.ai
 

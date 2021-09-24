@@ -1,5 +1,6 @@
 import random
-from collections import namedtuple, deque, Iterable
+from collections import namedtuple, deque
+
 import numpy as np
 
 from components.model import dueling_q_network, load_dueling_dqn
@@ -10,10 +11,6 @@ class DDDQNPolicy:
 
     def __init__(self, state_size, parameters, evaluation_mode=False):
         self.evaluation_mode = evaluation_mode
-
-        # self.state_size = state_size
-        # self.action_size = action_size
-        # self._action_diff = 5 - self.action_size
 
         self.action_size = 4
 

@@ -17,8 +17,6 @@ from components.env_config import get_env_config
 from components.observations import CustomObservation
 from utils.timer import Timer
 
-import tensorflow as tf
-
 
 def create_rail_env(env_params):
     n_agents = env_params.n_agents
@@ -86,9 +84,6 @@ def train_agent(config):
     seed = config.seed
 
     # Training parameters
-    eps_start = config.eps_start
-    eps_end = config.eps_end
-    eps_decay = config.eps_decay
     n_episodes = config.n_episodes
     checkpoint_interval = config.checkpoint_interval
     n_eval_episodes = config.n_evaluation_episodes
@@ -339,10 +334,10 @@ if __name__ == "__main__":
     base_dir = Path(__file__).resolve().parent.parent
     sys.path.append(str(base_dir))
 
-    tf.config.run_functions_eagerly(True)
+    # tf.config.run_functions_eagerly(True)
 
     parser = ArgumentParser()
-    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=2000, type=int)
+    parser.add_argument("-n", "--n_episodes", help="number of episodes to run", default=3000, type=int)
     parser.add_argument("-t", "--env_config", help="training config id (eg 0 for Test_0)", default=0, type=int)
     parser.add_argument("--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
     parser.add_argument("--checkpoint_interval", help="checkpoint interval", default=100, type=int)
@@ -365,7 +360,7 @@ if __name__ == "__main__":
     parser.add_argument("--hidden_size_1", help="hidden size 1st layer", default=256, type=int)
     parser.add_argument("--hidden_size_2", help="hidden size 2nd layer", default=64, type=int)
     parser.add_argument("--hidden_size_3", help="hidden size 3rd layer", default=32, type=int)
-    parser.add_argument("--update_every", help="how often to update the network", default=16, type=int)
+    parser.add_argument("--update_every", help="how often to update the network", default=8, type=int)
     parser.add_argument("--num_heads", help="number of heads of the bootstrapped q network", default=4, type=int)
     parser.add_argument("--p_head", help="probability of a head to be included in the mask", default=0.5, type=float)
 
