@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8c4fc695-69ae-4ba0-9480-e1ef614b185e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/evaluate_agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate_agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +47,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -153,10 +155,10 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.evaluate_agent" />
-      <item itemvalue="Python.evaluate_agent_boot" />
       <item itemvalue="Python.multi_agent_training_4act_bootstrap" />
       <item itemvalue="Python.stampa" />
+      <item itemvalue="Python.evaluate_agent_boot" />
+      <item itemvalue="Python.evaluate_agent" />
     </list>
     <recent_temporary>
       <list>
