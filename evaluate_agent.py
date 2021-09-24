@@ -85,11 +85,11 @@ def eval_policy(env_params, bootstrapped, n_eval_episodes, seed, render, allow_s
     if bootstrapped:
         policy = BDDDQNPolicy(None, Namespace(num_heads=4), evaluation_mode=True)
         policy.load('./checkpoints/210923213346/1500')
-        print('Evaluating Bootstrapped DQN')
+        print('\nEvaluating Bootstrapped DQN\n')
     else:
         policy = DDDQNPolicy(None, None, evaluation_mode=True)
         policy.load('./checkpoints/210921124919/2000')
-        print('Evaluating Epsilon Greedy')
+        print('\nEvaluating Epsilon Greedy\n')
 
     for episode_idx in range(n_eval_episodes):
         seed += 1
