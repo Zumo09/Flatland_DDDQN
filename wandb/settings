@@ -1,5 +1,0 @@
-[default]
-entity = zumo09
-project = frl-eps-vs-boot
-base_url = https://api.wandb.ai
-

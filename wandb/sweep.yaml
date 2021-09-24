@@ -1,4 +1,4 @@
-program: multi_agent_training_4act.py
+program: ../multi_agent_training_4act.py
 method: random
 metric:
   name: test_smoothed_completion

@@ -381,7 +381,7 @@ if __name__ == "__main__":
 
     wandb.login(key='0f20b9f069a2312cc2b8e92e6f75310697d5fdfc')
 
-    wandb.init(project='frl-single-greedy-vs-boot', config=configuration)
+    wandb.init(project='frl-eps-vs-boot', config=configuration)
 
     print('\nWeigh and Biases Configuration\n')
     for k, v in wandb.config.items():
