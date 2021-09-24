@@ -11,6 +11,7 @@ from flatland.envs.rail_generators import sparse_rail_generator
 from flatland.envs.schedule_generators import sparse_schedule_generator
 from flatland.utils.rendertools import RenderTool
 
+from components.dddqn_policy import DDDQNPolicy
 from components.env_config import get_env_config
 from components.observations import CustomObservation
 
@@ -19,12 +20,10 @@ sys.path.append(str(base_dir))
 
 from utils.deadlock_check import check_if_all_blocked
 from utils.timer import Timer
-from components.dddqn_policy import DDDQNPolicy
+from components.bdddqn_policy import BDDDQNPolicy
 
 
-def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_skipping, allow_caching):
-    env_params = Namespace(**env_params)
-
+def eval_policy(env_params, bootstrapped, n_eval_episodes, seed, render, allow_skipping):
     # Environment parameters
     n_agents = env_params.n_agents
     x_dim = env_params.x_dim
@@ -75,8 +74,6 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_ski
     if render:
         env_renderer = RenderTool(env, gl="PGL")
 
-    max_steps = env._max_episode_steps
-
     action_dict = dict()
     scores = []
     completions = []
@@ -85,8 +82,14 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_ski
     agent_times = []
     step_times = []
 
-    policy = DDDQNPolicy(None, None, evaluation_mode=True)
-    policy.load(checkpoint)
+    if bootstrapped:
+        policy = BDDDQNPolicy(None, Namespace(num_heads=4), evaluation_mode=True)
+        policy.load('./checkpoints/210923213346/1500')
+        print('Evaluating Bootstrapped DQN')
+    else:
+        policy = DDDQNPolicy(None, None, evaluation_mode=True)
+        policy.load('./checkpoints/210921124919/2000')
+        print('Evaluating Epsilon Greedy')
 
     for episode_idx in range(n_eval_episodes):
         seed += 1
@@ -98,6 +101,8 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_ski
         step_timer.start()
         obs, info = env.reset(regenerate_rail=True, regenerate_schedule=True, random_seed=seed)
         step_timer.end()
+
+        max_steps = env._max_episode_steps
 
         score = 0.0
 
@@ -134,10 +139,6 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_ski
                         inference_timer.end()
 
                     action_dict.update({agent: action})
-
-                    if allow_caching:
-                        agent_last_obs[agent] = obs[agent]
-                        agent_last_action[agent] = action
             agent_timer.end()
 
             step_timer.start()
@@ -151,9 +152,6 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_ski
                     show_observations=False,
                     show_predictions=False
                 )
-
-                if step % 100 == 0:
-                    print("{}/{}".format(step, max_steps - 1))
 
             for agent in env.get_agent_handles():
                 score += all_rewards[agent]
@@ -185,7 +183,7 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_ski
             hit_text = "\t⚡ Hit {} ({:.1f}%)".format(nb_hit, (100 * nb_hit) / (n_agents * final_step))
 
         print(
-            "☑️  Score: {:.3f} \tDone: {:.1f}% \tNb steps: {:.3f} "
+            "☑️  Score: {:.3f} \tDone: {:4.1f}% \tNb steps: {:3d} "
             "\t🍭 Seed: {}"
             "\t🚉 Env: {:.3f}s  "
             "\t🤖 Agent: {:.3f}s (per step: {:.3f}s) \t[infer: {:.3f}s]"
@@ -206,59 +204,54 @@ def eval_policy(env_params, checkpoint, n_eval_episodes, seed, render, allow_ski
     return scores, completions, nb_steps, agent_times, step_times
 
 
-def evaluate_agents(file, evaluation_env_config, n_evaluation_episodes, render, allow_skipping, allow_caching):
-    print("Will evaluate policy {} over {} episodes.".format(file, n_evaluation_episodes))
-    # Observation parameters need to match the ones used during training!
-
-    params = get_env_config(evaluation_env_config)
+def evaluate_agents(n_evaluation_episodes, render=True):
+    params = get_env_config(0)
     env_params = Namespace(**params)
 
-    print("Environment parameters:")
-    pprint(params)
-
-    results = [eval_policy(env_params, file, n_evaluation_episodes, 0, render, allow_skipping, allow_caching)]
-
-    scores = []
-    completions = []
-    nb_steps = []
-    times = []
-    step_times = []
-    for s, c, n, t, st in results:
-        scores.append(s)
-        completions.append(c)
-        nb_steps.append(n)
-        times.append(t)
-        step_times.append(st)
+    results_eps = eval_policy(env_params, False, n_evaluation_episodes, 0, render, True)
+    results_boot = eval_policy(env_params, True, n_evaluation_episodes, 0, render, True)
 
     print("-" * 200)
+    print('Results Test on Epsilon Greedy')
+    scores, completions, nb_steps, agent_times, step_times = results_eps
 
     print("✅ Score: {:.3f} \tDone: {:.1f}% \tNb steps: {:.3f} \tAgent total: {:.3f}s (per step: {:.3f}s)".format(
         np.mean(scores),
         np.mean(completions) * 100.0,
         np.mean(nb_steps),
-        np.mean(times),
-        np.mean(times) / np.mean(nb_steps)
+        np.mean(agent_times),
+        np.mean(agent_times) / np.mean(nb_steps)
     ))
 
     print("⏲️  Agent sum: {:.3f}s \tEnv sum: {:.3f}s \tTotal sum: {:.3f}s".format(
-        np.sum(times),
+        np.sum(agent_times),
         np.sum(step_times),
-        np.sum(times) + np.sum(step_times)
+        np.sum(agent_times) + np.sum(step_times)
+    ))
+
+    print("-" * 200)
+    print('Results Test on Bootstrapped')
+    scores, completions, nb_steps, agent_times, step_times = results_boot
+
+    print("✅ Score: {:.3f} \tDone: {:.1f}% \tNb steps: {:.3f} \tAgent total: {:.3f}s (per step: {:.3f}s)".format(
+        np.mean(scores),
+        np.mean(completions) * 100.0,
+        np.mean(nb_steps),
+        np.mean(agent_times),
+        np.mean(agent_times) / np.mean(nb_steps)
+    ))
+
+    print("⏲️  Agent sum: {:.3f}s \tEnv sum: {:.3f}s \tTotal sum: {:.3f}s".format(
+        np.sum(agent_times),
+        np.sum(step_times),
+        np.sum(agent_times) + np.sum(step_times)
     ))
 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("-f", "--file", help="checkpoint to load", required=True, type=str)
     parser.add_argument("-n", "--n_evaluation_episodes", help="number of evaluation episodes", default=25, type=int)
-    parser.add_argument("-e", "--evaluation_env_config", help="evaluation config id (eg 0 for Test_0)",
-                        default=0, type=int)
-    parser.add_argument("--render", help="render a single episode", action='store_true')
-    parser.add_argument("--allow_skipping", help="skips to the end of the episode if all agents are deadlocked",
-                        action='store_true')
-    parser.add_argument("--allow_caching", help="caches the last observation-action pair", action='store_true')
+    parser.add_argument("-r", "--render", help="render env", default=True, type=bool)
     args = parser.parse_args()
 
-    evaluate_agents(file=args.file, evaluation_env_config=args.evaluation_env_config,
-                    n_evaluation_episodes=args.n_evaluation_episodes, render=args.render,
-                    allow_skipping=args.allow_skipping, allow_caching=args.allow_caching)
+    evaluate_agents(n_evaluation_episodes=args.n_evaluation_episodes, render=args.render)
