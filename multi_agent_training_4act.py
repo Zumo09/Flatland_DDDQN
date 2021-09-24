@@ -162,8 +162,6 @@ def train_agent(config):
                 if info['action_required'][agent]:
                     update_values[agent] = True
                     action = policy.act(agent_obs[agent], eps=eps_start)
-                    if action == 0:
-                        print('WTF?!')
                     action_count[action] += 1
                 else:
                     # An action is not required if the train hasn't joined the railway network,

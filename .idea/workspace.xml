@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c4fc695-69ae-4ba0-9480-e1ef614b185e" name="Default Changelist" comment="" />
+    <list default="true" id="8c4fc695-69ae-4ba0-9480-e1ef614b185e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multi_agent_training_4act.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_agent_training_4act.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multi_agent_training_4act_bootstrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_agent_training_4act_bootstrap.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
